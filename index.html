@@ -27,13 +27,13 @@
                     },
                     colors: {
                         brand: {
-                            dark: '#0f111a',    // Background super escuro
-                            card: '#1b1f3b',    // Fundo dos cards (solicitado)
-                            primary: '#0066ff', // Azul elétrico
-                            secondary: '#00c3ff', // Azul claro/Ciano para gradientes
-                            accent: '#4d94ff',  // Azul intermediário
-                            text: '#f8fafc',    // Branco/Cinza claro
-                            muted: '#94a3b8'    // Cinza para texto secundário
+                            dark: '#0f111a',
+                            card: '#1b1f3b',
+                            primary: '#0066ff',
+                            secondary: '#00c3ff',
+                            accent: '#4d94ff',
+                            text: '#f8fafc',
+                            muted: '#94a3b8'
                         }
                     },
                     backgroundImage: {
@@ -52,7 +52,7 @@
                         },
                         float: {
                             '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-25px)' }, /* Efeito flutuante ampliado de -10px para -25px */
+                            '50%': { transform: 'translateY(-25px)' },
                         },
                         pulseGlow: {
                             '0%, 100%': { opacity: '1' },
@@ -65,56 +65,64 @@
     </script>
 
     <style>
-        /* Custom Styles for things Tailwind is tricky with */
         body {
             background-color: #0f111a;
             color: #f8fafc;
             overflow-x: hidden;
         }
-
         .glass-panel {
             background: rgba(27, 31, 59, 0.4);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
-
         .text-gradient {
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-image: linear-gradient(90deg, #f8fafc 0%, #94a3b8 100%);
         }
-        
         .text-gradient-blue {
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-image: linear-gradient(135deg, #00c3ff 0%, #0066ff 100%);
         }
-
-        /* Reveal Animation Classes */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
-
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
-
         .delay-100 { transition-delay: 100ms; }
         .delay-200 { transition-delay: 200ms; }
         .delay-300 { transition-delay: 300ms; }
-
-        /* Dashboard Mockup Styling */
         .dash-mockup {
             box-shadow: 0 0 40px rgba(0, 102, 255, 0.1);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
     </style>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1797584787882895');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1797584787882895&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
 </head>
 <body class="antialiased selection:bg-brand-primary selection:text-white">
 
@@ -123,7 +131,6 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center h-20">
                     <div class="flex-shrink-0 flex items-center gap-3">
-                        <!-- Custom Logo SVG re-criada a partir da imagem original -->
                         <svg viewBox="0 0 100 100" class="w-9 h-9 drop-shadow-md" xmlns="http://www.w3.org/2000/svg">
                             <path d="M 15 10 V 85 H 85 V 60 H 40 V 10 Z" fill="#f2efeb" />
                             <path d="M 45 55 H 85 V 20 Z" fill="#597491" />
@@ -139,8 +146,6 @@
                             Quero entender meus números
                         </a>
                     </div>
-                    
-                    <!-- Mobile menu button -->
                     <div class="md:hidden flex items-center">
                         <button id="mobile-menu-btn" class="text-brand-text hover:text-brand-primary focus:outline-none">
                             <i class="ph ph-list text-3xl"></i>
@@ -149,8 +154,6 @@
                 </div>
             </div>
         </div>
-        
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-white/10">
             <div class="px-4 pt-2 pb-6 space-y-1">
                 <a href="#problema" class="block px-3 py-3 text-base font-medium text-brand-text hover:text-brand-primary">O Problema</a>
@@ -164,7 +167,6 @@
 
     <main>
         <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-hero-glow">
-            <!-- Background Elements -->
             <div class="absolute top-1/4 left-0 w-96 h-96 bg-brand-primary/10 rounded-full blur-[100px] pointer-events-none"></div>
             <div class="absolute bottom-0 right-0 w-96 h-96 bg-brand-secondary/5 rounded-full blur-[100px] pointer-events-none"></div>
 
@@ -196,10 +198,8 @@
                 </div>
             </div>
 
-            <!-- Dashboard Abstract Illustration -->
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 mb-8 animate-fade-in-up delay-300 relative"> <!-- Espaçamento reduzido de mt-24 para mt-12 e adicionei mb-8 -->
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 mb-8 animate-fade-in-up delay-300 relative">
                 <div class="dash-mockup bg-brand-card/80 rounded-2xl p-4 md:p-6 backdrop-blur-sm animate-float">
-                    <!-- Mac Window Controls -->
                     <div class="flex gap-2 mb-6">
                         <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
                         <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
@@ -207,7 +207,6 @@
                     </div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <!-- Chart Card 1: CAC vs LTV -->
                         <div class="glass-panel rounded-xl p-6 border border-white/5 hover:border-brand-primary/30 transition-colors">
                             <div class="flex justify-between items-start mb-4">
                                 <div>
@@ -218,7 +217,6 @@
                                     <i class="ph-bold ph-warning"></i> Alerta
                                 </div>
                             </div>
-                            <!-- Funnel / Comparison -->
                             <div class="mt-6 flex flex-col gap-4">
                                 <div>
                                     <div class="flex justify-between text-xs text-brand-muted mb-1">
@@ -245,7 +243,6 @@
                             </div>
                         </div>
 
-                        <!-- Chart Card 2: Cohort Analysis -->
                         <div class="glass-panel rounded-xl p-6 border border-white/5 md:col-span-2 hover:border-brand-primary/30 transition-colors">
                             <div class="flex justify-between items-start mb-4">
                                 <div>
@@ -254,10 +251,7 @@
                                 </div>
                                 <span class="text-xs px-3 py-1.5 rounded-full bg-brand-primary/10 text-brand-primary border border-brand-primary/30">Visão Estratégica</span>
                             </div>
-                            
-                            <!-- Heatmap / Cohort Table Mockup -->
                             <div class="mt-6 w-full flex flex-col gap-1.5 overflow-hidden text-[10px] sm:text-xs font-mono">
-                                <!-- Header -->
                                 <div class="flex gap-1.5 text-brand-muted/70 mb-1">
                                     <div class="w-12 sm:w-16">Entrada</div>
                                     <div class="flex-1 text-center">Mês 1</div>
@@ -266,7 +260,6 @@
                                     <div class="flex-1 text-center">Mês 4</div>
                                     <div class="flex-1 text-center hidden sm:block">Mês 5</div>
                                 </div>
-                                <!-- Rows -->
                                 <div class="flex gap-1.5">
                                     <div class="w-12 sm:w-16 text-brand-muted flex items-center">Jan/24</div>
                                     <div class="flex-1 bg-brand-primary rounded text-center py-2 text-white font-semibold">100%</div>
@@ -281,7 +274,6 @@
                                     <div class="flex-1 bg-brand-primary/80 rounded text-center py-2 text-white/90">82%</div>
                                     <div class="flex-1 bg-red-500/30 border border-red-500/50 rounded text-center py-2 text-white relative group cursor-pointer shadow-[0_0_15px_rgba(239,68,68,0.2)]">
                                         <span class="font-bold text-red-400">35%</span>
-                                        <!-- Tooltip no Hover -->
                                         <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-red-500 text-white text-[10px] py-1.5 px-3 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10 shadow-lg font-sans">
                                             Gargalo identificado!
                                             <div class="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-2 h-2 bg-red-500 rotate-45"></div>
@@ -305,16 +297,14 @@
             </div>
         </section>
 
-        <section id="problema" class="py-16 bg-brand-dark relative"> <!-- Reduzi de py-24 para py-16 para aproximar do hero -->
+        <section id="problema" class="py-16 bg-brand-dark relative">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16 reveal">
                     <h2 class="text-brand-primary font-semibold tracking-wide uppercase text-sm mb-3">O Cenário Atual</h2>
                     <p class="text-3xl md:text-5xl font-bold text-brand-text mb-6">Trabalhar no escuro custa caro.</p>
                     <p class="text-xl text-brand-muted max-w-2xl mx-auto">Muitas clínicas e prestadores de serviço perdem milhares de reais todos os meses por falta de visibilidade sobre o próprio negócio.</p>
                 </div>
-
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Problem Card 1 -->
                     <div class="glass-panel p-8 rounded-2xl reveal delay-100 hover:border-brand-primary/30 transition-colors">
                         <div class="w-12 h-12 bg-red-500/10 rounded-xl flex items-center justify-center mb-6">
                             <i class="ph ph-question text-2xl text-red-400"></i>
@@ -322,8 +312,6 @@
                         <h3 class="text-xl font-bold text-white mb-3">Decisões no Achismo</h3>
                         <p class="text-brand-muted">Apostar em marketing ou novos equipamentos sem saber exatamente qual serviço traz a maior margem de lucro real.</p>
                     </div>
-
-                    <!-- Problem Card 2 -->
                     <div class="glass-panel p-8 rounded-2xl reveal delay-200 hover:border-brand-primary/30 transition-colors">
                         <div class="w-12 h-12 bg-orange-500/10 rounded-xl flex items-center justify-center mb-6">
                             <i class="ph ph-users-three text-2xl text-orange-400"></i>
@@ -331,8 +319,6 @@
                         <h3 class="text-xl font-bold text-white mb-3">Cancelamentos e Churn</h3>
                         <p class="text-brand-muted">Clientes que marcam e não aparecem, ou pacientes que fazem um procedimento e nunca mais retornam, esvaindo sua receita.</p>
                     </div>
-
-                    <!-- Problem Card 3 -->
                     <div class="glass-panel p-8 rounded-2xl reveal delay-300 hover:border-brand-primary/30 transition-colors">
                         <div class="w-12 h-12 bg-yellow-500/10 rounded-xl flex items-center justify-center mb-6">
                             <i class="ph ph-trend-down text-2xl text-yellow-400"></i>
@@ -345,18 +331,14 @@
         </section>
 
         <section id="solucao" class="py-24 bg-brand-card relative border-y border-white/5">
-            <!-- Radial gradient background -->
             <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-brand-primary/5 via-brand-dark to-brand-dark pointer-events-none"></div>
-
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="reveal mb-16 max-w-3xl">
                     <h2 class="text-brand-primary font-semibold tracking-wide uppercase text-sm mb-3">A Solução</h2>
                     <p class="text-3xl md:text-5xl font-bold text-white mb-6">Mais do que BI.<br/> Estratégia baseada em dados.</p>
                     <p class="text-xl text-brand-muted">Eu não entrego apenas telas bonitas. Eu crio o motor de inteligência que vai guiar as ações comerciais da sua empresa.</p>
                 </div>
-
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
-                    <!-- Service 1 -->
                     <div class="flex gap-6 reveal">
                         <div class="flex-shrink-0">
                             <div class="w-14 h-14 bg-brand-primary/10 border border-brand-primary/30 rounded-xl flex items-center justify-center text-brand-primary">
@@ -368,8 +350,6 @@
                             <p class="text-brand-muted leading-relaxed">Mapeamento completo de onde o dinheiro está vazando e onde estão as oportunidades ocultas na sua base atual de clientes.</p>
                         </div>
                     </div>
-
-                    <!-- Service 2 -->
                     <div class="flex gap-6 reveal delay-100">
                         <div class="flex-shrink-0">
                             <div class="w-14 h-14 bg-brand-primary/10 border border-brand-primary/30 rounded-xl flex items-center justify-center text-brand-primary">
@@ -381,8 +361,6 @@
                             <p class="text-brand-muted leading-relaxed">Visões executivas em tempo real. Saiba exatamente qual profissional vende mais, qual serviço tem maior margem e as taxas de conversão.</p>
                         </div>
                     </div>
-
-                    <!-- Service 3 -->
                     <div class="flex gap-6 reveal">
                         <div class="flex-shrink-0">
                             <div class="w-14 h-14 bg-brand-primary/10 border border-brand-primary/30 rounded-xl flex items-center justify-center text-brand-primary">
@@ -394,8 +372,6 @@
                             <p class="text-brand-muted leading-relaxed">Avaliação do funil de vendas, desde o primeiro contato até o fechamento. Identificamos gargalos no atendimento da sua equipe.</p>
                         </div>
                     </div>
-
-                    <!-- Service 4 -->
                     <div class="flex gap-6 reveal delay-100">
                         <div class="flex-shrink-0">
                             <div class="w-14 h-14 bg-brand-primary/10 border border-brand-primary/30 rounded-xl flex items-center justify-center text-brand-primary">
@@ -414,9 +390,7 @@
         <section id="diferencial" class="py-24 bg-brand-dark overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="glass-panel rounded-3xl p-8 md:p-16 border border-brand-primary/20 relative overflow-hidden reveal">
-                    <!-- Decorational background inside card -->
                     <div class="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-brand-primary/20 rounded-full blur-[80px]"></div>
-                    
                     <div class="grid md:grid-cols-2 gap-12 items-center relative z-10">
                         <div>
                             <h2 class="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
@@ -426,7 +400,6 @@
                             <p class="text-lg text-brand-muted mb-8">
                                 A diferença entre um "fazedor de relatórios" e um estrategista é a aplicação prática. Para garantir resultados previsíveis, utilizo a <strong class="text-white">Metodologia RFV</strong> — o exato framework testado, aprovado e utilizado pelos <i>big players</i> do mercado.
                             </p>
-                            
                             <ul class="space-y-5">
                                 <li class="flex items-start gap-4 text-brand-text">
                                     <div class="flex-shrink-0 mt-1 bg-white/5 p-2 rounded-lg border border-white/10">
@@ -457,8 +430,6 @@
                                 </li>
                             </ul>
                         </div>
-                        
-                        <!-- Visual representation of the difference -->
                         <div class="relative">
                             <div class="glass-panel p-6 rounded-2xl border-dashed border-2 border-white/10 mb-4 opacity-50 relative">
                                 <div class="absolute inset-0 flex items-center justify-center z-10">
@@ -472,13 +443,11 @@
                                 </div>
                                 <div class="h-20 bg-white/10 rounded w-full"></div>
                             </div>
-                            
                             <div class="flex justify-center my-[-10px] relative z-20">
                                 <div class="bg-brand-dark p-2 rounded-full border border-brand-primary/30 text-brand-primary shadow-[0_0_15px_rgba(0,102,255,0.2)]">
                                     <i class="ph-bold ph-arrow-down text-xl"></i>
                                 </div>
                             </div>
-
                             <div class="glass-panel p-6 rounded-2xl border border-brand-primary/50 shadow-[0_0_30px_rgba(0,102,255,0.2)] relative bg-gradient-to-br from-brand-card to-brand-card/50">
                                 <div class="absolute -top-3 -right-3">
                                     <span class="flex h-6 w-6 relative">
@@ -513,7 +482,6 @@
                     <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Resultados Esperados</h2>
                     <p class="text-xl text-brand-muted max-w-2xl mx-auto">O impacto de uma gestão orientada por dados na sua clínica ou negócio.</p>
                 </div>
-
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div class="glass-panel p-6 rounded-2xl border-t border-white/10 reveal delay-100 flex flex-col justify-between h-48">
                         <div>
@@ -522,7 +490,6 @@
                         </div>
                         <h3 class="text-3xl font-bold text-white">-30%</h3>
                     </div>
-                    
                     <div class="glass-panel p-6 rounded-2xl border-t border-brand-primary/50 bg-brand-primary/5 reveal delay-200 flex flex-col justify-between h-48 transform md:-translate-y-4">
                         <div>
                             <i class="ph ph-users text-3xl text-brand-primary mb-4 block"></i>
@@ -530,7 +497,6 @@
                         </div>
                         <h3 class="text-3xl font-bold text-white">+45%</h3>
                     </div>
-                    
                     <div class="glass-panel p-6 rounded-2xl border-t border-green-500/50 bg-green-500/5 reveal delay-300 flex flex-col justify-between h-48">
                         <div>
                             <i class="ph ph-chart-line-up text-3xl text-green-400 mb-4 block"></i>
@@ -538,7 +504,6 @@
                         </div>
                         <h3 class="text-3xl font-bold text-white">Consistente</h3>
                     </div>
-                    
                     <div class="glass-panel p-6 rounded-2xl border-t border-white/10 reveal delay-400 flex flex-col justify-between h-48 transform md:translate-y-4">
                         <div>
                             <i class="ph ph-eye text-3xl text-brand-secondary mb-4 block"></i>
@@ -554,33 +519,21 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="glass-panel rounded-3xl overflow-hidden border border-white/5 reveal">
                     <div class="grid md:grid-cols-5 gap-0">
-                        <!-- Image placeholder -->
                         <div class="md:col-span-2 bg-gradient-to-br from-brand-card to-brand-dark p-8 flex items-center justify-center relative">
                             <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-                            
-                            <!-- Placeholder for Lucas Photo -->
                             <div class="relative z-10 w-64 h-64 md:w-full md:h-full max-h-80 rounded-2xl overflow-hidden border-2 border-brand-primary/20 shadow-2xl">
                                 <img src="https://github.com/lucasfpereira2-wq/site/blob/main/fotosite.png?raw=true" alt="Lucas Analytics" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
                                 <div class="absolute inset-0 bg-brand-primary/10 mix-blend-overlay"></div>
                             </div>
                         </div>
-                        
                         <div class="md:col-span-3 p-8 md:p-16 flex flex-col justify-center">
                             <h2 class="text-3xl font-bold text-white mb-2">Lucas Analytics</h2>
                             <p class="text-brand-primary font-medium mb-6 uppercase tracking-wider text-sm">Especialista em Inteligência de Negócios</p>
-                            
                             <div class="space-y-4 text-brand-muted text-lg leading-relaxed">
-                                <p>
-                                    Especialista em transformar dados em crescimento estratégico.
-                                </p>
-                                <p>
-                                    Minha missão é ajudar empresários, especialmente donos de clínicas e serviços, a saírem do escuro. Entender os números do seu negócio não precisa ser complicado, precisa ser útil.
-                                </p>
-                                <p>
-                                    Eu ajudo empresas a encontrar gargalos invisíveis e tomar decisões embasadas que aumentam a receita, melhoram a performance da equipe e garantem crescimento sustentável.
-                                </p>
+                                <p>Especialista em transformar dados em crescimento estratégico.</p>
+                                <p>Minha missão é ajudar empresários, especialmente donos de clínicas e serviços, a saírem do escuro. Entender os números do seu negócio não precisa ser complicado, precisa ser útil.</p>
+                                <p>Eu ajudo empresas a encontrar gargalos invisíveis e tomar decisões embasadas que aumentam a receita, melhoram a performance da equipe e garantem crescimento sustentável.</p>
                             </div>
-                            
                             <div class="mt-8 flex gap-4">
                                 <a href="https://instagram.com/lucas.analytics" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-brand-primary hover:text-white transition-colors border border-white/10">
                                     <i class="ph-fill ph-instagram-logo text-xl"></i>
@@ -595,11 +548,10 @@
             </div>
         </section>
 
+        <!-- SEÇÃO DE CONTATO — botão WhatsApp com evento Contact -->
         <section id="contato" class="py-32 relative overflow-hidden bg-brand-primary">
-            <!-- Dynamic background -->
             <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 mix-blend-overlay"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-            
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center reveal">
                 <h2 class="text-4xl md:text-6xl font-bold text-white mb-6">
                     Sua empresa está crescendo...<br/>ou apenas faturando?
@@ -607,7 +559,8 @@
                 <p class="text-xl text-blue-100 mb-10 font-light">
                     Vamos fazer um diagnóstico rápido e descobrir onde estão as oportunidades ocultas nos seus dados.
                 </p>
-                <a href="https://wa.me/5531999876954" target="_blank" class="inline-flex items-center gap-2 px-10 py-5 rounded-full bg-white text-brand-primary font-bold text-lg hover:bg-gray-100 transition-all shadow-xl transform hover:-translate-y-1">
+                <!-- EVENTO: Contact — clique no WhatsApp principal -->
+                <a href="https://wa.me/5531999876954" target="_blank" onclick="fbq('track', 'Contact')" class="inline-flex items-center gap-2 px-10 py-5 rounded-full bg-white text-brand-primary font-bold text-lg hover:bg-gray-100 transition-all shadow-xl transform hover:-translate-y-1">
                     Quero entender meus números
                     <i class="ph-bold ph-arrow-right"></i>
                 </a>
@@ -621,7 +574,6 @@
             <div class="flex flex-col md:flex-row justify-between items-center md:items-start mb-12">
                 <div class="mb-8 md:mb-0 text-center md:text-left">
                     <div class="flex items-center justify-center md:justify-start gap-3 mb-4">
-                        <!-- Custom Logo SVG re-criada a partir da imagem original -->
                         <svg viewBox="0 0 100 100" class="w-8 h-8 drop-shadow-md" xmlns="http://www.w3.org/2000/svg">
                             <path d="M 15 10 V 85 H 85 V 60 H 40 V 10 Z" fill="#f2efeb" />
                             <path d="M 45 55 H 85 V 20 Z" fill="#597491" />
@@ -630,7 +582,6 @@
                     </div>
                     <p class="text-brand-muted text-sm max-w-xs">Transformando dados em estratégias de alto impacto para clínicas e empresas.</p>
                 </div>
-                
                 <div class="flex gap-8">
                     <a href="https://instagram.com/lucas.analytics" target="_blank" class="text-brand-muted hover:text-brand-primary transition-colors flex flex-col items-center gap-2">
                         <i class="ph ph-instagram-logo text-2xl"></i>
@@ -640,7 +591,8 @@
                         <i class="ph ph-linkedin-logo text-2xl"></i>
                         <span class="text-xs">LinkedIn</span>
                     </a>
-                    <a href="#" class="text-brand-muted hover:text-green-400 transition-colors flex flex-col items-center gap-2">
+                    <!-- EVENTO: Contact — WhatsApp no rodapé -->
+                    <a href="https://wa.me/5531999876954" target="_blank" onclick="fbq('track', 'Contact')" class="text-brand-muted hover:text-green-400 transition-colors flex flex-col items-center gap-2">
                         <i class="ph ph-whatsapp-logo text-2xl"></i>
                         <span class="text-xs">WhatsApp</span>
                     </a>
@@ -650,7 +602,6 @@
                     </a>
                 </div>
             </div>
-            
             <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                 <p class="text-brand-muted text-sm">
                     &copy; <span id="year"></span> Lucas Analytics. Todos os direitos reservados.
@@ -665,13 +616,10 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Set current year in footer
             document.getElementById('year').textContent = new Date().getFullYear();
 
-            // Mobile menu toggle
             const btn = document.getElementById('mobile-menu-btn');
             const menu = document.getElementById('mobile-menu');
-            
             btn.addEventListener('click', () => {
                 menu.classList.toggle('hidden');
                 const icon = btn.querySelector('i');
@@ -684,7 +632,6 @@
                 }
             });
 
-            // Close mobile menu when a link is clicked
             const mobileLinks = menu.querySelectorAll('a');
             mobileLinks.forEach(link => {
                 link.addEventListener('click', () => {
@@ -695,7 +642,6 @@
                 });
             });
 
-            // Navbar blur effect on scroll
             const navbar = document.getElementById('navbar');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 10) {
@@ -707,26 +653,17 @@
                 }
             });
 
-            // Scroll Reveal Animation Observer
             const revealElements = document.querySelectorAll('.reveal');
-            
-            const revealOptions = {
-                threshold: 0.15,
-                rootMargin: "0px 0px -50px 0px"
-            };
-
             const revealObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('active');
-                        observer.unobserve(entry.target); // Only animate once
+                        observer.unobserve(entry.target);
                     }
                 });
-            }, revealOptions);
+            }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
 
-            revealElements.forEach(el => {
-                revealObserver.observe(el);
-            });
+            revealElements.forEach(el => revealObserver.observe(el));
         });
     </script>
 </body>
