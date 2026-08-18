@@ -583,10 +583,9 @@
             <!-- Photo/Identity Column -->
             <div class="order-2 lg:order-1 reveal">
                 <div class="aspect-[3/4] bg-nevoa relative overflow-hidden border border-cinza flex items-center justify-center group">
-                    <div class="absolute inset-0 bg-grafite mix-blend-multiply opacity-5 transition-opacity duration-700 group-hover:opacity-0"></div>
-                    <!-- Assuming a real photo would go here. The placeholder stays abstract. -->
-                    <p class="font-mono text-[10px] tracking-kicker uppercase text-cinzaProf absolute top-6 left-6 z-10 transition-opacity duration-300 group-hover:opacity-0">Retrato / Fundador</p>
-                    <svg width="40" height="40" viewBox="0 0 100 100" class="text-cinza opacity-50 transition-transform duration-700 group-hover:scale-110"><use href="#mk"/></svg>
+                    <div class="absolute inset-0 bg-grafite mix-blend-multiply opacity-5 transition-opacity duration-700 group-hover:opacity-0 z-20"></div>
+                    <p class="font-mono text-[10px] tracking-kicker uppercase text-cinzaProf absolute top-6 left-6 z-30 transition-opacity duration-300 group-hover:opacity-0">Retrato / Fundador</p>
+                    <img src="https://github.com/lucasfpereira2-wq/site/blob/main/fotosite.png?raw=true" alt="Lucas Fernandes" class="absolute inset-0 w-full h-full object-cover grayscale mix-blend-luminosity transition-transform duration-700 group-hover:scale-105 z-10">
                 </div>
                 <div class="mt-6">
                     <p class="font-sans font-medium text-[18px] text-grafite">Lucas Fernandes</p>
@@ -633,35 +632,34 @@
             <svg class="absolute top-4 left-4 text-nevoa pointer-events-none" width="16" height="48" viewBox="0 0 20 60"><path d="M20 0H0v60h20V56H4V4h16z" fill="currentColor"/></svg>
             <svg class="absolute bottom-4 right-4 text-nevoa pointer-events-none" width="16" height="48" viewBox="0 0 20 60"><path d="M0 60h20V0H0v4h16v52H0z" fill="currentColor"/></svg>
 
-
             <p class="font-mono text-[10px] tracking-kicker uppercase text-cinza mb-8 text-center">Formulário de Contato Executivo</p>
             
-            <form class="space-y-8 relative z-10" onsubmit="event.preventDefault(); alert('Em um ambiente real, isto enviaria os dados ao C-level.');">
+            <form id="contactForm" class="space-y-8 relative z-10">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
                     <div class="group">
                         <label class="block font-mono text-[10.5px] uppercase tracking-meta text-cinzaProf mb-2 group-focus-within:text-ambar transition-colors">Nome</label>
-                        <input type="text" class="w-full bg-transparent border-b border-nevoa pb-2 font-sans text-[15px] focus:outline-none focus:border-ambar transition-colors rounded-none placeholder-cinza" placeholder="Seu nome completo" required>
+                        <input type="text" id="formName" class="w-full bg-transparent border-b border-nevoa pb-2 font-sans text-[15px] focus:outline-none focus:border-ambar transition-colors rounded-none placeholder-cinza" placeholder="Seu nome completo" required>
                     </div>
                     <div class="group">
                         <label class="block font-mono text-[10.5px] uppercase tracking-meta text-cinzaProf mb-2 group-focus-within:text-ambar transition-colors">Cargo</label>
-                        <input type="text" class="w-full bg-transparent border-b border-nevoa pb-2 font-sans text-[15px] focus:outline-none focus:border-ambar transition-colors rounded-none placeholder-cinza" placeholder="Ex: CEO, Sócio, Diretor" required>
+                        <input type="text" id="formRole" class="w-full bg-transparent border-b border-nevoa pb-2 font-sans text-[15px] focus:outline-none focus:border-ambar transition-colors rounded-none placeholder-cinza" placeholder="Ex: CEO, Sócio, Diretor" required>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
                     <div class="group">
                         <label class="block font-mono text-[10.5px] uppercase tracking-meta text-cinzaProf mb-2 group-focus-within:text-ambar transition-colors">Empresa</label>
-                        <input type="text" class="w-full bg-transparent border-b border-nevoa pb-2 font-sans text-[15px] focus:outline-none focus:border-ambar transition-colors rounded-none placeholder-cinza" required>
+                        <input type="text" id="formCompany" class="w-full bg-transparent border-b border-nevoa pb-2 font-sans text-[15px] focus:outline-none focus:border-ambar transition-colors rounded-none placeholder-cinza" required>
                     </div>
                     <div class="group">
                         <label class="block font-mono text-[10.5px] uppercase tracking-meta text-cinzaProf mb-2 group-focus-within:text-ambar transition-colors">WhatsApp / E-mail</label>
-                        <input type="text" class="w-full bg-transparent border-b border-nevoa pb-2 font-sans text-[15px] focus:outline-none focus:border-ambar transition-colors rounded-none placeholder-cinza" required>
+                        <input type="text" id="formContact" class="w-full bg-transparent border-b border-nevoa pb-2 font-sans text-[15px] focus:outline-none focus:border-ambar transition-colors rounded-none placeholder-cinza" required>
                     </div>
                 </div>
 
                 <div class="group">
                     <label class="block font-mono text-[10.5px] uppercase tracking-meta text-cinzaProf mb-2 group-focus-within:text-ambar transition-colors">Qual decisão ou problema você gostaria de analisar?</label>
-                    <textarea rows="3" class="w-full bg-transparent border-b border-nevoa pb-2 font-sans text-[15px] focus:outline-none focus:border-ambar transition-colors rounded-none resize-none placeholder-cinza" placeholder="Descreva brevemente o contexto..."></textarea>
+                    <textarea id="formProblem" rows="3" class="w-full bg-transparent border-b border-nevoa pb-2 font-sans text-[15px] focus:outline-none focus:border-ambar transition-colors rounded-none resize-none placeholder-cinza" placeholder="Descreva brevemente o contexto..."></textarea>
                 </div>
 
                 <div class="pt-4 text-center sm:text-left">
@@ -742,6 +740,23 @@
                     }
                 });
             }, 150);
+
+            // Link WhatsApp Forms Action
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const name = document.getElementById('formName').value;
+                    const company = document.getElementById('formCompany').value;
+                    const role = document.getElementById('formRole').value;
+                    const problem = document.getElementById('formProblem').value;
+
+                    const text = `Olá Lucas, meu nome é ${name} (${role} na empresa ${company}). Gostaria de realizar a triagem do Diagnóstico Analítico para a seguinte decisão estratégica: "${problem}"`;
+                    const encodedText = encodeURIComponent(text);
+                    
+                    window.open(`https://wa.me/5531999876954?text=${encodedText}`, '_blank');
+                });
+            }
         });
     </script>
 </body>
