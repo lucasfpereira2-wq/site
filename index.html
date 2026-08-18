@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucas Analytics — Inteligência para Decisões Empresariais</title>
-    <meta name="description" content="Antes de uma decisão importante, uma segunda opinião baseada em dados, estratégia e inteligência artificial. Para empresários e diretores seniores.">
+    <title>Lucas Analytics — Inteligência para decisões empresariais</title>
+    <meta name="description" content="A Lucas Analytics transforma dados, analytics, estratégia e IA em inteligência para decisões empresariais de alto impacto.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,400;0,500;1,6..72,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,400;0,500;1,6..72,400&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <script>
         tailwind.config = {
             theme: {
@@ -21,433 +20,728 @@
                         ardosia: '#1B3A4B',
                         ambar: '#B4762B',
                         papel: '#F4F1EA',
+                        branco: '#FFFFFF',
                         nevoa: '#DAD9D4',
                         cinza: '#8E918C',
-                        'cinza-prof': '#4A504E'
+                        cinzaProf: '#4A504E',
+                        verdeEvidencia: '#2F6B52',
+                        vermelhoRisco: '#A33A2C',
+                        areia: '#C9B79A'
                     },
                     fontFamily: {
                         serif: ['Newsreader', 'Georgia', 'serif'],
                         sans: ['Inter', 'system-ui', 'sans-serif'],
-                        mono: ['IBM Plex Mono', 'monospace']
+                        mono: ['IBM Plex Mono', 'monospace'],
+                    },
+                    letterSpacing: {
+                        'kicker': '0.16em',
+                        'meta': '0.1em',
                     }
                 }
             }
         }
     </script>
-
     <style>
+        /* CSS Reset & Base Rules per Brand Manual */
         body {
-            background-color: #F4F1EA;
-            color: #121820;
-            font-family: 'Inter', system-ui, sans-serif;
+            background-color: theme('colors.papel');
+            color: theme('colors.grafite');
             -webkit-font-smoothing: antialiased;
+            text-align: left;
         }
+        
+        .text-balance { text-wrap: balance; }
+        
+        /* Custom UI Elements from Manual - with animations */
+        .baseline {
+            position: relative;
+            height: 1px;
+            background: theme('colors.nevoa');
+            margin: 2rem 0;
+            overflow: hidden; /* For the line drawing effect */
+        }
+        
+        /* Line drawing animation */
+        .baseline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: theme('colors.nevoa');
+            transform-origin: left;
+            transform: scaleX(0);
+            transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .baseline.dk::before { background: #2A323C; }
+        
+        /* The dot animation */
+        .baseline i {
+            position: absolute;
+            top: -4px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: theme('colors.ambar');
+            transform: scale(0);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.6s; /* Delays dot until line is drawn */
+            z-index: 10;
+        }
+        
+        /* Activate animations when element has 'active' class (via JS) */
+        .reveal.active .baseline::before, .active .baseline::before, .baseline.active::before {
+            transform: scaleX(1);
+        }
+        .reveal.active .baseline i, .active .baseline i, .baseline.active i {
+            transform: scale(1);
+        }
+
+        .baseline.dk { background: transparent; } /* Let the ::before pseudo-element handle the color during animation */
+        
+        /* Scroll Reveal Animations - Fade Up */
         .reveal {
             opacity: 0;
-            transform: translateY(24px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
+        
+        /* Staggered Delays for Lists/Cards */
+        .reveal-delay-100 { transition-delay: 100ms; }
+        .reveal-delay-200 { transition-delay: 200ms; }
+        .reveal-delay-300 { transition-delay: 300ms; }
+        .reveal-delay-400 { transition-delay: 400ms; }
+        .reveal-delay-500 { transition-delay: 500ms; }
+        
+        /* Card Interactive Hover */
+        .card-interactive {
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+            will-change: transform; /* Performance optimization */
+        }
+        .card-interactive:hover {
+            transform: translateY(-6px);
+            border-color: theme('colors.cinzaProf');
+        }
+        .card-interactive.dk-hover:hover {
+            border-color: theme('colors.cinza');
+        }
+        
+        /* Smooth hover for the main CTA */
+        .btn-hover-fx svg {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-hover-fx:hover svg {
+            transform: translateX(4px);
+        }
+        
+        /* Custom underline hover for links */
+        .link-underline {
+            position: relative;
+            text-decoration: none;
+            padding-bottom: 2px;
+        }
+        .link-underline::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: theme('colors.grafite');
+            transform-origin: bottom right;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .link-underline:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
     </style>
 </head>
-<body class="bg-papel text-grafite selection:bg-ambar selection:text-white">
+<body class="font-sans text-[16px] leading-relaxed">
 
     <svg width="0" height="0" style="position:absolute" aria-hidden="true">
         <defs>
-            <symbol id="logo-brackets" viewBox="0 0 100 100">
+            <symbol id="mk" viewBox="0 0 100 100">
                 <path d="M44 20H20v60h24V70H30V30h14z" fill="currentColor"/>
                 <path d="M56 20h24v60H56V70h14V30H56z" fill="currentColor"/>
                 <circle cx="50" cy="50" r="6.5" fill="#B4762B"/>
             </symbol>
+            <symbol id="mk-mono" viewBox="0 0 100 100">
+                <path d="M44 20H20v60h24V70H30V30h14z" fill="currentColor"/>
+                <path d="M56 20h24v60H56V70h14V30H56z" fill="currentColor"/>
+                <circle cx="50" cy="50" r="6.5" fill="currentColor"/>
+            </symbol>
         </defs>
     </svg>
 
-    <nav class="fixed w-full z-50 bg-papel/80 backdrop-blur-md border-b border-nevoa transition-all duration-300" id="navbar">
-        <div class="max-w-6xl mx-auto px-6 md:px-12">
-            <div class="flex justify-between items-center h-20">
-                <a href="#" class="flex items-center gap-3 group">
-                    <svg width="32" height="32" class="text-grafite transition-transform group-hover:scale-105"><use href="#logo-brackets"/></svg>
-                    <span class="font-serif text-xl tracking-wide">Lucas Analytics</span>
-                </a>
-                
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#como-atuamos" class="text-sm font-medium text-cinza-prof hover:text-grafite transition-colors">Como atuamos</a>
-                    <a href="#decisoes" class="text-sm font-medium text-cinza-prof hover:text-grafite transition-colors">Decisões</a>
-                    <a href="#cases" class="text-sm font-medium text-cinza-prof hover:text-grafite transition-colors">Cases</a>
-                    <a href="#sobre" class="text-sm font-medium text-cinza-prof hover:text-grafite transition-colors">Sobre</a>
-                    <a href="#contato" class="px-5 py-2.5 bg-grafite text-papel text-sm font-medium hover:bg-ardosia transition-all duration-300">
-                        Analisar minha próxima decisão
-                    </a>
-                </div>
+    <nav class="fixed top-0 w-full z-50 bg-papel/95 backdrop-blur-sm border-b border-nevoa transition-all duration-300">
+        <div class="max-w-[1080px] mx-auto px-5 sm:px-8 py-5 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-4 group">
+                <svg width="32" height="32" viewBox="0 0 100 100" class="text-grafite transition-transform duration-500 group-hover:-translate-y-0.5"><use href="#mk"/></svg>
+                <span class="font-serif text-[22px] tracking-[0.02em] hidden sm:block">Lucas Analytics</span>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-8 font-sans text-[14px] font-medium text-cinzaProf">
+                <a href="#como-atuamos" class="hover:text-grafite transition-colors">Como atuamos</a>
+                <a href="#decisoes" class="hover:text-grafite transition-colors">Decisões</a>
+                <a href="#cases" class="hover:text-grafite transition-colors">Cases</a>
+                <a href="#sobre" class="hover:text-grafite transition-colors">Sobre</a>
+                <a href="#contato" class="font-mono text-[11px] tracking-kicker uppercase text-grafite border-b border-ambar pb-1 hover:text-ambar transition-colors">Falar com a Lucas Analytics</a>
             </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-grafite font-mono text-[11px] tracking-kicker uppercase">Menu</button>
         </div>
     </nav>
 
-    <header class="relative pt-36 pb-24 md:pt-48 md:pb-36 border-b border-nevoa">
-        <div class="max-w-6xl mx-auto px-6 md:px-12">
-            <div class="grid md:grid-cols-12 gap-12 items-start">
-                <div class="md:col-span-8 text-left">
-                    <p class="font-mono text-xs tracking-[0.16em] uppercase text-cinza mb-4">Território de Inteligência Empresarial</p>
-                    <h1 class="font-serif font-light text-4xl sm:text-6xl text-grafite leading-[1.1] tracking-tight mb-8">
-                        Decisões melhores começam com uma <span class="italic font-normal">visão clara</span> do negócio.
-                    </h1>
-                    <p class="font-sans font-light text-lg sm:text-xl text-cinza-prof max-w-xl leading-relaxed mb-10">
-                        A Lucas Analytics transforma dados, analytics estruturado, estratégia corporativa e inteligência artificial em clareza analítica para decisões empresariais de alto impacto.
-                    </p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#contato" class="px-8 py-3.5 bg-grafite text-papel font-medium text-sm hover:bg-ardosia transition-all duration-300">
-                            Falar sobre uma decisão
-                        </a>
-                        <a href="#como-atuamos" class="px-8 py-3.5 border border-nevoa text-grafite font-medium text-sm hover:bg-white/50 transition-all duration-300">
-                            Como atuamos
-                        </a>
+    <section class="bg-grafite text-papel pt-40 pb-24 sm:pt-52 sm:pb-32 px-5 sm:px-8 relative overflow-hidden">
+        <div class="max-w-[1080px] mx-auto relative z-10">
+            <p class="font-mono text-[11px] tracking-kicker uppercase text-[#6E7783] mb-8 reveal">Lucas Analytics · Inteligência Empresarial</p>
+            
+            <h1 class="font-serif font-light text-[clamp(40px,6vw,72px)] leading-[1.05] tracking-[-0.01em] text-balance mb-10 max-w-[18ch] reveal reveal-delay-100">
+                Decisões melhores começam com uma visão melhor do negócio.
+            </h1>
+            
+            <p class="font-serif text-[clamp(18px,2vw,24px)] leading-relaxed text-[#A9AFB6] max-w-[46ch] mb-16 reveal reveal-delay-200">
+                A Lucas Analytics transforma dados, analytics, estratégia e IA em inteligência para decisões empresariais de alto impacto.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-6 items-start reveal reveal-delay-300">
+                <a href="#contato" class="btn-hover-fx bg-branco text-grafite font-mono text-[11.5px] tracking-meta uppercase px-8 py-4 hover:bg-nevoa transition-colors flex items-center gap-3">
+                    Falar com a Lucas Analytics
+                    <svg width="12" height="12" viewBox="0 0 100 100"><use href="#mk-mono" class="text-ambar"/></svg>
+                </a>
+                <a href="#como-atuamos" class="text-papel font-mono text-[11.5px] tracking-meta uppercase px-8 py-4 border border-[#2A323C] hover:border-cinza transition-colors">
+                    Como atuamos
+                </a>
+            </div>
+
+            <div class="baseline dk mt-32 sm:mt-48 max-w-[60%] reveal reveal-delay-400">
+                <i style="left: 15%;"></i>
+            </div>
+        </div>
+    </section>
+
+    <section id="problema" class="py-24 sm:py-32 px-5 sm:px-8 border-b border-nevoa bg-papel">
+        <div class="max-w-[1080px] mx-auto grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-12 lg:gap-24">
+            <aside class="reveal">
+                <p class="font-mono text-[11px] tracking-kicker uppercase text-cinza mb-4">01 — O Problema</p>
+                <h2 class="font-serif text-[clamp(26px,3vw,36px)] leading-[1.15] tracking-[-0.01em] text-balance">
+                    Seu problema provavelmente não é falta de dados.
+                </h2>
+            </aside>
+            <div class="reveal reveal-delay-100">
+                <p class="font-serif text-[20px] leading-[1.55] text-cinzaProf mb-8 max-w-[50ch]">
+                    Empresas acumulam sistemas, planilhas, indicadores, relatórios e informações. Mesmo assim, decisões importantes continuam sendo tomadas com percepção, experiência isolada, dados incompletos ou pura urgência.
+                </p>
+                
+                <div class="mt-12 bg-branco border border-nevoa p-8 sm:p-12 reveal reveal-delay-200">
+                    <p class="font-mono text-[10px] tracking-kicker uppercase text-cinza mb-10">O Abismo Corporativo</p>
+                    
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 font-serif text-[24px] sm:text-[32px] text-grafite">
+                        <span class="text-cinzaProf transition-colors duration-500 hover:text-grafite">Informação</span>
+                        <span class="text-ambar font-mono text-[16px]">≠</span>
+                        <span class="text-cinzaProf transition-colors duration-500 hover:text-grafite">Inteligência</span>
+                        <span class="text-ambar font-mono text-[16px]">≠</span>
+                        <span>Decisão</span>
+                    </div>
+                    
+                    <div class="baseline mt-12 mb-0"><i style="left: 80%;"></i></div>
+                    <p class="font-mono text-[11px] tracking-meta text-cinzaProf mt-4 text-right">A Lucas Analytics existe para fechar essa distância.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="como-atuamos" class="py-24 sm:py-32 px-5 sm:px-8 border-b border-nevoa bg-papel">
+        <div class="max-w-[1080px] mx-auto">
+            <div class="mb-16 md:mb-24 reveal">
+                <p class="font-mono text-[11px] tracking-kicker uppercase text-cinza mb-4">02 — O que fazemos</p>
+                <h2 class="font-serif text-[clamp(32px,4vw,44px)] leading-[1.15] tracking-[-0.01em]">
+                    Inteligência para decisões empresariais
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-branco border border-nevoa p-8 sm:p-10 flex flex-col justify-between min-h-[280px] card-interactive reveal">
+                    <span class="font-mono text-[11.5px] text-cinza mb-8 block">01 — Diagnóstico & Analytics</span>
+                    <div>
+                        <h3 class="font-sans font-medium text-[18px] mb-4 text-grafite">Entendemos o que realmente está acontecendo no negócio.</h3>
+                        <p class="text-cinzaProf text-[15px] leading-relaxed">Mapeamos a realidade operacional e financeira purificando o ruído dos sistemas para enxergar a verdade dos fatos.</p>
                     </div>
                 </div>
+
+                <!-- Card 2 -->
+                <div class="bg-branco border border-nevoa p-8 sm:p-10 flex flex-col justify-between min-h-[280px] card-interactive reveal reveal-delay-100">
+                    <span class="font-mono text-[11.5px] text-cinza mb-8 block">02 — Inteligência</span>
+                    <div>
+                        <h3 class="font-sans font-medium text-[18px] mb-4 text-grafite">Transformamos dados em hipóteses, padrões e cenários.</h3>
+                        <p class="text-cinzaProf text-[15px] leading-relaxed">Cruzamos variáveis para encontrar as alavancas ocultas de lucro, eficiência e risco que um dashboard padrão ignora.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-branco border border-nevoa p-8 sm:p-10 flex flex-col justify-between min-h-[280px] card-interactive reveal reveal-delay-200">
+                    <span class="font-mono text-[11.5px] text-cinza mb-8 block">03 — Decision Intelligence</span>
+                    <div>
+                        <h3 class="font-sans font-medium text-[18px] mb-4 text-grafite">Estruturamos decisões importantes usando modelos e IA.</h3>
+                        <p class="text-cinzaProf text-[15px] leading-relaxed">Não entregamos um PDF para você descobrir o que fazer. Entregamos o modelo de impacto, a recomendação e a rota de ação.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-branco border border-nevoa p-8 sm:p-10 flex flex-col justify-between min-h-[280px] card-interactive dk-hover bg-grafite text-papel reveal reveal-delay-300">
+                    <span class="font-mono text-[11.5px] text-[#6E7783] mb-8 block">04 — Acompanhamento Estratégico</span>
+                    <div>
+                        <h3 class="font-sans font-medium text-[18px] mb-4 text-papel">Uma camada contínua de inteligência executiva.</h3>
+                        <p class="text-[#A9AFB6] text-[15px] leading-relaxed">Atuamos como parceiros estratégicos para apoiar o C-level em decisões recorrentes e complexas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 sm:py-32 px-5 sm:px-8 border-b border-nevoa bg-branco overflow-hidden">
+        <div class="max-w-[1080px] mx-auto">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                <!-- Difference Table -->
+                <div class="reveal">
+                    <p class="font-mono text-[11px] tracking-kicker uppercase text-cinza mb-4">03 — Nossa Diferença</p>
+                    <h2 class="font-serif text-[32px] leading-[1.15] mb-12">Diferença de categoria</h2>
+                    
+                    <table class="w-full text-[14.5px] border-collapse">
+                        <tbody>
+                            <tr class="group">
+                                <th class="text-left py-5 pr-4 border-b border-nevoa font-sans font-medium text-cinzaProf align-top w-1/2 transition-colors group-hover:text-grafite">Consultoria tradicional</th>
+                                <td class="py-5 border-b border-nevoa text-grafite align-top">Entrega análise.</td>
+                            </tr>
+                            <tr class="group">
+                                <th class="text-left py-5 pr-4 border-b border-nevoa font-sans font-medium text-cinzaProf align-top transition-colors group-hover:text-grafite">Empresa de BI</th>
+                                <td class="py-5 border-b border-nevoa text-grafite align-top">Entrega dashboard.</td>
+                            </tr>
+                            <tr class="group">
+                                <th class="text-left py-5 pr-4 border-b border-nevoa font-sans font-medium text-cinzaProf align-top transition-colors group-hover:text-grafite">Empresa de automação</th>
+                                <td class="py-5 border-b border-nevoa text-grafite align-top">Automatiza processos.</td>
+                            </tr>
+                            <tr>
+                                <th class="text-left py-5 pr-4 border-b border-nevoa font-sans font-medium text-grafite align-top pt-8 pb-2">Lucas Analytics</th>
+                                <td class="py-5 border-b border-nevoa text-grafite align-top pt-8 pb-2 font-serif italic text-[18px]">Ajuda a entender o problema, interpretar os dados e tomar a decisão.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Framework Visual with sequential reveal -->
+                <div>
+                    <p class="font-mono text-[11px] tracking-kicker uppercase text-cinza mb-4 reveal">04 — Framework</p>
+                    <h2 class="font-serif text-[32px] leading-[1.15] mb-12 reveal">Do problema à decisão</h2>
+                    
+                    <div class="bg-papel border border-nevoa p-8 sm:p-12 relative reveal">
+                        <!-- O Recorte visual logic -->
+                        <svg class="absolute top-6 left-6 text-grafite" width="20" height="60" viewBox="0 0 20 60"><path d="M20 0H0v60h20V56H4V4h16z" fill="currentColor"/></svg>
+                        <svg class="absolute bottom-6 right-6 text-grafite" width="20" height="60" viewBox="0 0 20 60"><path d="M0 60h20V0H0v4h16v52H0z" fill="currentColor"/></svg>
+                        
+                        <div class="flex flex-col gap-4 font-mono text-[11.5px] tracking-kicker uppercase px-10 py-4 text-cinzaProf" id="framework-list">
+                            <div class="flex items-center gap-4 reveal">
+                                <span class="w-24 shrink-0 text-cinza">Origem</span>
+                                <span class="text-grafite font-medium">Problema</span>
+                            </div>
+                            <div class="pl-[7rem] text-nevoa reveal reveal-delay-100">↓</div>
+                            <div class="flex items-center gap-4 reveal reveal-delay-100">
+                                <span class="w-24 shrink-0 text-cinza">Investigação</span>
+                                <span>Hipótese</span>
+                            </div>
+                            <div class="pl-[7rem] text-nevoa reveal reveal-delay-200">↓</div>
+                            <div class="flex items-center gap-4 reveal reveal-delay-200">
+                                <span class="w-24 shrink-0 text-cinza">Matéria</span>
+                                <span>Dados</span>
+                            </div>
+                            <div class="pl-[7rem] text-nevoa reveal reveal-delay-300">↓</div>
+                            <div class="flex items-center gap-4 reveal reveal-delay-300">
+                                <span class="w-24 shrink-0 text-cinza">Trabalho</span>
+                                <span>Análise</span>
+                            </div>
+                            <div class="pl-[7rem] text-nevoa reveal reveal-delay-400">↓</div>
+                            <div class="flex items-center gap-4 reveal reveal-delay-400">
+                                <span class="w-24 shrink-0 text-cinza">Clareza</span>
+                                <span class="text-grafite font-medium">Insight</span>
+                            </div>
+                            <div class="pl-[7rem] text-nevoa reveal reveal-delay-500">↓</div>
+                            <div class="flex items-center gap-4 reveal reveal-delay-500">
+                                <span class="w-24 shrink-0 text-cinza">Alvo</span>
+                                <span class="text-ambar font-medium">Decisão</span>
+                            </div>
+                            <div class="pl-[7rem] text-nevoa reveal reveal-delay-500">↓</div>
+                            <div class="flex items-center gap-4 reveal reveal-delay-500">
+                                <span class="w-24 shrink-0 text-cinza">Resultado</span>
+                                <span class="text-grafite font-medium">Ação</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="py-24 sm:py-32 px-5 sm:px-8 border-b border-nevoa bg-papel">
+        <div class="max-w-[1080px] mx-auto grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-16 items-center">
+            <div class="reveal">
+                <h2 class="font-serif text-[clamp(36px,5vw,52px)] leading-[1.05] tracking-[-0.01em] mb-8 max-w-[18ch]">
+                    Não queremos ser apenas mais um fornecedor.
+                </h2>
+                <p class="font-sans text-[18px] leading-[1.65] text-cinzaProf mb-6 max-w-[55ch]">
+                    Em decisões importantes, o empresário não precisa necessariamente de mais uma ferramenta ou de um painel de controle colorido. Precisa de alguém capaz de olhar para o problema com independência, profundidade e contexto.
+                </p>
+                <p class="font-sans text-[18px] leading-[1.65] text-cinzaProf mb-12 max-w-[55ch]">
+                    A Lucas Analytics atua como uma segunda camada de inteligência corporativa para decisões que podem afetar crescimento, investimento, operação e estratégia. Antes de uma decisão crítica, tenha uma segunda opinião.
+                </p>
+                <a href="#contato" class="inline-flex font-mono text-[11px] tracking-kicker uppercase text-grafite border-b border-ambar pb-1 hover:text-ambar transition-colors link-underline">
+                    Converse sobre sua próxima decisão
+                </a>
+            </div>
+            
+            <!-- Graphic element simulating 'A notação de margem' -->
+            <div class="border-l border-nevoa pl-6 lg:pl-10 hidden sm:block reveal reveal-delay-200">
+                <p class="font-mono text-[10px] tracking-meta uppercase text-cinza mb-4">Nota Executiva</p>
+                <p class="font-serif italic text-[20px] leading-[1.5] text-grafite">
+                    "O dado não estava errado. A pergunta é que estava."
+                </p>
+                <div class="baseline mt-8 mb-0"><i style="left: 0;"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="decisoes" class="py-24 sm:py-32 px-5 sm:px-8 border-b border-nevoa bg-branco">
+        <div class="max-w-[1080px] mx-auto">
+            <div class="mb-16 reveal">
+                <p class="font-mono text-[11px] tracking-kicker uppercase text-cinza mb-4">05 — O seu cenário</p>
+                <h2 class="font-serif text-[clamp(32px,4vw,44px)] leading-[1.15] tracking-[-0.01em]">
+                    Que decisão você precisa tomar?
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card -->
+                <div class="bg-papel border border-nevoa p-8 flex flex-col justify-between aspect-square max-h-[300px] card-interactive reveal">
+                    <span class="font-mono text-[10px] tracking-kicker text-cinzaProf uppercase">Crescimento</span>
+                    <h3 class="font-serif text-[26px] leading-[1.2] text-grafite mt-auto">Devemos expandir?</h3>
+                </div>
+                <!-- Card -->
+                <div class="bg-papel border border-nevoa p-8 flex flex-col justify-between aspect-square max-h-[300px] card-interactive reveal reveal-delay-100">
+                    <span class="font-mono text-[10px] tracking-kicker text-cinzaProf uppercase">Investimento</span>
+                    <h3 class="font-serif text-[26px] leading-[1.2] text-grafite mt-auto">Onde devemos colocar capital?</h3>
+                </div>
+                <!-- Card -->
+                <div class="bg-papel border border-nevoa p-8 flex flex-col justify-between aspect-square max-h-[300px] card-interactive reveal reveal-delay-200">
+                    <span class="font-mono text-[10px] tracking-kicker text-cinzaProf uppercase">Operação</span>
+                    <h3 class="font-serif text-[26px] leading-[1.2] text-grafite mt-auto">Onde estamos perdendo eficiência?</h3>
+                </div>
+                <!-- Card -->
+                <div class="bg-papel border border-nevoa p-8 flex flex-col justify-between aspect-square max-h-[300px] card-interactive reveal">
+                    <span class="font-mono text-[10px] tracking-kicker text-cinzaProf uppercase">Clientes</span>
+                    <h3 class="font-serif text-[26px] leading-[1.2] text-grafite mt-auto">Quais clientes realmente geram valor?</h3>
+                </div>
+                <!-- Card -->
+                <div class="bg-papel border border-nevoa p-8 flex flex-col justify-between aspect-square max-h-[300px] card-interactive reveal reveal-delay-100">
+                    <span class="font-mono text-[10px] tracking-kicker text-cinzaProf uppercase">Performance</span>
+                    <h3 class="font-serif text-[26px] leading-[1.2] text-grafite mt-auto">O que está realmente movendo nosso resultado?</h3>
+                </div>
+                <!-- Card -->
+                <div class="bg-papel border border-nevoa p-8 flex flex-col justify-between aspect-square max-h-[300px] bg-grafite text-papel card-interactive dk-hover reveal reveal-delay-200">
+                    <span class="font-mono text-[10px] tracking-kicker text-[#6E7783] uppercase">Estratégia</span>
+                    <h3 class="font-serif text-[26px] leading-[1.2] text-papel mt-auto">Qual deve ser nossa próxima prioridade?</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 sm:py-32 px-5 sm:px-8 border-b border-nevoa bg-papel">
+        <div class="max-w-[1080px] mx-auto grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-16">
+            <div class="reveal">
+                <p class="font-mono text-[11px] tracking-kicker uppercase text-cinza mb-4">06 — Arsenal</p>
+                <h2 class="font-serif text-[clamp(28px,3vw,36px)] leading-[1.15] tracking-[-0.01em] mb-6">
+                    Métodos próprios.<br>Tecnologia quando faz sentido.
+                </h2>
+                <p class="text-cinzaProf text-[16px] leading-relaxed mb-6">
+                    A ferramenta é consequência do problema, não o contrário. Combinamos estatística, IA, automação de dados e modelagem avançada com uma profunda experiência empresarial.
+                </p>
+                <ul class="list-none p-0 m-0 text-cinzaProf text-[15px] space-y-4 font-medium">
+                    <li class="pl-6 relative before:content-['—'] before:absolute before:left-0 before:text-ambar hover:text-grafite transition-colors">Analytics & Ciência de Dados</li>
+                    <li class="pl-6 relative before:content-['—'] before:absolute before:left-0 before:text-ambar hover:text-grafite transition-colors">Frameworks proprietários de análise</li>
+                    <li class="pl-6 relative before:content-['—'] before:absolute before:left-0 before:text-ambar hover:text-grafite transition-colors">Inteligência Artificial & Automação</li>
+                    <li class="pl-6 relative before:content-['—'] before:absolute before:left-0 before:text-ambar hover:text-grafite transition-colors">Experiência executiva em negócios</li>
+                </ul>
+            </div>
+            
+            <div class="bg-branco border border-nevoa p-8 sm:p-10 reveal reveal-delay-200 group">
+                <p class="font-mono text-[10px] tracking-kicker uppercase text-cinza mb-6">Exemplo de Metodologia</p>
+                <h3 class="font-serif text-[28px] text-grafite mb-2">Método RFV</h3>
+                <p class="font-mono text-[11.5px] text-cinzaProf tracking-meta uppercase mb-6 border-b border-nevoa pb-6">Recência · Frequência · Valor</p>
                 
-                <div class="md:col-span-4 flex justify-center md:justify-end pt-4">
-                    <div class="relative p-8 bg-white border border-nevoa w-full max-w-[280px] aspect-square flex flex-col justify-between shadow-sm">
-                        <svg width="44" height="44" class="text-grafite"><use href="#logo-brackets"/></svg>
-                        <div class="border-t border-nevoa pt-4">
-                            <span class="font-mono text-[10px] uppercase text-cinza block tracking-wider mb-1">Status Atual</span>
-                            <span class="font-serif italic text-lg text-ambar">Antes da decisão.</span>
+                <p class="text-cinzaProf text-[14.5px] leading-relaxed mb-8">
+                    O RFV é um dos modelos matemáticos e estratégicos que utilizamos para segmentar bases de clientes. Ele não olha apenas para quem compra, mas para o comportamento temporal e financeiro de cada carteira, revelando onde está a verdadeira margem da empresa.
+                </p>
+                
+                <!-- The baseline animates on reveal via the CSS rules -->
+                <div class="baseline mt-auto mb-0"><i style="left: 50%;"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cases" class="py-24 sm:py-32 px-5 sm:px-8 border-b border-nevoa bg-branco">
+        <div class="max-w-[1080px] mx-auto">
+            <div class="mb-16 md:mb-24 flex flex-col sm:flex-row sm:items-end justify-between gap-8 reveal">
+                <div>
+                    <p class="font-mono text-[11px] tracking-kicker uppercase text-cinza mb-4">07 — O Trabalho no mundo real</p>
+                    <h2 class="font-serif text-[clamp(32px,4vw,44px)] leading-[1.15] tracking-[-0.01em]">
+                        Casos de análise
+                    </h2>
+                </div>
+                <div class="font-mono text-[10px] tracking-meta uppercase text-cinza text-right hidden sm:block">
+                    Arquivo Institucional<br>Lucas Analytics
+                </div>
+            </div>
+
+            <!-- Case Layout -->
+            <div class="border border-nevoa bg-papel reveal reveal-delay-100 transition-all duration-500 hover:shadow-sm">
+                <!-- Case Header -->
+                <div class="p-8 sm:p-12 border-b border-nevoa flex flex-col md:flex-row justify-between gap-8 md:items-start">
+                    <div>
+                        <div class="font-mono text-[10px] tracking-meta uppercase text-cinza mb-3">Estudo de Caso 01</div>
+                        <h3 class="font-serif text-[28px] sm:text-[34px] leading-[1.1] text-grafite max-w-[20ch]">
+                            Reestruturação da estratégia de expansão
+                        </h3>
+                    </div>
+                    
+                    <!-- Evidence Card Insert with hover effect -->
+                    <div class="bg-branco border border-nevoa p-5 min-w-[280px] transition-transform duration-500 hover:-translate-y-1">
+                        <div class="font-mono text-[9.5px] tracking-kicker uppercase text-cinza mb-2">O Insight central</div>
+                        <div class="font-serif text-[34px] leading-[1.1] text-grafite mb-2">80%</div>
+                        <div class="text-[12px] text-cinzaProf leading-[1.45]">do lucro líquido real vinha de apenas 3 das 11 unidades da rede, contradizendo o relatório comercial bruto.</div>
+                    </div>
+                </div>
+
+                <!-- Case Body -->
+                <div class="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8 p-8 sm:p-12">
+                    <div class="space-y-8 font-mono text-[11.5px] text-cinzaProf border-r border-nevoa pr-8 hidden md:block">
+                        <div>
+                            <strong class="block text-grafite mb-1 tracking-meta uppercase">O Problema</strong>
+                            <span class="leading-[1.6]">A diretoria planejava abrir mais 4 lojas baseada no aumento global de receita, mas a margem líquida da empresa estava caindo há 3 trimestres.</span>
+                        </div>
+                        <div>
+                            <strong class="block text-grafite mb-1 tracking-meta uppercase">A Investigação</strong>
+                            <span class="leading-[1.6]">Cruzamento dos dados de ERP, folha de pagamento e custos operacionais alocados por unidade, expurgando rateios artificiais.</span>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-10">
+                        <div class="md:hidden space-y-2 mb-8">
+                            <p class="font-mono text-[10px] tracking-meta uppercase text-cinza">Contexto</p>
+                            <p class="text-[15px] text-cinzaProf leading-relaxed">A diretoria planejava abrir mais 4 lojas baseada no aumento global de receita, mas a margem estava caindo. Cruzamos ERP, folha e custos reais por unidade.</p>
+                        </div>
+
+                        <div>
+                            <h4 class="font-sans font-medium text-[16px] text-grafite mb-3">O Insight</h4>
+                            <p class="font-serif text-[18px] text-cinzaProf leading-[1.6] italic">
+                                "O volume de vendas das novas unidades mascarava uma ineficiência operacional brutal. As lojas que mais faturavam eram, estatisticamente, as que destruíam o caixa da empresa."
+                            </p>
+                        </div>
+                        
+                        <div class="baseline my-8"><i style="left: 40%;"></i></div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="font-sans font-medium text-[16px] text-grafite mb-3">A Decisão</h4>
+                                <p class="text-[15px] text-cinzaProf leading-relaxed">
+                                    A expansão foi paralisada. O capital reservado para as 4 novas unidades foi redirecionado para a otimização logística e renegociação de contratos nas lojas deficitárias.
+                                </p>
+                            </div>
+                            <div>
+                                <h4 class="font-sans font-medium text-[16px] text-grafite mb-3">O Impacto</h4>
+                                <p class="text-[15px] text-cinzaProf leading-relaxed">
+                                    Recuperação de 14% na margem líquida consolidada em 6 meses, sem necessidade de aumentar a receita bruta ou realizar demissões em massa.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
+    </section>
 
-    <section id="problema" class="py-24 border-b border-nevoa bg-white/40">
-        <div class="max-w-6xl mx-auto px-6 md:px-12">
-            <div class="max-w-3xl">
-                <p class="font-mono text-xs tracking-[0.16em] uppercase text-cinza mb-4">01 — O Diagnóstico</p>
-                <h2 class="font-serif font-light text-3xl md:text-4xl text-grafite mb-6">Seu problema provavelmente não é a falta de dados.</h2>
-                <p class="font-sans font-light text-base text-cinza-prof leading-relaxed mb-12">
-                    Empresas acumulam sistemas complexos, planilhas infinitas, indicadores isolados e relatórios densos. Mesmo assim, na hora de executar passos importantes, a liderança continua operando sob pressão, urgência e percepção isolada. Dados sem contexto geram ruído, não direção.
+    <section id="sobre" class="py-24 sm:py-32 px-5 sm:px-8 border-b border-nevoa bg-papel">
+        <div class="max-w-[1080px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-16 lg:gap-24">
+            <!-- Photo/Identity Column -->
+            <div class="order-2 lg:order-1 reveal">
+                <div class="aspect-[3/4] bg-nevoa relative overflow-hidden border border-cinza flex items-center justify-center group">
+                    <div class="absolute inset-0 bg-grafite mix-blend-multiply opacity-5 transition-opacity duration-700 group-hover:opacity-0"></div>
+                    <!-- Assuming a real photo would go here. The placeholder stays abstract. -->
+                    <p class="font-mono text-[10px] tracking-kicker uppercase text-cinzaProf absolute top-6 left-6 z-10 transition-opacity duration-300 group-hover:opacity-0">Retrato / Fundador</p>
+                    <svg width="40" height="40" viewBox="0 0 100 100" class="text-cinza opacity-50 transition-transform duration-700 group-hover:scale-110"><use href="#mk"/></svg>
+                </div>
+                <div class="mt-6">
+                    <p class="font-sans font-medium text-[18px] text-grafite">Lucas Fernandes</p>
+                    <p class="font-mono text-[11px] text-cinzaProf tracking-meta mt-1">FUNDADOR & ESTRATEGISTA</p>
+                </div>
+            </div>
+            
+            <!-- Text Column -->
+            <div class="order-1 lg:order-2 lg:pt-12 reveal reveal-delay-200">
+                <p class="font-mono text-[11px] tracking-kicker uppercase text-cinza mb-4">08 — Por trás da empresa</p>
+                <h2 class="font-serif text-[clamp(32px,4vw,44px)] leading-[1.15] tracking-[-0.01em] mb-8">
+                    "Empresários não precisam de mais dashboards. Precisam de clareza."
+                </h2>
+                
+                <div class="space-y-6 text-[17px] text-cinzaProf leading-relaxed max-w-[55ch]">
+                    <p>
+                        A Lucas Analytics nasceu da experiência técnica de Lucas Fernandes com dados e analytics profundos, mas evoluiu baseada em uma observação brutal do mercado: a tecnologia pela tecnologia não move o ponteiro do negócio.
+                    </p>
+                    <p>
+                        Construímos uma empresa de inteligência porque notamos que, na mesa de decisão, o C-level não quer decifrar gráficos complexos. Ele quer saber qual o risco, qual o cenário e qual o caminho.
+                    </p>
+                    <p>
+                        Hoje, atuamos como advisors. Damos escala e estrutura institucional ao pensamento analítico. Trazemos independência, rigor estatístico e visão empresarial para a sala onde o futuro da sua empresa é decidido.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="py-24 sm:py-32 px-5 sm:px-8 bg-grafite text-papel overflow-hidden">
+        <div class="max-w-[800px] mx-auto text-center mb-16 reveal">
+            <svg width="32" height="32" viewBox="0 0 100 100" class="mx-auto mb-8 text-ambar"><use href="#mk-mono"/></svg>
+            <h2 class="font-serif text-[clamp(36px,5vw,52px)] leading-[1.1] tracking-[-0.01em] mb-6">
+                Vamos analisar sua próxima decisão.
+            </h2>
+            <p class="font-sans text-[18px] text-[#A9AFB6] max-w-[45ch] mx-auto">
+                Inicie uma conversa qualificada. Sem automações agressivas, apenas um diálogo direto sobre os desafios do seu negócio.
+            </p>
+        </div>
+
+        <div class="max-w-[600px] mx-auto bg-papel text-grafite p-8 sm:p-12 border border-nevoa reveal reveal-delay-200 relative">
+            
+            <!-- Subtle bracket decorative elements mapping to the brand -->
+            <svg class="absolute top-4 left-4 text-nevoa pointer-events-none" width="16" height="48" viewBox="0 0 20 60"><path d="M20 0H0v60h20V56H4V4h16z" fill="currentColor"/></svg>
+            <svg class="absolute bottom-4 right-4 text-nevoa pointer-events-none" width="16" height="48" viewBox="0 0 20 60"><path d="M0 60h20V0H0v4h16v52H0z" fill="currentColor"/></svg>
+
+
+            <p class="font-mono text-[10px] tracking-kicker uppercase text-cinza mb-8 text-center">Formulário de Contato Executivo</p>
+            
+            <form class="space-y-8 relative z-10" onsubmit="event.preventDefault(); alert('Em um ambiente real, isto enviaria os dados ao C-level.');">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                    <div class="group">
+                        <label class="block font-mono text-[10.5px] uppercase tracking-meta text-cinzaProf mb-2 group-focus-within:text-ambar transition-colors">Nome</label>
+                        <input type="text" class="w-full bg-transparent border-b border-nevoa pb-2 font-sans text-[15px] focus:outline-none focus:border-ambar transition-colors rounded-none placeholder-cinza" placeholder="Seu nome completo" required>
+                    </div>
+                    <div class="group">
+                        <label class="block font-mono text-[10.5px] uppercase tracking-meta text-cinzaProf mb-2 group-focus-within:text-ambar transition-colors">Cargo</label>
+                        <input type="text" class="w-full bg-transparent border-b border-nevoa pb-2 font-sans text-[15px] focus:outline-none focus:border-ambar transition-colors rounded-none placeholder-cinza" placeholder="Ex: CEO, Sócio, Diretor" required>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                    <div class="group">
+                        <label class="block font-mono text-[10.5px] uppercase tracking-meta text-cinzaProf mb-2 group-focus-within:text-ambar transition-colors">Empresa</label>
+                        <input type="text" class="w-full bg-transparent border-b border-nevoa pb-2 font-sans text-[15px] focus:outline-none focus:border-ambar transition-colors rounded-none placeholder-cinza" required>
+                    </div>
+                    <div class="group">
+                        <label class="block font-mono text-[10.5px] uppercase tracking-meta text-cinzaProf mb-2 group-focus-within:text-ambar transition-colors">WhatsApp / E-mail</label>
+                        <input type="text" class="w-full bg-transparent border-b border-nevoa pb-2 font-sans text-[15px] focus:outline-none focus:border-ambar transition-colors rounded-none placeholder-cinza" required>
+                    </div>
+                </div>
+
+                <div class="group">
+                    <label class="block font-mono text-[10.5px] uppercase tracking-meta text-cinzaProf mb-2 group-focus-within:text-ambar transition-colors">Qual decisão ou problema você gostaria de analisar?</label>
+                    <textarea rows="3" class="w-full bg-transparent border-b border-nevoa pb-2 font-sans text-[15px] focus:outline-none focus:border-ambar transition-colors rounded-none resize-none placeholder-cinza" placeholder="Descreva brevemente o contexto..."></textarea>
+                </div>
+
+                <div class="pt-4 text-center sm:text-left">
+                    <button type="submit" class="bg-grafite text-papel font-mono text-[11.5px] tracking-meta uppercase px-10 py-4 hover:bg-ardosia transition-colors w-full sm:w-auto hover:shadow-lg transform hover:-translate-y-0.5 duration-300">
+                        Falar com a Lucas Analytics
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer class="bg-branco border-t border-nevoa py-16 px-5 sm:px-8">
+        <div class="max-w-[1080px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-end">
+            <div class="reveal">
+                <svg width="150" height="32" viewBox="0 0 290 60" class="mb-8 transition-transform duration-500 hover:translate-x-1">
+                    <use href="#mk" x="0" y="8" width="44" height="44" color="#121820"/>
+                    <text x="60" y="38" font-family="Newsreader, serif" font-size="27" letter-spacing=".6" fill="#121820">Lucas Analytics</text>
+                </svg>
+                <div class="h-[1px] bg-nevoa max-w-[290px] mb-6"></div>
+                <p class="font-mono text-[10.5px] tracking-kicker uppercase text-cinzaProf">
+                    Inteligência independente<br>para decisões empresariais.
                 </p>
             </div>
             
-            <div class="grid md:grid-cols-3 gap-8 border-t border-nevoa pt-12">
-                <div>
-                    <span class="font-mono text-xs text-cinza block mb-2">01 / INFORMAÇÃO</span>
-                    <p class="text-sm text-cinza-prof">O empilhamento bruto de dados e registros que o seu ERP ou CRM coleta todos os dias. Isolado, ele apenas consome armazenamento.</p>
-                </div>
-                <div>
-                    <span class="font-mono text-xs text-cinza block mb-2">02 / INTELIGÊNCIA</span>
-                    <p class="text-sm text-cinza-prof">A conexão lógica e o cruzamento estratégico dessas fontes de informação. É aqui que descobrimos o porquê os gargalos acontecem.</p>
-                </div>
-                <div>
-                    <span class="font-mono text-xs text-ambar block mb-2">03 / DECISÃO</span>
-                    <p class="text-sm text-grafite font-medium">A ação pragmática e segura executada pelo empresário, inteiramente respaldada por evidências analíticas e cenários preditivos.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="como-atuamos" class="py-24 border-b border-nevoa">
-        <div class="max-w-6xl mx-auto px-6 md:px-12">
-            <p class="font-mono text-xs tracking-[0.16em] uppercase text-cinza mb-4">02 — Capacidades</p>
-            <h2 class="font-serif font-light text-3xl md:text-4xl text-grafite mb-16">Inteligência para decisões empresariais</h2>
-            
-            <div class="grid md:grid-cols-4 gap-6">
-                <div class="p-6 bg-white border border-nevoa flex flex-col justify-between min-h-[220px] hover:-translate-y-1 transition-transform duration-300">
-                    <span class="font-mono text-xs text-cinza">01</span>
-                    <div>
-                        <h3 class="font-sans font-medium text-base text-grafite mb-2">Diagnóstico & Analytics</h3>
-                        <p class="text-xs text-cinza-prof leading-relaxed">Auditoria completa dos dados históricos para entender o que realmente está acontecendo e onde a margem está vazando.</p>
-                    </div>
-                </div>
-                
-                <div class="p-6 bg-white border border-nevoa flex flex-col justify-between min-h-[220px] hover:-translate-y-1 transition-transform duration-300">
-                    <span class="font-mono text-xs text-cinza">02</span>
-                    <div>
-                        <h3 class="font-sans font-medium text-base text-grafite mb-2">Modelagem & Inteligência</h3>
-                        <p class="text-xs text-cinza-prof leading-relaxed">Transformação de dados brutos em padrões de comportamento, identificando hipóteses precisas sobre clientes e operação.</p>
-                    </div>
-                </div>
-                
-                <div class="p-6 bg-white border border-nevoa flex flex-col justify-between min-h-[220px] hover:-translate-y-1 transition-transform duration-300">
-                    <span class="font-mono text-xs text-cinza">03</span>
-                    <div>
-                        <h3 class="font-sans font-medium text-base text-grafite mb-2">Decision Intelligence</h3>
-                        <p class="text-xs text-cinza-prof leading-relaxed">Estruturação de cenários e decisões cruciais utilizando frameworks proprietários combinados com Inteligência Artificial aplicada.</p>
-                    </div>
-                </div>
-                
-                <div class="p-6 bg-white border border-nevoa flex flex-col justify-between min-h-[220px] hover:-translate-y-1 transition-transform duration-300">
-                    <span class="font-mono text-xs text-ambar">04</span>
-                    <div>
-                        <h3 class="font-sans font-medium text-base text-grafite mb-2">Parceria Fractional</h3>
-                        <p class="text-xs text-cinza-prof leading-relaxed">Acompanhamento executivo recorrente, funcionando como uma camada contínua de inteligência externa estratégica para o negócio.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 border-b border-nevoa bg-white/40">
-        <div class="max-w-6xl mx-auto px-6 md:px-12">
-            <p class="font-mono text-xs tracking-[0.16em] uppercase text-cinza mb-4">03 — Categoria</p>
-            <h2 class="font-serif font-light text-3xl md:text-4xl text-grafite mb-12">Uma postura consultiva independente</h2>
-            
-            <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse">
-                    <thead>
-                        <tr class="border-b border-nevoa">
-                            <th class="font-mono text-xs text-cinza pb-4 uppercase font-normal">Categoria</th>
-                            <th class="font-mono text-xs text-cinza pb-4 uppercase font-normal">Entrega típica</th>
-                            <th class="font-mono text-xs text-cinza pb-4 uppercase font-normal">Ponto cego estratégico</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-sm">
-                        <tr class="border-b border-nevoa/60">
-                            <td class="py-4 font-medium">Consultoria tradicional</td>
-                            <td class="py-4 text-cinza-prof">Relatórios em PDF estáticos</td>
-                            <td class="py-4 text-cinza-prof">Baixa profundidade técnica e dependência de dados manuais.</td>
-                        </tr>
-                        <tr class="border-b border-nevoa/60">
-                            <td class="py-4 font-medium">Fábricas de BI</td>
-                            <td class="py-4 text-cinza-prof">Telas e dashboards coloridos</td>
-                            <td class="py-4 text-cinza-prof">Entregam a ferramenta, mas deixam a interpretação e a decisão com você.</td>
-                        </tr>
-                        <tr class="border-b border-nevoa/60">
-                            <td class="py-4 font-medium">Empresas de Automação</td>
-                            <td class="py-4 text-cinza-prof">Integrações de sistemas</td>
-                            <td class="py-4 text-cinza-prof">Automatizam processos rápidos, mas sem melhorar a decisão que comanda o processo.</td>
-                        </tr>
-                        <tr class="border-b border-grafite/20 bg-white/50">
-                            <td class="py-4 font-medium text-grafite flex items-center gap-2">
-                                <svg width="14" height="14" class="text-grafite"><use href="#logo-brackets"/></svg> Lucas Analytics
-                            </td>
-                            <td class="py-4 text-grafite font-medium">Estruturação de decisões e clareza</td>
-                            <td class="py-4 text-ambar font-medium">Foco total no problema prático e no apoio analítico antes do passo ser tomado.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 border-b border-nevoa">
-        <div class="max-w-6xl mx-auto px-6 md:px-12 text-left">
-            <p class="font-mono text-xs tracking-[0.16em] uppercase text-cinza mb-4">04 — Método Proprietário</p>
-            <h2 class="font-serif font-light text-3xl md:text-4xl text-grafite mb-16">Do problema à decisão estruturada</h2>
-            
-            <div class="relative w-full h-1 bg-nevoa my-8 hidden md:block">
-                <div class="absolute top-1/2 left-[82%] -translate-y-1/2 w-3 h-3 rounded-full bg-ambar"></div>
-            </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-7 gap-6 font-mono text-[11px] uppercase tracking-wider text-cinza">
-                <div class="p-4 border border-nevoa bg-white"><span class="text-cinza-prof block mb-1">01</span><strong class="text-grafite font-medium">Problema</strong></div>
-                <div class="p-4 border border-nevoa bg-white"><span class="text-cinza-prof block mb-1">02</span><strong class="text-grafite font-medium">Hipótese</strong></div>
-                <div class="p-4 border border-nevoa bg-white"><span class="text-cinza-prof block mb-1">03</span><strong class="text-grafite font-medium">Dados</strong></div>
-                <div class="p-4 border border-nevoa bg-white"><span class="text-cinza-prof block mb-1">04</span><strong class="text-grafite font-medium">Análise</strong></div>
-                <div class="p-4 border border-nevoa bg-white"><span class="text-cinza-prof block mb-1">05</span><strong class="text-grafite font-medium">Insight</strong></div>
-                <div class="p-4 border border-nevoa bg-white border-dashed"><span class="text-ambar block mb-1">06</span><strong class="text-grafite font-medium">Decisão</strong></div>
-                <div class="p-4 border border-grafite bg-grafite text-papel"><span class="text-cinza block mb-1">07</span><strong class="text-papel font-medium">Ação</strong></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="decisoes" class="py-24 border-b border-nevoa bg-white/40">
-        <div class="max-w-6xl mx-auto px-6 md:px-12">
-            <p class="font-mono text-xs tracking-[0.16em] uppercase text-cinza mb-4">05 — Contexto Comercial</p>
-            <h2 class="font-serif font-light text-3xl md:text-4xl text-grafite mb-12">Qual decisão está na sua mesa hoje?</h2>
-            
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="p-6 bg-white border border-nevoa">
-                    <h3 class="font-sans font-medium text-base text-grafite mb-1">Crescimento & Filiais</h3>
-                    <p class="text-xs text-cinza-prof mb-4">Devemos expandir a operação ou otimizar a estrutura física atual?</p>
-                    <span class="font-mono text-[10px] text-cinza uppercase">Análise de Expansão</span>
-                </div>
-                <div class="p-6 bg-white border border-nevoa">
-                    <h3 class="font-sans font-medium text-base text-grafite mb-1">Alocação de Capital</h3>
-                    <p class="text-xs text-cinza-prof mb-4">Onde o capital deve ser injetado neste semestre para maximizar o retorno líquidoc?</p>
-                    <span class="font-mono text-[10px] text-cinza uppercase">Eficiência Financeira</span>
-                </div>
-                <div class="p-6 bg-white border border-nevoa">
-                    <h3 class="font-sans font-medium text-base text-grafite mb-1">Vazamento Operacional</h3>
-                    <p class="text-xs text-cinza-prof mb-4">Onde a equipe ou os processos estão perdendo eficiência e gerando desperdício?</p>
-                    <span class="font-mono text-[10px] text-cinza uppercase">Análise de Gargalos</span>
-                </div>
-                <div class="p-6 bg-white border border-nevoa">
-                    <h3 class="font-sans font-medium text-base text-grafite mb-1">Rentabilidade de Clientes</h3>
-                    <p class="text-xs text-cinza-prof mb-4">Quais perfis de clientes de fato geram lucro líquido e sustentam a operação?</p>
-                    <span class="font-mono text-[10px] text-cinza uppercase">Mapeamento RFV Aplicado</span>
-                </div>
-                <div class="p-6 bg-white border border-nevoa">
-                    <h3 class="font-sans font-medium text-base text-grafite mb-1">Performance Comercial</h3>
-                    <p class="text-xs text-cinza-prof mb-4">O que está travando a conversão de leads e novos orçamentos no funil de vendas?</p>
-                    <span class="font-mono text-[10px] text-cinza uppercase">Auditoria de Conversão</span>
-                </div>
-                <div class="p-6 bg-white border border-nevoa border-dashed">
-                    <h3 class="font-sans font-medium text-base text-ambar mb-1">Segunda Opinião Estratégica</h3>
-                    <p class="text-xs text-cinza-prof mb-4">Mapear riscos analíticos ocultos antes de fechar contratos ou parcerias de alto custo.</p>
-                    <span class="font-mono text-[10px] text-ambar uppercase">Trusted Advisor</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="cases" class="py-24 border-b border-nevoa">
-        <div class="max-w-6xl mx-auto px-6 md:px-12">
-            <p class="font-mono text-xs tracking-[0.16em] uppercase text-cinza mb-4">06 — Evidências Práticas</p>
-            <h2 class="font-serif font-light text-3xl md:text-4xl text-grafite mb-16">Histórias de decisões estruturadas</h2>
-            
-            <div class="grid md:grid-cols-12 gap-8 items-start">
-                <div class="md:col-span-5 bg-papel border border-nevoa p-6">
-                    <span class="font-mono text-[9px] uppercase tracking-widest text-cinza block mb-2">CONCENTRAÇÃO DE RECEITA — CASE STUDY</span>
-                    <h3 class="font-serif font-light text-3xl text-grafite mb-4">37,4%</h3>
-                    <p class="text-xs text-cinza-prof leading-relaxed mb-4">
-                        Do faturamento anual de uma grande operação estava concentrado em apenas 8 clientes da base. A saída de dois deles no semestre anterior comprometeu severamente o fluxo de caixa antes da nossa intervenção.
-                    </p>
-                    <span class="font-mono text-[9px] text-cinza block">Fonte: Auditoria interna, Dados de 14 meses</span>
-                </div>
-                
-                <div class="md:col-span-7 font-sans text-sm text-cinza-prof space-y-4">
-                    <h4 class="font-serif text-xl text-grafite mb-2 font-normal">A Investigação e a Rota do Insight</h4>
-                    <p>O cliente chegou com o sintoma clássico: faturamento em alta, mas margem de lucro líquido estrangulada a cada ciclo. A liderança planejava investir mais R$ 200 mil em marketing digital para tentar captar mais volume.</p>
-                    <p>Ao realizar a auditoria analítica e aplicar a segmentação por comportamento e valor, identificamos que o custo logístico de atendimento para os clientes de menor ticket médio estava consumindo todo o lucro gerado pelos clientes de alto padrão.</p>
-                    <p class="text-grafite font-medium italic border-l-2 border-ambar pl-4 py-1">
-                        A decisão não foi gastar mais em aquisição, mas reorganizar a precificação e redirecionar a equipe comercial para focar exclusivamente no resgate do segmento de alta frequência.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="sobre" class="py-24 border-b border-nevoa bg-white/40">
-        <div class="max-w-6xl mx-auto px-6 md:px-12">
-            <div class="grid md:grid-cols-12 gap-12 items-center">
-                <div class="md:col-span-4 flex justify-left">
-                    <div class="w-full max-w-[280px] aspect-[3/4] bg-grafite overflow-hidden relative border border-nevoa">
-                        <img src="https://github.com/lucasfpereira2-wq/site/blob/main/fotosite.png?raw=true" alt="Lucas Fernandes" class="w-full h-full object-cover grayscale mix-blend-luminosity">
-                    </div>
-                </div>
-                
-                <div class="md:col-span-8 text-left">
-                    <p class="font-mono text-xs tracking-[0.16em] uppercase text-cinza mb-4">07 — Liderança</p>
-                    <h2 class="font-serif font-light text-3xl text-grafite mb-6">Por trás da Lucas Analytics</h2>
-                    <div class="font-sans text-sm text-cinza-prof space-y-4 max-w-xl leading-relaxed">
-                        <p>
-                            <strong>Lucas Fernandes</strong> construiu a Lucas Analytics a partir de uma convicção analítica rígida: empresários maduros não precisam de mais gráficos coloridos ou painéis esquecidos no navegador. Eles precisam de clareza real para decidir o próximo passo.
-                        </p>
-                        <p>
-                            Com mais de 8 anos de experiência prática em engenharia de dados, business intelligence avançado e inteligência artificial corporativa, Lucas lidera uma estrutura desenhada para atuar como o braço analítico estratégico e independente de fundadores e conselhos empresariais.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contato" class="py-24 bg-grafite text-papel">
-        <div class="max-w-6xl mx-auto px-6 md:px-12">
-            <div class="grid md:grid-cols-12 gap-12">
-                
-                <div class="md:col-span-6 flex flex-col justify-between">
-                    <div>
-                        <p class="font-mono text-xs tracking-[0.16em] uppercase text-cinza mb-4">08 — Agendamento Privado</p>
-                        <h2 class="font-serif font-light text-4xl text-papel leading-[1.15] mb-6">
-                            Sua empresa está crescendo com sustentabilidade ou apenas <span class="italic">faturando alto</span>?
-                        </h2>
-                        <p class="font-sans font-light text-sm text-nevoa/80 max-w-md leading-relaxed mb-8">
-                            Não coletamos contatos em massa para envio de spam ou automações insistentes de marketing. Se você tem uma decisão estratégica importante na mesa e precisa de um parecer analítico independente, agende um briefing inicial de 10 minutos diretamente com nossa diretoria.
-                        </p>
-                    </div>
-                    <div class="font-mono text-[10px] text-cinza uppercase tracking-wider hidden md:block">
-                        Lucas Analytics · Processo de Triagem Otimizado
-                    </div>
-                </div>
-                
-                <div class="md:col-span-6 bg-white/[0.03] border border-white/10 p-8">
-                    <form id="contactForm" class="space-y-5 text-left text-xs font-sans">
-                        <div>
-                            <label class="block font-mono text-[10px] uppercase text-cinza mb-2">Seu nome</label>
-                            <input type="text" required id="formName" class="w-full bg-transparent border-b border-nevoa/40 py-2 text-papel focus:outline-none focus:border-ambar transition-colors">
-                        </div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block font-mono text-[10px] uppercase text-cinza mb-2">Sua Empresa</label>
-                                <input type="text" required id="formCompany" class="w-full bg-transparent border-b border-nevoa/40 py-2 text-papel focus:outline-none focus:border-ambar transition-colors">
-                            </div>
-                            <div>
-                                <label class="block font-mono text-[10px] uppercase text-cinza mb-2">Seu Cargo</label>
-                                <input type="text" required id="formRole" class="w-full bg-transparent border-b border-nevoa/40 py-2 text-papel focus:outline-none focus:border-ambar transition-colors">
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block font-mono text-[10px] uppercase text-cinza mb-2">Qual decisão você gostaria de analisar com dados?</label>
-                            <textarea required id="formProblem" rows="3" class="w-full bg-transparent border border-nevoa/20 p-3 text-papel focus:outline-none focus:border-ambar transition-colors text-xs resize-none"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="w-full py-4 bg-papel text-grafite font-medium tracking-wide uppercase text-[11px] hover:bg-ambar hover:text-papel transition-all duration-300 shadow-sm flex items-center justify-center gap-2">
-                            Avançar para Briefing de Dados <svg width="12" height="12" class="inline-block"><circle cx="6" cy="6" r="4" fill="currentColor"/></svg>
-                        </button>
-                    </form>
-                </div>
-                
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-12 border-t border-nevoa bg-white/20 text-xs text-cinza font-mono">
-        <div class="max-w-6xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-left md:items-center gap-6">
-            <div>
-                Lucas Analytics &copy; <span id="year"></span> · Inteligência Comercial Independente
-            </div>
-            <div class="flex gap-6">
-                <a href="https://instagram.com/lucas.analytics" target="_blank" class="hover:text-grafite transition-colors">Instagram</a>
-                <a href="#" class="hover:text-grafite transition-colors">LinkedIn</a>
-                <a href="https://wa.me/5531999876954" target="_blank" onclick="fbq('track', 'Contact')" class="text-ambar font-medium hover:text-grafite transition-colors">WhatsApp Direto</a>
+            <div class="md:text-right font-mono text-[10px] tracking-meta uppercase text-cinza space-y-2 reveal reveal-delay-200">
+                <p>lucasanalytics.com.br</p>
+                <p>Brasil © 2026</p>
+                <p class="mt-4 pt-4 border-t border-nevoa inline-block text-grafite font-medium">Antes da decisão.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('year').textContent = new Date().getFullYear();
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
 
-            // Script de Scroll Animado Furtivo e Sobro (Scroll Reveal)
-            const revealElements = document.querySelectorAll('section, .reveal');
-            const observer = new IntersectionObserver((entries) => {
+        // Intersection Observer for Scroll Animations (Reveal)
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -10% 0px', // Triggers slightly before element comes into view
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('active');
+                        // Optional: unobserve after animating to only animate once
+                        // observer.unobserve(entry.target); 
                     }
                 });
-            }, { threshold: 0.05 });
+            }, observerOptions);
 
-            revealElements.forEach(el => {
-                el.classList.add('reveal');
-                observer.observe(el);
+            // Observe all elements with the .reveal class
+            document.querySelectorAll('.reveal').forEach(element => {
+                observer.observe(element);
             });
-
-            // Estruturação do Formulário Dinâmico jogando para o seu WhatsApp Oficial
-            const form = document.getElementById('contactForm');
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                
-                // Dispara o rastreamento do pixel fornecido no seu código antigo
-                if(typeof fbq !== 'undefined') {
-                    fbq('track', 'Contact');
-                }
-
-                const name = document.getElementById('formName').value;
-                const company = document.getElementById('formCompany').value;
-                const role = document.getElementById('formRole').value;
-                const problem = document.getElementById('formProblem').value;
-
-                // Monta o texto limpo, executivo e legível para o WhatsApp
-                const text = `Olá Lucas, meu nome é ${name} (${role} na empresa ${company}). Gostaria de realizar a triagem do Diagnóstico Analítico para a seguinte decisão estratégica: "${problem}"`;
-                const encodedText = encodeURIComponent(text);
-                
-                // Redireciona utilizando o seu número real extraído do site antigo
-                window.open(`https://wa.me/5531999876954?text=${encodedText}`, '_blank');
-            });
+            
+            // Force immediate reveal for elements above the fold on load
+            setTimeout(() => {
+                document.querySelectorAll('.reveal').forEach(element => {
+                    if(element.getBoundingClientRect().top < window.innerHeight) {
+                        element.classList.add('active');
+                    }
+                });
+            }, 150);
         });
     </script>
 </body>
