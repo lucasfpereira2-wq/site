@@ -3,61 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucas Analytics | Estratégia Orientada por Dados</title>
-    <meta name="description" content="Transformo números em decisões estratégicas para clínicas e empresas que querem crescer com inteligência.">
+    <title>Lucas Analytics — Inteligência para Decisões Empresariais</title>
+    <meta name="description" content="Antes de uma decisão importante, uma segunda opinião baseada em dados, estratégia e inteligência artificial. Para empresários e diretores seniores.">
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,400;0,500;1,6..72,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
-    <!-- Tailwind Config for Custom Colors and Fonts -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
                     colors: {
-                        brand: {
-                            dark: '#0f111a',
-                            card: '#1b1f3b',
-                            primary: '#0066ff',
-                            secondary: '#00c3ff',
-                            accent: '#4d94ff',
-                            text: '#f8fafc',
-                            muted: '#94a3b8'
-                        }
+                        grafite: '#121820',
+                        ardosia: '#1B3A4B',
+                        ambar: '#B4762B',
+                        papel: '#F4F1EA',
+                        nevoa: '#DAD9D4',
+                        cinza: '#8E918C',
+                        'cinza-prof': '#4A504E'
                     },
-                    backgroundImage: {
-                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-                        'hero-glow': 'radial-gradient(circle at 50% 0%, rgba(0, 102, 255, 0.15) 0%, rgba(15, 17, 26, 0) 70%)',
-                    },
-                    animation: {
-                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
-                        'float': 'float 6s ease-in-out infinite',
-                        'pulse-glow': 'pulseGlow 3s infinite',
-                    },
-                    keyframes: {
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-25px)' },
-                        },
-                        pulseGlow: {
-                            '0%, 100%': { opacity: '1' },
-                            '50%': { opacity: '0.6' },
-                        }
+                    fontFamily: {
+                        serif: ['Newsreader', 'Georgia', 'serif'],
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['IBM Plex Mono', 'monospace']
                     }
                 }
             }
@@ -66,550 +37,372 @@
 
     <style>
         body {
-            background-color: #0f111a;
-            color: #f8fafc;
-            overflow-x: hidden;
-        }
-        .glass-panel {
-            background: rgba(27, 31, 59, 0.4);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .text-gradient {
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-image: linear-gradient(90deg, #f8fafc 0%, #94a3b8 100%);
-        }
-        .text-gradient-blue {
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-image: linear-gradient(135deg, #00c3ff 0%, #0066ff 100%);
+            background-color: #F4F1EA;
+            color: #121820;
+            font-family: 'Inter', system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(24px);
             transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
-        .delay-100 { transition-delay: 100ms; }
-        .delay-200 { transition-delay: 200ms; }
-        .delay-300 { transition-delay: 300ms; }
-        .dash-mockup {
-            box-shadow: 0 0 40px rgba(0, 102, 255, 0.1);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
     </style>
-
-    <!-- Meta Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1797584787882895');
-    fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1797584787882895&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
 </head>
-<body class="antialiased selection:bg-brand-primary selection:text-white">
+<body class="bg-papel text-grafite selection:bg-ambar selection:text-white">
 
-    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
-        <div class="glass-panel border-b-0">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between items-center h-20">
-                    <div class="flex-shrink-0 flex items-center gap-3">
-                        <svg viewBox="0 0 100 100" class="w-9 h-9 drop-shadow-md" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M 15 10 V 85 H 85 V 60 H 40 V 10 Z" fill="#f2efeb" />
-                            <path d="M 45 55 H 85 V 20 Z" fill="#597491" />
-                        </svg>
-                        <span class="font-bold text-xl tracking-tight text-brand-text">Lucas<span class="text-brand-muted font-medium">Analytics</span></span>
-                    </div>
-                    <div class="hidden md:flex space-x-8 items-center">
-                        <a href="#problema" class="text-sm font-medium text-brand-muted hover:text-brand-text transition-colors">O Problema</a>
-                        <a href="#solucao" class="text-sm font-medium text-brand-muted hover:text-brand-text transition-colors">A Solução</a>
-                        <a href="#diferencial" class="text-sm font-medium text-brand-muted hover:text-brand-text transition-colors">Metodologia</a>
-                        <a href="#sobre" class="text-sm font-medium text-brand-muted hover:text-brand-text transition-colors">Sobre</a>
-                        <a href="#contato" class="px-5 py-2.5 rounded-full bg-brand-primary text-white text-sm font-medium hover:bg-blue-600 transition-colors shadow-[0_0_15px_rgba(0,102,255,0.4)]">
-                            Quero entender meus números
-                        </a>
-                    </div>
-                    <div class="md:hidden flex items-center">
-                        <button id="mobile-menu-btn" class="text-brand-text hover:text-brand-primary focus:outline-none">
-                            <i class="ph ph-list text-3xl"></i>
-                        </button>
-                    </div>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+            <symbol id="logo-brackets" viewBox="0 0 100 100">
+                <path d="M44 20H20v60h24V70H30V30h14z" fill="currentColor"/>
+                <path d="M56 20h24v60H56V70h14V30H56z" fill="currentColor"/>
+                <circle cx="50" cy="50" r="6.5" fill="#B4762B"/>
+            </symbol>
+        </defs>
+    </svg>
+
+    <nav class="fixed w-full z-50 bg-papel/80 backdrop-blur-md border-b border-nevoa transition-all duration-300" id="navbar">
+        <div class="max-w-6xl mx-auto px-6 md:px-12">
+            <div class="flex justify-between items-center h-20">
+                <a href="#" class="flex items-center gap-3 group">
+                    <svg width="32" height="32" class="text-grafite transition-transform group-hover:scale-105"><use href="#logo-brackets"/></svg>
+                    <span class="font-serif text-xl tracking-wide">Lucas Analytics</span>
+                </a>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#como-atuamos" class="text-sm font-medium text-cinza-prof hover:text-grafite transition-colors">Como atuamos</a>
+                    <a href="#decisoes" class="text-sm font-medium text-cinza-prof hover:text-grafite transition-colors">Decisões</a>
+                    <a href="#cases" class="text-sm font-medium text-cinza-prof hover:text-grafite transition-colors">Cases</a>
+                    <a href="#sobre" class="text-sm font-medium text-cinza-prof hover:text-grafite transition-colors">Sobre</a>
+                    <a href="#contato" class="px-5 py-2.5 bg-grafite text-papel text-sm font-medium hover:bg-ardosia transition-all duration-300">
+                        Analisar minha próxima decisão
+                    </a>
                 </div>
-            </div>
-        </div>
-        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-white/10">
-            <div class="px-4 pt-2 pb-6 space-y-1">
-                <a href="#problema" class="block px-3 py-3 text-base font-medium text-brand-text hover:text-brand-primary">O Problema</a>
-                <a href="#solucao" class="block px-3 py-3 text-base font-medium text-brand-text hover:text-brand-primary">A Solução</a>
-                <a href="#diferencial" class="block px-3 py-3 text-base font-medium text-brand-text hover:text-brand-primary">Metodologia</a>
-                <a href="#sobre" class="block px-3 py-3 text-base font-medium text-brand-text hover:text-brand-primary">Sobre</a>
-                <a href="#contato" class="block mt-4 px-3 py-3 text-center rounded-lg bg-brand-primary text-white font-medium">Quero entender meus números</a>
             </div>
         </div>
     </nav>
 
-    <main>
-        <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-hero-glow">
-            <div class="absolute top-1/4 left-0 w-96 h-96 bg-brand-primary/10 rounded-full blur-[100px] pointer-events-none"></div>
-            <div class="absolute bottom-0 right-0 w-96 h-96 bg-brand-secondary/5 rounded-full blur-[100px] pointer-events-none"></div>
-
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-brand-primary/30 bg-brand-primary/5 text-brand-accent text-sm font-medium mb-8 animate-fade-in-up">
-                    <span class="relative flex h-2 w-2">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-primary opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-primary"></span>
-                    </span>
-                    Estratégia de Dados para Negócios
+    <header class="relative pt-36 pb-24 md:pt-48 md:pb-36 border-b border-nevoa">
+        <div class="max-w-6xl mx-auto px-6 md:px-12">
+            <div class="grid md:grid-cols-12 gap-12 items-start">
+                <div class="md:col-span-8 text-left">
+                    <p class="font-mono text-xs tracking-[0.16em] uppercase text-cinza mb-4">Território de Inteligência Empresarial</p>
+                    <h1 class="font-serif font-light text-4xl sm:text-6xl text-grafite leading-[1.1] tracking-tight mb-8">
+                        Decisões melhores começam com uma <span class="italic font-normal">visão clara</span> do negócio.
+                    </h1>
+                    <p class="font-sans font-light text-lg sm:text-xl text-cinza-prof max-w-xl leading-relaxed mb-10">
+                        A Lucas Analytics transforma dados, analytics estruturado, estratégia corporativa e inteligência artificial em clareza analítica para decisões empresariais de alto impacto.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#contato" class="px-8 py-3.5 bg-grafite text-papel font-medium text-sm hover:bg-ardosia transition-all duration-300">
+                            Falar sobre uma decisão
+                        </a>
+                        <a href="#como-atuamos" class="px-8 py-3.5 border border-nevoa text-grafite font-medium text-sm hover:bg-white/50 transition-all duration-300">
+                            Como atuamos
+                        </a>
+                    </div>
                 </div>
                 
-                <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 animate-fade-in-up delay-100 text-gradient">
-                    Empresas perdem dinheiro todos os dias por<br class="hidden md:block"/> 
-                    <span class="text-gradient-blue">não entenderem seus números.</span>
-                </h1>
+                <div class="md:col-span-4 flex justify-center md:justify-end pt-4">
+                    <div class="relative p-8 bg-white border border-nevoa w-full max-w-[280px] aspect-square flex flex-col justify-between shadow-sm">
+                        <svg width="44" height="44" class="text-grafite"><use href="#logo-brackets"/></svg>
+                        <div class="border-t border-nevoa pt-4">
+                            <span class="font-mono text-[10px] uppercase text-cinza block tracking-wider mb-1">Status Atual</span>
+                            <span class="font-serif italic text-lg text-ambar">Antes da decisão.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="problema" class="py-24 border-b border-nevoa bg-white/40">
+        <div class="max-w-6xl mx-auto px-6 md:px-12">
+            <div class="max-w-3xl">
+                <p class="font-mono text-xs tracking-[0.16em] uppercase text-cinza mb-4">01 — O Diagnóstico</p>
+                <h2 class="font-serif font-light text-3xl md:text-4xl text-grafite mb-6">Seu problema provavelmente não é a falta de dados.</h2>
+                <p class="font-sans font-light text-base text-cinza-prof leading-relaxed mb-12">
+                    Empresas acumulam sistemas complexos, planilhas infinitas, indicadores isolados e relatórios densos. Mesmo assim, na hora de executar passos importantes, a liderança continua operando sob pressão, urgência e percepção isolada. Dados sem contexto geram ruído, não direção.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 border-t border-nevoa pt-12">
+                <div>
+                    <span class="font-mono text-xs text-cinza block mb-2">01 / INFORMAÇÃO</span>
+                    <p class="text-sm text-cinza-prof">O empilhamento bruto de dados e registros que o seu ERP ou CRM coleta todos os dias. Isolado, ele apenas consome armazenamento.</p>
+                </div>
+                <div>
+                    <span class="font-mono text-xs text-cinza block mb-2">02 / INTELIGÊNCIA</span>
+                    <p class="text-sm text-cinza-prof">A conexão lógica e o cruzamento estratégico dessas fontes de informação. É aqui que descobrimos o porquê os gargalos acontecem.</p>
+                </div>
+                <div>
+                    <span class="font-mono text-xs text-ambar block mb-2">03 / DECISÃO</span>
+                    <p class="text-sm text-grafite font-medium">A ação pragmática e segura executada pelo empresário, inteiramente respaldada por evidências analíticas e cenários preditivos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="como-atuamos" class="py-24 border-b border-nevoa">
+        <div class="max-w-6xl mx-auto px-6 md:px-12">
+            <p class="font-mono text-xs tracking-[0.16em] uppercase text-cinza mb-4">02 — Capacidades</p>
+            <h2 class="font-serif font-light text-3xl md:text-4xl text-grafite mb-16">Inteligência para decisões empresariais</h2>
+            
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="p-6 bg-white border border-nevoa flex flex-col justify-between min-h-[220px] hover:-translate-y-1 transition-transform duration-300">
+                    <span class="font-mono text-xs text-cinza">01</span>
+                    <div>
+                        <h3 class="font-sans font-medium text-base text-grafite mb-2">Diagnóstico & Analytics</h3>
+                        <p class="text-xs text-cinza-prof leading-relaxed">Auditoria completa dos dados históricos para entender o que realmente está acontecendo e onde a margem está vazando.</p>
+                    </div>
+                </div>
                 
-                <p class="mt-6 max-w-3xl mx-auto text-xl md:text-2xl text-brand-muted animate-fade-in-up delay-200 font-light">
-                    Transformo dados em estratégia para aumentar receita, identificar gargalos e melhorar a performance da sua operação/empresa.
-                </p>
+                <div class="p-6 bg-white border border-nevoa flex flex-col justify-between min-h-[220px] hover:-translate-y-1 transition-transform duration-300">
+                    <span class="font-mono text-xs text-cinza">02</span>
+                    <div>
+                        <h3 class="font-sans font-medium text-base text-grafite mb-2">Modelagem & Inteligência</h3>
+                        <p class="text-xs text-cinza-prof leading-relaxed">Transformação de dados brutos em padrões de comportamento, identificando hipóteses precisas sobre clientes e operação.</p>
+                    </div>
+                </div>
                 
-                <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-up delay-300">
-                    <a href="#contato" class="px-8 py-4 rounded-full bg-brand-primary text-white font-semibold text-lg hover:bg-blue-600 transition-all shadow-[0_0_30px_rgba(0,102,255,0.3)] hover:shadow-[0_0_40px_rgba(0,102,255,0.5)] transform hover:-translate-y-1">
-                        Quero entender meus números
-                    </a>
-                    <a href="#solucao" class="px-8 py-4 rounded-full glass-panel text-brand-text font-semibold text-lg hover:bg-white/5 transition-all flex items-center justify-center gap-2">
-                        Ver Estratégia <i class="ph ph-arrow-down"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 mb-8 animate-fade-in-up delay-300 relative">
-                <div class="dash-mockup bg-brand-card/80 rounded-2xl p-4 md:p-6 backdrop-blur-sm animate-float">
-                    <div class="flex gap-2 mb-6">
-                        <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
-                        <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                        <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                <div class="p-6 bg-white border border-nevoa flex flex-col justify-between min-h-[220px] hover:-translate-y-1 transition-transform duration-300">
+                    <span class="font-mono text-xs text-cinza">03</span>
+                    <div>
+                        <h3 class="font-sans font-medium text-base text-grafite mb-2">Decision Intelligence</h3>
+                        <p class="text-xs text-cinza-prof leading-relaxed">Estruturação de cenários e decisões cruciais utilizando frameworks proprietários combinados com Inteligência Artificial aplicada.</p>
                     </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="glass-panel rounded-xl p-6 border border-white/5 hover:border-brand-primary/30 transition-colors">
-                            <div class="flex justify-between items-start mb-4">
-                                <div>
-                                    <p class="text-sm text-brand-muted">Custo de Aquisição (CAC)</p>
-                                    <h3 class="text-2xl font-bold text-red-400 mt-1">R$ 1.250</h3>
-                                </div>
-                                <div class="bg-red-500/10 text-red-400 p-2 rounded-lg text-sm flex items-center gap-1 border border-red-500/20">
-                                    <i class="ph-bold ph-warning"></i> Alerta
-                                </div>
-                            </div>
-                            <div class="mt-6 flex flex-col gap-4">
-                                <div>
-                                    <div class="flex justify-between text-xs text-brand-muted mb-1">
-                                        <span>LTV (Valor Gerado)</span>
-                                        <span class="text-green-400 font-medium">R$ 8.500</span>
-                                    </div>
-                                    <div class="w-full bg-white/5 rounded-full h-2">
-                                        <div class="bg-gradient-to-r from-green-500 to-green-300 h-2 rounded-full w-[85%]"></div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="flex justify-between text-xs text-brand-muted mb-1">
-                                        <span>CAC (Custo)</span>
-                                        <span class="text-red-400 font-medium">R$ 1.250</span>
-                                    </div>
-                                    <div class="w-full bg-white/5 rounded-full h-2">
-                                        <div class="bg-gradient-to-r from-red-500 to-red-400 h-2 rounded-full w-[25%] relative">
-                                             <div class="absolute -right-1 -top-1 w-4 h-4 bg-red-500 rounded-full animate-ping opacity-50"></div>
-                                             <div class="absolute -right-1 -top-1 w-4 h-4 bg-red-500 rounded-full border-2 border-brand-card"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="text-[10px] text-brand-muted/70 mt-1"><b class="text-brand-text">Insight:</b> Retorno de 6.8x. Margem validada para escalar campanhas hoje.</p>
-                            </div>
-                        </div>
-
-                        <div class="glass-panel rounded-xl p-6 border border-white/5 md:col-span-2 hover:border-brand-primary/30 transition-colors">
-                            <div class="flex justify-between items-start mb-4">
-                                <div>
-                                    <p class="text-sm text-brand-muted flex items-center gap-2"><i class="ph ph-squares-four text-brand-secondary"></i> Análise de Cohort (Retenção)</p>
-                                    <h3 class="text-xl font-bold text-brand-text mt-1">Onde sua empresa perde clientes?</h3>
-                                </div>
-                                <span class="text-xs px-3 py-1.5 rounded-full bg-brand-primary/10 text-brand-primary border border-brand-primary/30">Visão Estratégica</span>
-                            </div>
-                            <div class="mt-6 w-full flex flex-col gap-1.5 overflow-hidden text-[10px] sm:text-xs font-mono">
-                                <div class="flex gap-1.5 text-brand-muted/70 mb-1">
-                                    <div class="w-12 sm:w-16">Entrada</div>
-                                    <div class="flex-1 text-center">Mês 1</div>
-                                    <div class="flex-1 text-center">Mês 2</div>
-                                    <div class="flex-1 text-center">Mês 3</div>
-                                    <div class="flex-1 text-center">Mês 4</div>
-                                    <div class="flex-1 text-center hidden sm:block">Mês 5</div>
-                                </div>
-                                <div class="flex gap-1.5">
-                                    <div class="w-12 sm:w-16 text-brand-muted flex items-center">Jan/24</div>
-                                    <div class="flex-1 bg-brand-primary rounded text-center py-2 text-white font-semibold">100%</div>
-                                    <div class="flex-1 bg-brand-primary/80 rounded text-center py-2 text-white/90">75%</div>
-                                    <div class="flex-1 bg-brand-primary/60 rounded text-center py-2 text-white/80">60%</div>
-                                    <div class="flex-1 bg-brand-primary/40 rounded text-center py-2 text-white/70">45%</div>
-                                    <div class="flex-1 bg-brand-primary/20 rounded text-center py-2 text-brand-text/50 hidden sm:block">30%</div>
-                                </div>
-                                <div class="flex gap-1.5">
-                                    <div class="w-12 sm:w-16 text-brand-muted flex items-center">Fev/24</div>
-                                    <div class="flex-1 bg-brand-primary rounded text-center py-2 text-white font-semibold">100%</div>
-                                    <div class="flex-1 bg-brand-primary/80 rounded text-center py-2 text-white/90">82%</div>
-                                    <div class="flex-1 bg-red-500/30 border border-red-500/50 rounded text-center py-2 text-white relative group cursor-pointer shadow-[0_0_15px_rgba(239,68,68,0.2)]">
-                                        <span class="font-bold text-red-400">35%</span>
-                                        <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-red-500 text-white text-[10px] py-1.5 px-3 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10 shadow-lg font-sans">
-                                            Gargalo identificado!
-                                            <div class="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-2 h-2 bg-red-500 rotate-45"></div>
-                                        </span>
-                                    </div>
-                                    <div class="flex-1 bg-brand-primary/20 rounded text-center py-2 text-brand-text/50">25%</div>
-                                    <div class="flex-1 bg-brand-primary/10 rounded text-center py-2 text-brand-text/40 hidden sm:block">15%</div>
-                                </div>
-                                <div class="flex gap-1.5">
-                                    <div class="w-12 sm:w-16 text-brand-muted flex items-center">Mar/24</div>
-                                    <div class="flex-1 bg-brand-primary rounded text-center py-2 text-white font-semibold">100%</div>
-                                    <div class="flex-1 bg-brand-primary/85 rounded text-center py-2 text-white/90">88%</div>
-                                    <div class="flex-1 bg-brand-primary/70 rounded text-center py-2 text-white/80">70%</div>
-                                    <div class="flex-1 bg-white/5 rounded hidden sm:block"></div>
-                                    <div class="flex-1 bg-white/5 rounded hidden sm:block"></div>
-                                </div>
-                            </div>
-                        </div>
+                </div>
+                
+                <div class="p-6 bg-white border border-nevoa flex flex-col justify-between min-h-[220px] hover:-translate-y-1 transition-transform duration-300">
+                    <span class="font-mono text-xs text-ambar">04</span>
+                    <div>
+                        <h3 class="font-sans font-medium text-base text-grafite mb-2">Parceria Fractional</h3>
+                        <p class="text-xs text-cinza-prof leading-relaxed">Acompanhamento executivo recorrente, funcionando como uma camada contínua de inteligência externa estratégica para o negócio.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="problema" class="py-16 bg-brand-dark relative">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16 reveal">
-                    <h2 class="text-brand-primary font-semibold tracking-wide uppercase text-sm mb-3">O Cenário Atual</h2>
-                    <p class="text-3xl md:text-5xl font-bold text-brand-text mb-6">Trabalhar no escuro custa caro.</p>
-                    <p class="text-xl text-brand-muted max-w-2xl mx-auto">Muitas clínicas e prestadores de serviço perdem milhares de reais todos os meses por falta de visibilidade sobre o próprio negócio.</p>
+    <section class="py-24 border-b border-nevoa bg-white/40">
+        <div class="max-w-6xl mx-auto px-6 md:px-12">
+            <p class="font-mono text-xs tracking-[0.16em] uppercase text-cinza mb-4">03 — Categoria</p>
+            <h2 class="font-serif font-light text-3xl md:text-4xl text-grafite mb-12">Uma postura consultiva independente</h2>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-nevoa">
+                            <th class="font-mono text-xs text-cinza pb-4 uppercase font-normal">Categoria</th>
+                            <th class="font-mono text-xs text-cinza pb-4 uppercase font-normal">Entrega típica</th>
+                            <th class="font-mono text-xs text-cinza pb-4 uppercase font-normal">Ponto cego estratégico</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm">
+                        <tr class="border-b border-nevoa/60">
+                            <td class="py-4 font-medium">Consultoria tradicional</td>
+                            <td class="py-4 text-cinza-prof">Relatórios em PDF estáticos</td>
+                            <td class="py-4 text-cinza-prof">Baixa profundidade técnica e dependência de dados manuais.</td>
+                        </tr>
+                        <tr class="border-b border-nevoa/60">
+                            <td class="py-4 font-medium">Fábricas de BI</td>
+                            <td class="py-4 text-cinza-prof">Telas e dashboards coloridos</td>
+                            <td class="py-4 text-cinza-prof">Entregam a ferramenta, mas deixam a interpretação e a decisão com você.</td>
+                        </tr>
+                        <tr class="border-b border-nevoa/60">
+                            <td class="py-4 font-medium">Empresas de Automação</td>
+                            <td class="py-4 text-cinza-prof">Integrações de sistemas</td>
+                            <td class="py-4 text-cinza-prof">Automatizam processos rápidos, mas sem melhorar a decisão que comanda o processo.</td>
+                        </tr>
+                        <tr class="border-b border-grafite/20 bg-white/50">
+                            <td class="py-4 font-medium text-grafite flex items-center gap-2">
+                                <svg width="14" height="14" class="text-grafite"><use href="#logo-brackets"/></svg> Lucas Analytics
+                            </td>
+                            <td class="py-4 text-grafite font-medium">Estruturação de decisões e clareza</td>
+                            <td class="py-4 text-ambar font-medium">Foco total no problema prático e no apoio analítico antes do passo ser tomado.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 border-b border-nevoa">
+        <div class="max-w-6xl mx-auto px-6 md:px-12 text-left">
+            <p class="font-mono text-xs tracking-[0.16em] uppercase text-cinza mb-4">04 — Método Proprietário</p>
+            <h2 class="font-serif font-light text-3xl md:text-4xl text-grafite mb-16">Do problema à decisão estruturada</h2>
+            
+            <div class="relative w-full h-1 bg-nevoa my-8 hidden md:block">
+                <div class="absolute top-1/2 left-[82%] -translate-y-1/2 w-3 h-3 rounded-full bg-ambar"></div>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-7 gap-6 font-mono text-[11px] uppercase tracking-wider text-cinza">
+                <div class="p-4 border border-nevoa bg-white"><span class="text-cinza-prof block mb-1">01</span><strong class="text-grafite font-medium">Problema</strong></div>
+                <div class="p-4 border border-nevoa bg-white"><span class="text-cinza-prof block mb-1">02</span><strong class="text-grafite font-medium">Hipótese</strong></div>
+                <div class="p-4 border border-nevoa bg-white"><span class="text-cinza-prof block mb-1">03</span><strong class="text-grafite font-medium">Dados</strong></div>
+                <div class="p-4 border border-nevoa bg-white"><span class="text-cinza-prof block mb-1">04</span><strong class="text-grafite font-medium">Análise</strong></div>
+                <div class="p-4 border border-nevoa bg-white"><span class="text-cinza-prof block mb-1">05</span><strong class="text-grafite font-medium">Insight</strong></div>
+                <div class="p-4 border border-nevoa bg-white border-dashed"><span class="text-ambar block mb-1">06</span><strong class="text-grafite font-medium">Decisão</strong></div>
+                <div class="p-4 border border-grafite bg-grafite text-papel"><span class="text-cinza block mb-1">07</span><strong class="text-papel font-medium">Ação</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="decisoes" class="py-24 border-b border-nevoa bg-white/40">
+        <div class="max-w-6xl mx-auto px-6 md:px-12">
+            <p class="font-mono text-xs tracking-[0.16em] uppercase text-cinza mb-4">05 — Contexto Comercial</p>
+            <h2 class="font-serif font-light text-3xl md:text-4xl text-grafite mb-12">Qual decisão está na sua mesa hoje?</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="p-6 bg-white border border-nevoa">
+                    <h3 class="font-sans font-medium text-base text-grafite mb-1">Crescimento & Filiais</h3>
+                    <p class="text-xs text-cinza-prof mb-4">Devemos expandir a operação ou otimizar a estrutura física atual?</p>
+                    <span class="font-mono text-[10px] text-cinza uppercase">Análise de Expansão</span>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="glass-panel p-8 rounded-2xl reveal delay-100 hover:border-brand-primary/30 transition-colors">
-                        <div class="w-12 h-12 bg-red-500/10 rounded-xl flex items-center justify-center mb-6">
-                            <i class="ph ph-question text-2xl text-red-400"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Decisões no Achismo</h3>
-                        <p class="text-brand-muted">Apostar em marketing ou novos equipamentos sem saber exatamente qual serviço traz a maior margem de lucro real.</p>
+                <div class="p-6 bg-white border border-nevoa">
+                    <h3 class="font-sans font-medium text-base text-grafite mb-1">Alocação de Capital</h3>
+                    <p class="text-xs text-cinza-prof mb-4">Onde o capital deve ser injetado neste semestre para maximizar o retorno líquidoc?</p>
+                    <span class="font-mono text-[10px] text-cinza uppercase">Eficiência Financeira</span>
+                </div>
+                <div class="p-6 bg-white border border-nevoa">
+                    <h3 class="font-sans font-medium text-base text-grafite mb-1">Vazamento Operacional</h3>
+                    <p class="text-xs text-cinza-prof mb-4">Onde a equipe ou os processos estão perdendo eficiência e gerando desperdício?</p>
+                    <span class="font-mono text-[10px] text-cinza uppercase">Análise de Gargalos</span>
+                </div>
+                <div class="p-6 bg-white border border-nevoa">
+                    <h3 class="font-sans font-medium text-base text-grafite mb-1">Rentabilidade de Clientes</h3>
+                    <p class="text-xs text-cinza-prof mb-4">Quais perfis de clientes de fato geram lucro líquido e sustentam a operação?</p>
+                    <span class="font-mono text-[10px] text-cinza uppercase">Mapeamento RFV Aplicado</span>
+                </div>
+                <div class="p-6 bg-white border border-nevoa">
+                    <h3 class="font-sans font-medium text-base text-grafite mb-1">Performance Comercial</h3>
+                    <p class="text-xs text-cinza-prof mb-4">O que está travando a conversão de leads e novos orçamentos no funil de vendas?</p>
+                    <span class="font-mono text-[10px] text-cinza uppercase">Auditoria de Conversão</span>
+                </div>
+                <div class="p-6 bg-white border border-nevoa border-dashed">
+                    <h3 class="font-sans font-medium text-base text-ambar mb-1">Segunda Opinião Estratégica</h3>
+                    <p class="text-xs text-cinza-prof mb-4">Mapear riscos analíticos ocultos antes de fechar contratos ou parcerias de alto custo.</p>
+                    <span class="font-mono text-[10px] text-ambar uppercase">Trusted Advisor</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cases" class="py-24 border-b border-nevoa">
+        <div class="max-w-6xl mx-auto px-6 md:px-12">
+            <p class="font-mono text-xs tracking-[0.16em] uppercase text-cinza mb-4">06 — Evidências Práticas</p>
+            <h2 class="font-serif font-light text-3xl md:text-4xl text-grafite mb-16">Histórias de decisões estruturadas</h2>
+            
+            <div class="grid md:grid-cols-12 gap-8 items-start">
+                <div class="md:col-span-5 bg-papel border border-nevoa p-6">
+                    <span class="font-mono text-[9px] uppercase tracking-widest text-cinza block mb-2">CONCENTRAÇÃO DE RECEITA — CASE STUDY</span>
+                    <h3 class="font-serif font-light text-3xl text-grafite mb-4">37,4%</h3>
+                    <p class="text-xs text-cinza-prof leading-relaxed mb-4">
+                        Do faturamento anual de uma grande operação estava concentrado em apenas 8 clientes da base. A saída de dois deles no semestre anterior comprometeu severamente o fluxo de caixa antes da nossa intervenção.
+                    </p>
+                    <span class="font-mono text-[9px] text-cinza block">Fonte: Auditoria interna, Dados de 14 meses</span>
+                </div>
+                
+                <div class="md:col-span-7 font-sans text-sm text-cinza-prof space-y-4">
+                    <h4 class="font-serif text-xl text-grafite mb-2 font-normal">A Investigação e a Rota do Insight</h4>
+                    <p>O cliente chegou com o sintoma clássico: faturamento em alta, mas margem de lucro líquido estrangulada a cada ciclo. A liderança planejava investir mais R$ 200 mil em marketing digital para tentar captar mais volume.</p>
+                    <p>Ao realizar a auditoria analítica e aplicar a segmentação por comportamento e valor, identificamos que o custo logístico de atendimento para os clientes de menor ticket médio estava consumindo todo o lucro gerado pelos clientes de alto padrão.</p>
+                    <p class="text-grafite font-medium italic border-l-2 border-ambar pl-4 py-1">
+                        A decisão não foi gastar mais em aquisição, mas reorganizar a precificação e redirecionar a equipe comercial para focar exclusivamente no resgate do segmento de alta frequência.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre" class="py-24 border-b border-nevoa bg-white/40">
+        <div class="max-w-6xl mx-auto px-6 md:px-12">
+            <div class="grid md:grid-cols-12 gap-12 items-center">
+                <div class="md:col-span-4 flex justify-left">
+                    <div class="w-full max-w-[280px] aspect-[3/4] bg-grafite overflow-hidden relative border border-nevoa">
+                        <img src="https://github.com/lucasfpereira2-wq/site/blob/main/fotosite.png?raw=true" alt="Lucas Fernandes" class="w-full h-full object-cover grayscale mix-blend-luminosity">
                     </div>
-                    <div class="glass-panel p-8 rounded-2xl reveal delay-200 hover:border-brand-primary/30 transition-colors">
-                        <div class="w-12 h-12 bg-orange-500/10 rounded-xl flex items-center justify-center mb-6">
-                            <i class="ph ph-users-three text-2xl text-orange-400"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Cancelamentos e Churn</h3>
-                        <p class="text-brand-muted">Clientes que marcam e não aparecem, ou pacientes que fazem um procedimento e nunca mais retornam, esvaindo sua receita.</p>
-                    </div>
-                    <div class="glass-panel p-8 rounded-2xl reveal delay-300 hover:border-brand-primary/30 transition-colors">
-                        <div class="w-12 h-12 bg-yellow-500/10 rounded-xl flex items-center justify-center mb-6">
-                            <i class="ph ph-trend-down text-2xl text-yellow-400"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Falta de Previsibilidade</h3>
-                        <p class="text-brand-muted">Não saber quanto vai faturar no próximo mês, vivendo uma montanha-russa financeira que impede investimentos seguros.</p>
+                </div>
+                
+                <div class="md:col-span-8 text-left">
+                    <p class="font-mono text-xs tracking-[0.16em] uppercase text-cinza mb-4">07 — Liderança</p>
+                    <h2 class="font-serif font-light text-3xl text-grafite mb-6">Por trás da Lucas Analytics</h2>
+                    <div class="font-sans text-sm text-cinza-prof space-y-4 max-w-xl leading-relaxed">
+                        <p>
+                            <strong>Lucas Fernandes</strong> construiu a Lucas Analytics a partir de uma convicção analítica rígida: empresários maduros não precisam de mais gráficos coloridos ou painéis esquecidos no navegador. Eles precisam de clareza real para decidir o próximo passo.
+                        </p>
+                        <p>
+                            Com mais de 8 anos de experiência prática em engenharia de dados, business intelligence avançado e inteligência artificial corporativa, Lucas lidera uma estrutura desenhada para atuar como o braço analítico estratégico e independente de fundadores e conselhos empresariais.
+                        </p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="solucao" class="py-24 bg-brand-card relative border-y border-white/5">
-            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-brand-primary/5 via-brand-dark to-brand-dark pointer-events-none"></div>
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="reveal mb-16 max-w-3xl">
-                    <h2 class="text-brand-primary font-semibold tracking-wide uppercase text-sm mb-3">A Solução</h2>
-                    <p class="text-3xl md:text-5xl font-bold text-white mb-6">Mais do que BI.<br/> Estratégia baseada em dados.</p>
-                    <p class="text-xl text-brand-muted">Eu não entrego apenas telas bonitas. Eu crio o motor de inteligência que vai guiar as ações comerciais da sua empresa.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
-                    <div class="flex gap-6 reveal">
-                        <div class="flex-shrink-0">
-                            <div class="w-14 h-14 bg-brand-primary/10 border border-brand-primary/30 rounded-xl flex items-center justify-center text-brand-primary">
-                                <i class="ph ph-magnifying-glass text-2xl"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-white mb-2">Diagnóstico Estratégico</h3>
-                            <p class="text-brand-muted leading-relaxed">Mapeamento completo de onde o dinheiro está vazando e onde estão as oportunidades ocultas na sua base atual de clientes.</p>
-                        </div>
+    <section id="contato" class="py-24 bg-grafite text-papel">
+        <div class="max-w-6xl mx-auto px-6 md:px-12">
+            <div class="grid md:grid-cols-12 gap-12">
+                
+                <div class="md:col-span-6 flex flex-col justify-between">
+                    <div>
+                        <p class="font-mono text-xs tracking-[0.16em] uppercase text-cinza mb-4">08 — Agendamento Privado</p>
+                        <h2 class="font-serif font-light text-4xl text-papel leading-[1.15] mb-6">
+                            Sua empresa está crescendo com sustentabilidade ou apenas <span class="italic">faturando alto</span>?
+                        </h2>
+                        <p class="font-sans font-light text-sm text-nevoa/80 max-w-md leading-relaxed mb-8">
+                            Não coletamos contatos em massa para envio de spam ou automações insistentes de marketing. Se você tem uma decisão estratégica importante na mesa e precisa de um parecer analítico independente, agende um briefing inicial de 10 minutos diretamente com nossa diretoria.
+                        </p>
                     </div>
-                    <div class="flex gap-6 reveal delay-100">
-                        <div class="flex-shrink-0">
-                            <div class="w-14 h-14 bg-brand-primary/10 border border-brand-primary/30 rounded-xl flex items-center justify-center text-brand-primary">
-                                <i class="ph ph-presentation-chart text-2xl"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-white mb-2">Dashboards Inteligentes</h3>
-                            <p class="text-brand-muted leading-relaxed">Visões executivas em tempo real. Saiba exatamente qual profissional vende mais, qual serviço tem maior margem e as taxas de conversão.</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-6 reveal">
-                        <div class="flex-shrink-0">
-                            <div class="w-14 h-14 bg-brand-primary/10 border border-brand-primary/30 rounded-xl flex items-center justify-center text-brand-primary">
-                                <i class="ph ph-target text-2xl"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-white mb-2">Análise Comercial</h3>
-                            <p class="text-brand-muted leading-relaxed">Avaliação do funil de vendas, desde o primeiro contato até o fechamento. Identificamos gargalos no atendimento da sua equipe.</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-6 reveal delay-100">
-                        <div class="flex-shrink-0">
-                            <div class="w-14 h-14 bg-brand-primary/10 border border-brand-primary/30 rounded-xl flex items-center justify-center text-brand-primary">
-                                <i class="ph ph-arrows-out-line-horizontal text-2xl"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-white mb-2">Retenção e Performance</h3>
-                            <p class="text-brand-muted leading-relaxed">Estratégias baseadas em dados para aumentar o LTV (Lifetime Value). Fazer o cliente voltar é mais barato do que captar novos.</p>
-                        </div>
+                    <div class="font-mono text-[10px] text-cinza uppercase tracking-wider hidden md:block">
+                        Lucas Analytics · Processo de Triagem Otimizado
                     </div>
                 </div>
+                
+                <div class="md:col-span-6 bg-white/[0.03] border border-white/10 p-8">
+                    <form id="contactForm" class="space-y-5 text-left text-xs font-sans">
+                        <div>
+                            <label class="block font-mono text-[10px] uppercase text-cinza mb-2">Seu nome</label>
+                            <input type="text" required id="formName" class="w-full bg-transparent border-b border-nevoa/40 py-2 text-papel focus:outline-none focus:border-ambar transition-colors">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block font-mono text-[10px] uppercase text-cinza mb-2">Sua Empresa</label>
+                                <input type="text" required id="formCompany" class="w-full bg-transparent border-b border-nevoa/40 py-2 text-papel focus:outline-none focus:border-ambar transition-colors">
+                            </div>
+                            <div>
+                                <label class="block font-mono text-[10px] uppercase text-cinza mb-2">Seu Cargo</label>
+                                <input type="text" required id="formRole" class="w-full bg-transparent border-b border-nevoa/40 py-2 text-papel focus:outline-none focus:border-ambar transition-colors">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block font-mono text-[10px] uppercase text-cinza mb-2">Qual decisão você gostaria de analisar com dados?</label>
+                            <textarea required id="formProblem" rows="3" class="w-full bg-transparent border border-nevoa/20 p-3 text-papel focus:outline-none focus:border-ambar transition-colors text-xs resize-none"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full py-4 bg-papel text-grafite font-medium tracking-wide uppercase text-[11px] hover:bg-ambar hover:text-papel transition-all duration-300 shadow-sm flex items-center justify-center gap-2">
+                            Avançar para Briefing de Dados <svg width="12" height="12" class="inline-block"><circle cx="6" cy="6" r="4" fill="currentColor"/></svg>
+                        </button>
+                    </form>
+                </div>
+                
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="diferencial" class="py-24 bg-brand-dark overflow-hidden">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="glass-panel rounded-3xl p-8 md:p-16 border border-brand-primary/20 relative overflow-hidden reveal">
-                    <div class="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-brand-primary/20 rounded-full blur-[80px]"></div>
-                    <div class="grid md:grid-cols-2 gap-12 items-center relative z-10">
-                        <div>
-                            <h2 class="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
-                                Enquanto muitos entregam dashboards...<br/>
-                                <span class="text-brand-secondary">Eu entrego direção.</span>
-                            </h2>
-                            <p class="text-lg text-brand-muted mb-8">
-                                A diferença entre um "fazedor de relatórios" e um estrategista é a aplicação prática. Para garantir resultados previsíveis, utilizo a <strong class="text-white">Metodologia RFV</strong> — o exato framework testado, aprovado e utilizado pelos <i>big players</i> do mercado.
-                            </p>
-                            <ul class="space-y-5">
-                                <li class="flex items-start gap-4 text-brand-text">
-                                    <div class="flex-shrink-0 mt-1 bg-white/5 p-2 rounded-lg border border-white/10">
-                                        <strong class="text-brand-primary font-bold text-lg">R</strong>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-white font-semibold mb-1">Recência</h4>
-                                        <p class="text-sm text-brand-muted">Há quanto tempo o cliente comprou? Identificamos imediatamente quem está prestes a abandonar sua empresa para ações de resgate antes do churn.</p>
-                                    </div>
-                                </li>
-                                <li class="flex items-start gap-4 text-brand-text">
-                                    <div class="flex-shrink-0 mt-1 bg-white/5 p-2 rounded-lg border border-white/10">
-                                        <strong class="text-brand-primary font-bold text-lg">F</strong>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-white font-semibold mb-1">Frequência</h4>
-                                        <p class="text-sm text-brand-muted">Com que constância eles retornam? Criamos previsibilidade transformando compradores casuais em clientes fiéis e recorrentes.</p>
-                                    </div>
-                                </li>
-                                <li class="flex items-start gap-4 text-brand-text">
-                                    <div class="flex-shrink-0 mt-1 bg-white/5 p-2 rounded-lg border border-white/10">
-                                        <strong class="text-brand-primary font-bold text-lg">V</strong>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-white font-semibold mb-1">Valor</h4>
-                                        <p class="text-sm text-brand-muted">Qual o ticket médio? Segmentamos seus clientes mais lucrativos para otimizar suas campanhas e aumentar o Lifetime Value (LTV).</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="relative">
-                            <div class="glass-panel p-6 rounded-2xl border-dashed border-2 border-white/10 mb-4 opacity-50 relative">
-                                <div class="absolute inset-0 flex items-center justify-center z-10">
-                                    <span class="bg-brand-dark/80 px-4 py-1 rounded-full text-sm font-medium text-brand-muted backdrop-blur-sm border border-white/5">Relatório comum de mercado</span>
-                                </div>
-                                <div class="h-4 bg-white/10 rounded w-3/4 mb-3"></div>
-                                <div class="flex gap-2 mb-3">
-                                    <div class="h-12 bg-white/10 rounded w-1/3"></div>
-                                    <div class="h-12 bg-white/10 rounded w-1/3"></div>
-                                    <div class="h-12 bg-white/10 rounded w-1/3"></div>
-                                </div>
-                                <div class="h-20 bg-white/10 rounded w-full"></div>
-                            </div>
-                            <div class="flex justify-center my-[-10px] relative z-20">
-                                <div class="bg-brand-dark p-2 rounded-full border border-brand-primary/30 text-brand-primary shadow-[0_0_15px_rgba(0,102,255,0.2)]">
-                                    <i class="ph-bold ph-arrow-down text-xl"></i>
-                                </div>
-                            </div>
-                            <div class="glass-panel p-6 rounded-2xl border border-brand-primary/50 shadow-[0_0_30px_rgba(0,102,255,0.2)] relative bg-gradient-to-br from-brand-card to-brand-card/50">
-                                <div class="absolute -top-3 -right-3">
-                                    <span class="flex h-6 w-6 relative">
-                                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-primary opacity-75"></span>
-                                        <span class="relative inline-flex rounded-full h-6 w-6 bg-brand-primary items-center justify-center shadow-lg">
-                                            <i class="ph-bold ph-lightning text-white text-xs"></i>
-                                        </span>
-                                    </span>
-                                </div>
-                                <div class="flex items-center gap-4 mb-4">
-                                    <div class="w-10 h-10 rounded-lg bg-brand-secondary/20 flex items-center justify-center text-brand-secondary">
-                                        <i class="ph-bold ph-target text-xl"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-white font-semibold">Alerta de Matriz RFV</h4>
-                                        <p class="text-sm text-brand-muted">Segmento: <span class="text-brand-text">"Campeões em Risco"</span></p>
-                                    </div>
-                                </div>
-                                <div class="bg-brand-dark/50 rounded-lg p-4 border border-white/5">
-                                    <p class="text-sm text-brand-text leading-relaxed"><span class="text-brand-secondary font-bold">Estratégia Imediata:</span> Temos 45 clientes de alto <b class="text-white">Valor</b> e alta <b class="text-white">Frequência</b>, mas com a <b class="text-white">Recência</b> caindo (30+ dias inativos). Acionar equipe comercial para disparo de oferta VIP de recuperação hoje.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <footer class="py-12 border-t border-nevoa bg-white/20 text-xs text-cinza font-mono">
+        <div class="max-w-6xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-left md:items-center gap-6">
+            <div>
+                Lucas Analytics &copy; <span id="year"></span> · Inteligência Comercial Independente
             </div>
-        </section>
-
-        <section class="py-24 bg-brand-card">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16 reveal">
-                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Resultados Esperados</h2>
-                    <p class="text-xl text-brand-muted max-w-2xl mx-auto">O impacto de uma gestão orientada por dados na sua clínica ou negócio.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="glass-panel p-6 rounded-2xl border-t border-white/10 reveal delay-100 flex flex-col justify-between h-48">
-                        <div>
-                            <i class="ph ph-trend-down text-3xl text-brand-secondary mb-4 block"></i>
-                            <p class="text-brand-muted text-sm font-medium">Cancelamentos</p>
-                        </div>
-                        <h3 class="text-3xl font-bold text-white">-30%</h3>
-                    </div>
-                    <div class="glass-panel p-6 rounded-2xl border-t border-brand-primary/50 bg-brand-primary/5 reveal delay-200 flex flex-col justify-between h-48 transform md:-translate-y-4">
-                        <div>
-                            <i class="ph ph-users text-3xl text-brand-primary mb-4 block"></i>
-                            <p class="text-brand-text text-sm font-medium">Retenção de Clientes</p>
-                        </div>
-                        <h3 class="text-3xl font-bold text-white">+45%</h3>
-                    </div>
-                    <div class="glass-panel p-6 rounded-2xl border-t border-green-500/50 bg-green-500/5 reveal delay-300 flex flex-col justify-between h-48">
-                        <div>
-                            <i class="ph ph-chart-line-up text-3xl text-green-400 mb-4 block"></i>
-                            <p class="text-brand-text text-sm font-medium">Crescimento de Receita</p>
-                        </div>
-                        <h3 class="text-3xl font-bold text-white">Consistente</h3>
-                    </div>
-                    <div class="glass-panel p-6 rounded-2xl border-t border-white/10 reveal delay-400 flex flex-col justify-between h-48 transform md:translate-y-4">
-                        <div>
-                            <i class="ph ph-eye text-3xl text-brand-secondary mb-4 block"></i>
-                            <p class="text-brand-muted text-sm font-medium">Clareza Operacional</p>
-                        </div>
-                        <h3 class="text-3xl font-bold text-white">100%</h3>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="sobre" class="py-24 bg-brand-dark">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="glass-panel rounded-3xl overflow-hidden border border-white/5 reveal">
-                    <div class="grid md:grid-cols-5 gap-0">
-                        <div class="md:col-span-2 bg-gradient-to-br from-brand-card to-brand-dark p-8 flex items-center justify-center relative">
-                            <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-                            <div class="relative z-10 w-64 h-64 md:w-full md:h-full max-h-80 rounded-2xl overflow-hidden border-2 border-brand-primary/20 shadow-2xl">
-                                <img src="https://github.com/lucasfpereira2-wq/site/blob/main/fotosite.png?raw=true" alt="Lucas Analytics" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
-                                <div class="absolute inset-0 bg-brand-primary/10 mix-blend-overlay"></div>
-                            </div>
-                        </div>
-                        <div class="md:col-span-3 p-8 md:p-16 flex flex-col justify-center">
-                            <h2 class="text-3xl font-bold text-white mb-2">Lucas Analytics</h2>
-                            <p class="text-brand-primary font-medium mb-6 uppercase tracking-wider text-sm">Especialista em Inteligência de Negócios</p>
-                            <div class="space-y-4 text-brand-muted text-lg leading-relaxed">
-                                <p>Especialista em transformar dados em crescimento estratégico.</p>
-                                <p>Minha missão é ajudar empresários, especialmente donos de clínicas e serviços, a saírem do escuro. Entender os números do seu negócio não precisa ser complicado, precisa ser útil.</p>
-                                <p>Eu ajudo empresas a encontrar gargalos invisíveis e tomar decisões embasadas que aumentam a receita, melhoram a performance da equipe e garantem crescimento sustentável.</p>
-                            </div>
-                            <div class="mt-8 flex gap-4">
-                                <a href="https://instagram.com/lucas.analytics" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-brand-primary hover:text-white transition-colors border border-white/10">
-                                    <i class="ph-fill ph-instagram-logo text-xl"></i>
-                                </a>
-                                <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-brand-primary hover:text-white transition-colors border border-white/10">
-                                    <i class="ph-fill ph-linkedin-logo text-xl"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SEÇÃO DE CONTATO — botão WhatsApp com evento Contact -->
-        <section id="contato" class="py-32 relative overflow-hidden bg-brand-primary">
-            <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 mix-blend-overlay"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center reveal">
-                <h2 class="text-4xl md:text-6xl font-bold text-white mb-6">
-                    Sua empresa está crescendo...<br/>ou apenas faturando?
-                </h2>
-                <p class="text-xl text-blue-100 mb-10 font-light">
-                    Vamos fazer um diagnóstico rápido e descobrir onde estão as oportunidades ocultas nos seus dados.
-                </p>
-                <!-- EVENTO: Contact — clique no WhatsApp principal -->
-                <a href="https://wa.me/5531999876954" target="_blank" onclick="fbq('track', 'Contact')" class="inline-flex items-center gap-2 px-10 py-5 rounded-full bg-white text-brand-primary font-bold text-lg hover:bg-gray-100 transition-all shadow-xl transform hover:-translate-y-1">
-                    Quero entender meus números
-                    <i class="ph-bold ph-arrow-right"></i>
-                </a>
-                <p class="mt-4 text-sm text-blue-200/70">*Vagas limitadas para diagnóstico mensal.</p>
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-brand-dark pt-16 pb-8 border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center md:items-start mb-12">
-                <div class="mb-8 md:mb-0 text-center md:text-left">
-                    <div class="flex items-center justify-center md:justify-start gap-3 mb-4">
-                        <svg viewBox="0 0 100 100" class="w-8 h-8 drop-shadow-md" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M 15 10 V 85 H 85 V 60 H 40 V 10 Z" fill="#f2efeb" />
-                            <path d="M 45 55 H 85 V 20 Z" fill="#597491" />
-                        </svg>
-                        <span class="font-bold text-xl tracking-tight text-white">Lucas<span class="text-brand-muted font-medium">Analytics</span></span>
-                    </div>
-                    <p class="text-brand-muted text-sm max-w-xs">Transformando dados em estratégias de alto impacto para clínicas e empresas.</p>
-                </div>
-                <div class="flex gap-8">
-                    <a href="https://instagram.com/lucas.analytics" target="_blank" class="text-brand-muted hover:text-brand-primary transition-colors flex flex-col items-center gap-2">
-                        <i class="ph ph-instagram-logo text-2xl"></i>
-                        <span class="text-xs">Instagram</span>
-                    </a>
-                    <a href="#" class="text-brand-muted hover:text-brand-primary transition-colors flex flex-col items-center gap-2">
-                        <i class="ph ph-linkedin-logo text-2xl"></i>
-                        <span class="text-xs">LinkedIn</span>
-                    </a>
-                    <!-- EVENTO: Contact — WhatsApp no rodapé -->
-                    <a href="https://wa.me/5531999876954" target="_blank" onclick="fbq('track', 'Contact')" class="text-brand-muted hover:text-green-400 transition-colors flex flex-col items-center gap-2">
-                        <i class="ph ph-whatsapp-logo text-2xl"></i>
-                        <span class="text-xs">WhatsApp</span>
-                    </a>
-                    <a href="mailto:contato@lucasanalytics.com" class="text-brand-muted hover:text-white transition-colors flex flex-col items-center gap-2">
-                        <i class="ph ph-envelope-simple text-2xl"></i>
-                        <span class="text-xs">E-mail</span>
-                    </a>
-                </div>
-            </div>
-            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-brand-muted text-sm">
-                    &copy; <span id="year"></span> Lucas Analytics. Todos os direitos reservados.
-                </p>
-                <div class="flex gap-4 text-sm text-brand-muted">
-                    <a href="#" class="hover:text-white transition-colors">Termos</a>
-                    <a href="#" class="hover:text-white transition-colors">Privacidade</a>
-                </div>
+            <div class="flex gap-6">
+                <a href="https://instagram.com/lucas.analytics" target="_blank" class="hover:text-grafite transition-colors">Instagram</a>
+                <a href="#" class="hover:text-grafite transition-colors">LinkedIn</a>
+                <a href="https://wa.me/5531999876954" target="_blank" onclick="fbq('track', 'Contact')" class="text-ambar font-medium hover:text-grafite transition-colors">WhatsApp Direto</a>
             </div>
         </div>
     </footer>
@@ -618,52 +411,43 @@
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('year').textContent = new Date().getFullYear();
 
-            const btn = document.getElementById('mobile-menu-btn');
-            const menu = document.getElementById('mobile-menu');
-            btn.addEventListener('click', () => {
-                menu.classList.toggle('hidden');
-                const icon = btn.querySelector('i');
-                if (menu.classList.contains('hidden')) {
-                    icon.classList.remove('ph-x');
-                    icon.classList.add('ph-list');
-                } else {
-                    icon.classList.remove('ph-list');
-                    icon.classList.add('ph-x');
-                }
-            });
-
-            const mobileLinks = menu.querySelectorAll('a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    menu.classList.add('hidden');
-                    const icon = btn.querySelector('i');
-                    icon.classList.remove('ph-x');
-                    icon.classList.add('ph-list');
-                });
-            });
-
-            const navbar = document.getElementById('navbar');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 10) {
-                    navbar.querySelector('.glass-panel').classList.add('border-b', 'border-white/10');
-                    navbar.classList.add('shadow-lg');
-                } else {
-                    navbar.querySelector('.glass-panel').classList.remove('border-b', 'border-white/10');
-                    navbar.classList.remove('shadow-lg');
-                }
-            });
-
-            const revealElements = document.querySelectorAll('.reveal');
-            const revealObserver = new IntersectionObserver((entries, observer) => {
+            // Script de Scroll Animado Furtivo e Sobro (Scroll Reveal)
+            const revealElements = document.querySelectorAll('section, .reveal');
+            const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('active');
-                        observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+            }, { threshold: 0.05 });
 
-            revealElements.forEach(el => revealObserver.observe(el));
+            revealElements.forEach(el => {
+                el.classList.add('reveal');
+                observer.observe(el);
+            });
+
+            // Estruturação do Formulário Dinâmico jogando para o seu WhatsApp Oficial
+            const form = document.getElementById('contactForm');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Dispara o rastreamento do pixel fornecido no seu código antigo
+                if(typeof fbq !== 'undefined') {
+                    fbq('track', 'Contact');
+                }
+
+                const name = document.getElementById('formName').value;
+                const company = document.getElementById('formCompany').value;
+                const role = document.getElementById('formRole').value;
+                const problem = document.getElementById('formProblem').value;
+
+                // Monta o texto limpo, executivo e legível para o WhatsApp
+                const text = `Olá Lucas, meu nome é ${name} (${role} na empresa ${company}). Gostaria de realizar a triagem do Diagnóstico Analítico para a seguinte decisão estratégica: "${problem}"`;
+                const encodedText = encodeURIComponent(text);
+                
+                // Redireciona utilizando o seu número real extraído do site antigo
+                window.open(`https://wa.me/5531999876954?text=${encodedText}`, '_blank');
+            });
         });
     </script>
 </body>
