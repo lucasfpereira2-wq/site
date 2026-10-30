@@ -26,8 +26,8 @@ body{background:#1D1A17;color:var(--la-papel);font-family:"Public Sans",system-u
 
 /* ---------- intro ---------- */
 .intro{position:fixed;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;background:#1D1A17;pointer-events:none}
-.intro-dot{width:18px;height:18px;border-radius:50%;background:var(--la-papel)}
-.intro-copy{position:absolute;left:50%;top:calc(50% + 40px);transform:translateX(-50%);font-family:"Titillium Web",sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#9C917C;white-space:nowrap}
+.intro-dot{width:22px;height:22px;border-radius:50%;background:var(--la-papel)}
+.intro-copy{position:absolute;left:50%;top:calc(50% + 44px);transform:translateX(-50%);font-family:"Titillium Web",sans-serif;font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:#9C917C;white-space:nowrap}
 
 /* ---------- portal ---------- */
 .portal{position:fixed;inset:0;display:flex}
@@ -65,6 +65,14 @@ body{background:#1D1A17;color:var(--la-papel);font-family:"Public Sans",system-u
 .la .who{font-family:"Titillium Web",sans-serif;color:var(--la-musgo);letter-spacing:.06em}
 .pb .who{font-family:"JetBrains Mono",monospace;color:var(--pb-musgo);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
 
+/* instagram: discreto, ao lado do público */
+.side-end{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.ig{display:inline-flex;align-items:center;gap:8px;text-decoration:none;opacity:.6;transition:opacity .3s}
+.ig:hover,.ig:focus-visible{opacity:1}
+.ig span{font-size:11px;letter-spacing:.08em}
+.la .ig{color:var(--la-tinta);font-family:"Titillium Web",sans-serif}
+.pb .ig{color:var(--pb-areia);font-family:"JetBrains Mono",monospace}
+
 /* símbolo LA grande, recortando a cena */
 .la-mark{position:absolute;right:-6%;bottom:-8%;width:min(62vh,46vw);opacity:.07;color:var(--la-tinta);pointer-events:none}
 /* linha-caminho do ponto b */
@@ -83,7 +91,7 @@ body{background:#1D1A17;color:var(--la-papel);font-family:"Public Sans",system-u
   .la h2,.pb h2{font-size:clamp(28px,7.4vw,40px);margin-bottom:10px}
   .la p,.pb p{font-size:14.5px}
   .la-mark{width:46vh;right:-14%;bottom:-18%}
-  .who,.seam{display:none}
+  .who,.seam,.ig span{display:none}
   .cta{padding:13px 18px;font-size:11px}
   .pb-road{margin-top:20px}
   .top svg{width:150px}
@@ -111,7 +119,7 @@ body{background:#1D1A17;color:var(--la-papel);font-family:"Public Sans",system-u
 </div>
 
 <main class="portal" id="portal">
-  <a class="side la" href="/lucas-analytics" data-color="#F2EEE3" aria-label="Lucas Analytics: inteligência para decisões empresariais">
+  <div class="side la" data-href="/lucas-analytics" role="link" tabindex="0" data-color="#F2EEE3" aria-label="Lucas Analytics: inteligência para decisões empresariais">
     <svg class="la-mark" viewBox="0 0 100 100" aria-hidden="true"><use href="#la-mk"/></svg>
     <div class="top reveal">
       <svg width="190" height="40" viewBox="0 0 290 60" role="img" aria-label="Lucas Analytics"><use href="#la-mk" x="0" y="8" width="44" height="44" color="#423C36"/><text x="60" y="38" font-family="Titillium Web,sans-serif" font-weight="600" font-size="27" letter-spacing=".6" fill="#423C36">Lucas Analytics</text></svg>
@@ -127,11 +135,11 @@ body{background:#1D1A17;color:var(--la-papel);font-family:"Public Sans",system-u
       <span class="cta">Antes da decisão
         <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M1 7h11M8 3l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
       </span>
-      <span class="who">Donos, sócios<br>e diretoria</span>
+      <div class="side-end"><span class="who">Donos, sócios<br>e diretoria</span><a class="ig" href="https://instagram.com/lucas.analytics" target="_blank" rel="noopener" aria-label="Instagram da Lucas Analytics"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor"/></svg><span>@lucas.analytics</span></a></div>
     </div>
-  </a>
+  </div>
 
-  <a class="side pb" href="/ponto-b" data-color="#0F2B1F" aria-label="ponto b: carreira em dados com Lucas Fernandes">
+  <div class="side pb" data-href="/ponto-b" role="link" tabindex="0" data-color="#0F2B1F" aria-label="ponto b: carreira em dados com Lucas Fernandes">
     <div class="top reveal">
       <img src="/ponto-b/assets/wordmark-lima.svg" alt="ponto b" width="107" height="30" style="height:30px;width:auto">
       <span class="kicker">Para profissionais de dados</span>
@@ -152,9 +160,9 @@ body{background:#1D1A17;color:var(--la-papel);font-family:"Public Sans",system-u
       <span class="cta">Quero meu ponto B
         <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M1 7h11M8 3l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
       </span>
-      <span class="who">Analistas, cientistas<br>e engenheiros de dados</span>
+      <div class="side-end"><span class="who">Analistas, cientistas<br>e engenheiros de dados</span><a class="ig" href="https://instagram.com/pontob.analytics" target="_blank" rel="noopener" aria-label="Instagram do ponto b"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor"/></svg><span>@pontob.analytics</span></a></div>
     </div>
-  </a>
+  </div>
 </main>
 
 <div class="seam" id="seam" aria-hidden="true"><span class="seam-label">Escolha sua jornada</span></div>
@@ -165,6 +173,17 @@ body{background:#1D1A17;color:var(--la-papel);font-family:"Public Sans",system-u
 (function(){
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const intro = document.getElementById('intro');
+  const sides = document.querySelectorAll('.side');
+  let animatedExit = null;
+  sides.forEach(s => {
+    const go = e => {
+      if (e.target.closest('.ig')) return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey) { window.open(s.dataset.href, '_blank'); return; }
+      animatedExit ? animatedExit(s) : (window.location.href = s.dataset.href);
+    };
+    s.addEventListener('click', go);
+    s.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(e); } });
+  });
   if (!window.gsap || reduce) { intro.remove(); return; }
 
   const ease = 'power3.out';
@@ -179,16 +198,16 @@ body{background:#1D1A17;color:var(--la-papel);font-family:"Public Sans",system-u
   if (!seen) {
     // o ponto em comum aparece e se abre em dois mundos
     gsap.set('.portal', {clipPath:'inset(50% 50% 50% 50%)'});
-    tl.from('#introDot', {scale:0, duration:.6})
-      .from('#introCopy', {opacity:0, y:8, duration:.6}, '-=.2')
-      .to('#introCopy', {opacity:0, duration:.4}, '+=.7')
-      .to('#introDot', {scale:0, duration:.4, ease:'power2.in'}, '<')
-      .to('.portal', {clipPath:'inset(0% 0% 0% 0%)', duration:1.1, ease:'expo.inOut'}, '-=.1')
+    tl.from('#introDot', {scale:0, duration:.35})
+      .from('#introCopy', {opacity:0, y:6, duration:.35}, '-=.15')
+      .to('#introCopy', {opacity:0, duration:.25}, '+=.5')
+      .to('#introDot', {scale:0, duration:.25, ease:'power2.in'}, '<')
+      .to('.portal', {clipPath:'inset(0% 0% 0% 0%)', duration:.8, ease:'expo.inOut'}, '-=.05')
       .set(intro, {display:'none'});
   } else {
     intro.remove();
   }
-  tl.to('.la-mark', {scale:1, opacity:.07, duration:1.4}, '-=.4')
+  tl.to('.la-mark', {scale:1, opacity:.07, duration:1.2}, '-=.35')
     .to('.la .reveal', {y:0, opacity:1, duration:.9, stagger:.09}, '<')
     .to('.pb .reveal', {y:0, opacity:1, duration:.7, stagger:.07, ease:'expo.out'}, '<.1')
     .from('#roadA', {attr:{x2:17}, duration:.45, ease:'power2.out'}, '-=.3')
@@ -216,15 +235,14 @@ body{background:#1D1A17;color:var(--la-papel);font-family:"Public Sans",system-u
     gsap.to('.la-mark', {x:(e.clientX-r.left-r.width/2)*.03, y:(e.clientY-r.top-r.height/2)*.03, duration:1, ease});
   });
 
-  document.querySelectorAll('.side').forEach(s => {
+  sides.forEach(s => {
     s.addEventListener('mouseenter', () => gsap.to('#seam', {opacity:0, duration:.3, overwrite:true}));
     s.addEventListener('mouseleave', () => gsap.to('#seam', {opacity:1, duration:.4, delay:.2, overwrite:true}));
+  });
 
-    // saída: a cor da jornada escolhida cobre a tela antes de navegar
-    s.addEventListener('click', e => {
-      if (e.metaKey || e.ctrlKey || e.shiftKey) return;
-      e.preventDefault();
-      const href = s.getAttribute('href'), isLa = s.classList.contains('la');
+  // saída: a cor da jornada escolhida cobre a tela antes de navegar
+  animatedExit = s => {
+      const href = s.dataset.href, isLa = s.classList.contains('la');
       const wipe = document.getElementById('wipe');
       const vertical = window.innerWidth <= 860;
       wipe.style.background = s.dataset.color;
@@ -234,8 +252,7 @@ body{background:#1D1A17;color:var(--la-papel);font-family:"Public Sans",system-u
       gsap.timeline({onComplete:() => { window.location.href = href; }})
         .to(s.querySelectorAll('.reveal'), {y:-16, opacity:0, duration:.35, stagger:.04, ease:'power2.in'})
         .to(wipe, vertical ? {scaleY:1, duration:.7, ease:'expo.inOut'} : {scaleX:1, duration:.7, ease:'expo.inOut'}, '-=.15');
-    });
-  });
+  };
 
   // ao voltar pelo histórico (bfcache), desfaz a cortina
   window.addEventListener('pageshow', ev => {
