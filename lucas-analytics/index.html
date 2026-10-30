@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lucas Analytics — Inteligência para decisões empresariais</title>
+<meta name="description" content="A Lucas Analytics transforma dados, analytics, estratégia e IA em inteligência para decisões empresariais de alto impacto. Antes da decisão.">
+<meta property="og:title" content="Lucas Analytics — Antes da decisão.">
+<meta property="og:description" content="Inteligência independente para decisões empresariais.">
+<meta name="theme-color" content="#423C36">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,300;0,400;1,400&family=Public+Sans:wght@400;500&family=Titillium+Web:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --tinta:#423C36; --terra:#4A3B2A; --vermelho:#7A2318; --papel:#F2EEE3; --branco:#FFFFFF;
+  --linha:#D8D0BC; --musgo:#8C8570; --musgo-prof:#5B5546; --linha-dk:#5A5249; --texto-dk:#C9BEA8;
+  --serif:"Petrona",Georgia,serif; --sans:"Public Sans",Arial,sans-serif; --mono:"Titillium Web","Arial Narrow",sans-serif;
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--papel);color:var(--tinta);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:1120px;margin:0 auto;padding:0 32px}
+@media(max-width:640px){.wrap{padding:0 16px}}
+section{padding:120px 0;border-bottom:1px solid var(--linha);position:relative}
+@media(max-width:640px){section{padding:80px 0}}
+.dark{background:var(--tinta);color:var(--papel);border-bottom:none}
+.white{background:var(--branco)}
+
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--musgo);margin:0 0 18px}
+.dark .eyebrow{color:#9C917C}
+h1,h2,h3{margin:0}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,4vw,46px);line-height:1.12;letter-spacing:-.01em;text-wrap:balance}
+h3{font-family:var(--sans);font-weight:500;font-size:18px;line-height:1.4}
+p{margin:0 0 16px;max-width:65ch}
+.lead{font-family:var(--serif);font-size:clamp(19px,2vw,22px);line-height:1.55;color:var(--musgo-prof)}
+.dark .lead{color:var(--texto-dk)}
+.num{font-family:var(--mono);font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.spec{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--musgo)}
+
+/* ---------- linha de base com ponto ---------- */
+.baseline{position:relative;height:1px;margin:40px 0}
+.baseline::before{content:"";position:absolute;inset:0;background:var(--linha);transform-origin:left;transform:scaleX(var(--draw,0))}
+.dark .baseline::before{background:var(--linha-dk)}
+.baseline i{position:absolute;top:-4px;width:9px;height:9px;border-radius:50%;background:var(--vermelho);transform:scale(var(--dot,0));transition:transform .5s var(--ease)}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:transform .5s var(--ease),background .4s,border-color .4s;border-bottom:1px solid transparent}
+.nav.solid{background:rgba(242,238,227,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom-color:var(--linha)}
+.nav.hide{transform:translateY(-100%)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
+.brand{display:flex;align-items:center;text-decoration:none}
+.brand .wordmark{fill:var(--papel);transition:fill .4s}
+.brand .sym{color:var(--papel);transition:color .4s}
+.nav.solid .brand .wordmark{fill:var(--tinta)}
+.nav.solid .brand .sym{color:var(--tinta)}
+.links{display:flex;gap:30px;align-items:center;font-size:14px;font-weight:500}
+.links a{text-decoration:none;color:var(--texto-dk);transition:color .3s}
+.nav.solid .links a{color:var(--musgo-prof)}
+.links a:hover{color:var(--papel)}
+.nav.solid .links a:hover{color:var(--tinta)}
+.links .cta-link{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid currentColor;padding-bottom:2px}
+.switch{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;opacity:.7}
+.menu-btn{display:none;background:none;border:0;font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--papel);cursor:pointer;padding:8px 0}
+.nav.solid .menu-btn{color:var(--tinta)}
+@media(max-width:860px){
+  .links{position:fixed;inset:76px 0 auto 0;flex-direction:column;align-items:flex-start;gap:0;background:var(--papel);border-bottom:1px solid var(--linha);padding:8px 16px 20px;transform:translateY(-12px);opacity:0;pointer-events:none;transition:.4s var(--ease)}
+  .links a,.nav.solid .links a{color:var(--tinta);padding:14px 0;width:100%;border-bottom:1px solid var(--linha)}
+  .links .cta-link{border-bottom:1px solid var(--linha)}
+  .nav.open .links{transform:none;opacity:1;pointer-events:auto}
+  .menu-btn{display:block}
+}
+
+/* ---------- hero ---------- */
+.hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:150px 0 70px;overflow:hidden}
+.hero .wrap{position:relative;width:100%}
+.hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(42px,7vw,92px);line-height:1.02;letter-spacing:-.015em;max-width:15ch;margin-bottom:36px}
+.hero h1 .line{display:block;overflow:hidden;padding-bottom:.06em}
+.hero h1 .line > span{display:inline-block}
+.hero .lead{max-width:44ch;margin-bottom:48px}
+.hero-mark{position:absolute;right:0;top:50%;width:clamp(180px,30vw,380px);transform:translateY(-58%);pointer-events:none}
+.hero-mark .b{fill:var(--papel);opacity:.9}
+@media(max-width:860px){.hero-mark{opacity:.14;right:-60px;width:300px}}
+.btns{display:flex;flex-wrap:wrap;gap:14px}
+.btn{display:inline-flex;align-items:center;gap:14px;font-family:var(--mono);font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:17px 26px;border:1px solid transparent;transition:background .3s,color .3s,border-color .3s}
+.btn svg{transition:transform .5s var(--ease)}
+.btn:hover svg{transform:translateX(5px)}
+.btn-light{background:var(--papel);color:var(--tinta)}
+.btn-light:hover{background:var(--branco)}
+.btn-ghost{border-color:var(--linha-dk);color:var(--papel)}
+.btn-ghost:hover{border-color:var(--texto-dk)}
+.btn-dark{background:var(--tinta);color:var(--papel);border:0;cursor:pointer}
+.btn-dark:hover{background:var(--terra)}
+.hero-meta{display:flex;flex-wrap:wrap;gap:48px;margin-top:90px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#9C917C}
+.hero-meta b{display:block;margin-top:6px;font-weight:400;font-size:13.5px;letter-spacing:.03em;text-transform:none;color:var(--papel)}
+.scroll-cue{position:absolute;left:32px;bottom:28px;font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#9C917C;display:flex;align-items:center;gap:12px}
+.scroll-cue span{display:block;width:40px;height:1px;background:#9C917C;transform-origin:left;animation:cue 2.2s var(--ease) infinite}
+@keyframes cue{0%{transform:scaleX(0)}60%{transform:scaleX(1);opacity:1}100%{transform:scaleX(1);opacity:0}}
+@media(max-width:640px){.scroll-cue{left:16px}.hero-meta{margin-top:60px;gap:28px}}
+
+/* ---------- problema ---------- */
+.split{display:grid;grid-template-columns:1fr 1.8fr;gap:72px}
+@media(max-width:860px){.split{grid-template-columns:1fr;gap:36px}}
+.gap-card{background:var(--branco);border:1px solid var(--linha);padding:48px;margin-top:40px}
+@media(max-width:640px){.gap-card{padding:28px 20px}}
+.gap-row{display:flex;flex-wrap:wrap;align-items:baseline;gap:18px 26px;font-family:var(--serif);font-size:clamp(26px,3.4vw,40px);line-height:1.1}
+.gap-row .w{color:var(--musgo)}
+.gap-row .w.on{color:var(--tinta)}
+.gap-row .neq{font-family:var(--mono);font-size:18px;color:var(--musgo)}
+
+/* ---------- cards ---------- */
+.grid{display:grid;gap:20px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:860px){.g2,.g3{grid-template-columns:1fr}}
+.card{background:var(--branco);border:1px solid var(--linha);padding:40px;display:flex;flex-direction:column;justify-content:space-between;min-height:290px;transition:transform .6s var(--ease),border-color .3s}
+.card:hover{transform:translateY(-6px);border-color:var(--musgo)}
+.card .idx{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--musgo);margin-bottom:40px;display:flex;justify-content:space-between}
+.card h3{margin-bottom:12px}
+.card p{color:var(--musgo-prof);font-size:15px;margin:0}
+.card.dk{background:var(--tinta);border-color:var(--tinta);color:var(--papel)}
+.card.dk p{color:var(--texto-dk)}
+.card.dk .idx{color:#9C917C}
+@media(max-width:640px){.card{padding:28px 22px;min-height:0}}
+
+/* ---------- diferença + framework ---------- */
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{text-align:left;padding:20px 16px 20px 0;border-bottom:1px solid var(--linha);vertical-align:top}
+th{font-weight:500;color:var(--musgo-prof);width:45%}
+tr.us th{color:var(--tinta)}
+tr.us td{font-family:var(--serif);font-style:italic;font-size:19px;line-height:1.45}
+.frame{background:var(--papel);border:1px solid var(--linha);padding:44px 52px;position:relative}
+.frame .br{position:absolute;width:22px;height:64px;color:var(--tinta)}
+.frame .br.l{top:18px;left:18px}
+.frame .br.r{bottom:18px;right:18px}
+.steps{position:relative;list-style:none;margin:0;padding:0 0 0 28px}
+.steps::before{content:"";position:absolute;left:4px;top:10px;bottom:10px;width:1px;background:var(--linha)}
+.steps .fill{position:absolute;left:4px;top:10px;width:1px;background:var(--tinta);height:calc((100% - 20px) * var(--p,0))}
+.steps li{position:relative;display:flex;gap:18px;align-items:baseline;padding:12px 0;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--musgo);transition:color .4s}
+.steps li::before{content:"";position:absolute;left:-28px;top:17px;width:9px;height:9px;border-radius:50%;background:var(--papel);border:1px solid var(--linha);transition:background .4s,border-color .4s}
+.steps li.on{color:var(--tinta)}
+.steps li.on::before{background:var(--tinta);border-color:var(--tinta)}
+.steps li.final.on::before{background:var(--vermelho);border-color:var(--vermelho)}
+.steps li b{font-weight:600;font-size:14px;letter-spacing:.1em;min-width:120px}
+.steps li span{font-size:11px;opacity:.8}
+@media(max-width:640px){.frame{padding:36px 24px}.steps li b{min-width:96px;font-size:12.5px}}
+
+/* ---------- manifesto ---------- */
+.manifesto{grid-template-columns:1.8fr 1fr;gap:72px;align-items:center}
+@media(max-width:860px){.manifesto{grid-template-columns:1fr;gap:48px}}
+.marginalia{border-left:1px solid var(--linha);padding-left:28px}
+.marginalia blockquote{margin:0;font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.45}
+
+/* ---------- decisões ---------- */
+.q{background:var(--papel);border:1px solid var(--linha);padding:30px;aspect-ratio:1/0.82;display:flex;flex-direction:column;justify-content:space-between;transition:transform .6s var(--ease),border-color .3s,background .4s;cursor:default}
+.q span{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--musgo-prof)}
+.q h3{font-family:var(--serif);font-weight:400;font-size:clamp(23px,2.2vw,28px);line-height:1.2}
+.q:hover{transform:translateY(-6px);border-color:var(--musgo)}
+.q.dk{background:var(--tinta);color:var(--papel);border-color:var(--tinta)}
+.q.dk span{color:#9C917C}
+@media(max-width:860px){.q{aspect-ratio:auto;min-height:190px}}
+
+/* ---------- arsenal ---------- */
+.dash{list-style:none;padding:0;margin:24px 0 0}
+.dash li{padding:14px 0 14px 28px;border-bottom:1px solid var(--linha);position:relative;font-weight:500;color:var(--musgo-prof)}
+.dash li::before{content:"—";position:absolute;left:0;color:var(--musgo)}
+.rfv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:28px 0}
+.rfv div{border:1px solid var(--linha);padding:16px;background:var(--papel)}
+.rfv b{display:block;font-family:var(--mono);font-size:28px;font-weight:700;line-height:1}
+.rfv small{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--musgo)}
+
+/* ---------- case ---------- */
+.case{border:1px solid var(--linha);background:var(--papel)}
+.case-hd{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;padding:48px;border-bottom:1px solid var(--linha);align-items:start}
+.case-hd h3{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3.2vw,38px);line-height:1.1}
+.ev{background:var(--branco);border:1px solid var(--linha);padding:22px 24px}
+.ev .lb{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--musgo)}
+.ev .nb{font-size:56px;line-height:1.05;margin:6px 0 8px}
+.ev .in{font-size:13px;color:var(--musgo-prof);line-height:1.5}
+.ev .src{font-family:var(--mono);font-size:10px;color:var(--musgo);margin-top:10px}
+.units{display:grid;grid-template-columns:repeat(11,1fr);gap:4px;margin:16px 0 4px;height:58px;align-items:end}
+.units i{display:block;background:var(--linha);height:var(--h);transform-origin:bottom;transform:scaleY(var(--grow,0));transition:transform 1s var(--ease)}
+.units i.top3{background:var(--tinta)}
+.case-bd{display:grid;grid-template-columns:1fr 2fr;gap:48px;padding:48px}
+.case-side{border-right:1px solid var(--linha);padding-right:40px}
+.case-side strong{display:block;font-family:var(--mono);font-weight:600;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+.case-side p{font-size:14px;color:var(--musgo-prof);margin-bottom:28px}
+.case-bd h4{font-family:var(--sans);font-weight:500;font-size:16px;margin:0 0 10px}
+.case-bd .quote{font-family:var(--serif);font-style:italic;font-size:19px;line-height:1.6;color:var(--musgo-prof)}
+.impact{display:flex;align-items:baseline;gap:12px}
+.impact .num{font-size:44px;line-height:1}
+@media(max-width:860px){
+  .case-hd,.case-bd{grid-template-columns:1fr;padding:28px 20px;gap:28px}
+  .case-side{border-right:0;padding-right:0;border-bottom:1px solid var(--linha);padding-bottom:8px}
+}
+
+/* ---------- sobre ---------- */
+.about{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start}
+.portrait{position:relative;aspect-ratio:3/4;overflow:hidden;border:1px solid var(--linha);background:var(--linha)}
+.portrait img{width:100%;height:115%;object-fit:cover;filter:grayscale(1) contrast(1.05);will-change:transform}
+.portrait .tag{position:absolute;left:16px;top:16px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;background:var(--papel);padding:5px 9px;color:var(--musgo-prof)}
+@media(max-width:860px){.about{grid-template-columns:1fr;gap:40px}.portrait{max-width:420px}}
+
+/* ---------- ponto b endosso ---------- */
+.endorse{display:grid;grid-template-columns:auto 1fr auto;gap:40px;align-items:center;border:1px solid var(--linha);background:var(--branco);padding:40px 44px;text-decoration:none;transition:border-color .3s}
+.endorse:hover{border-color:var(--musgo)}
+.endorse .pb-wm{font-family:"Titillium Web",sans-serif;font-weight:700;font-size:30px;letter-spacing:-.01em;color:var(--tinta);line-height:1}
+.endorse .pb-wm small{display:block;font-weight:400;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--musgo);margin-top:8px}
+.endorse p{margin:0;color:var(--musgo-prof)}
+.endorse .go{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;display:flex;gap:10px;align-items:center}
+@media(max-width:860px){.endorse{grid-template-columns:1fr;gap:18px;padding:28px 22px}}
+
+/* ---------- contato ---------- */
+.contact{display:grid;grid-template-columns:1fr 1.1fr;gap:72px;align-items:start}
+@media(max-width:860px){.contact{grid-template-columns:1fr;gap:40px}}
+.form{background:var(--papel);color:var(--tinta);padding:44px;position:relative}
+@media(max-width:640px){.form{padding:28px 20px}}
+.form .row{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media(max-width:640px){.form .row{grid-template-columns:1fr}}
+.field{margin-bottom:28px}
+.field label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--musgo-prof);margin-bottom:6px;transition:color .3s}
+.field:focus-within label{color:var(--tinta)}
+.field input,.field textarea{width:100%;background:transparent;border:0;border-bottom:1px solid var(--linha);padding:8px 0;font:inherit;font-size:15px;color:var(--tinta);border-radius:0;outline:none;transition:border-color .3s;resize:none}
+.field input:focus,.field textarea:focus{border-bottom-color:var(--tinta)}
+.field input::placeholder,.field textarea::placeholder{color:var(--musgo)}
+
+/* ---------- footer ---------- */
+footer{background:var(--papel);padding:64px 0 48px}
+.foot{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end}
+.foot .meta{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--musgo);line-height:2;text-align:left}
+.foot .meta a{text-decoration:none}
+.foot .meta a:hover{color:var(--tinta)}
+@media(max-width:640px){.foot{grid-template-columns:1fr}}
+
+/* ---------- entrada de página ---------- */
+.curtain{position:fixed;inset:0;z-index:100;background:var(--papel);pointer-events:none}
+.js .rv{opacity:0;transform:translateY(32px)}
+@media(prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none}.curtain{display:none}.baseline{--draw:1;--dot:1}.units i{--grow:1}}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+<div class="curtain" id="curtain" aria-hidden="true"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="mk" viewBox="0 0 100 100">
+      <path d="M43 19C39 18.2 22.5 18.6 21 21.4C19.7 23.8 20.6 46.2 20.1 50C19.7 53.8 19 76.1 21 79C23 81.6 39.3 81 43.2 80.1L43 70.2C43 70.2 30.4 70.7 29.4 69C28.6 67.6 29 33 29.4 31.4C29.8 29.9 42.1 29.7 43.1 30.1Z" fill="currentColor"/>
+      <path d="M57 19C61 18.2 77.5 18.7 79 21.5C80.3 23.9 79.4 46.2 79.9 50C80.3 53.8 81 76 79 78.9C77 81.5 60.7 81 56.8 80.1L57 70.2C57 70.2 69.6 70.6 70.6 69C71.4 67.7 71 33.1 70.6 31.4C70.2 30 57.9 29.8 56.9 30.2Z" fill="currentColor"/>
+      <circle cx="50.4" cy="49.5" r="6.9" fill="#7A2318"/>
+      <circle cx="49.6" cy="50.6" r="5.1" fill="#7A2318" opacity=".5"/>
+    </symbol>
+    <symbol id="br-l" viewBox="0 0 20 60"><path d="M20 0C14 -.3 2 .2 1 1.4C.2 3 .6 28 .3 30C0 32 -.2 57 1 58.6C2 59.8 14 60.2 20 60L20 56.5C20 56.5 5.8 56.8 4.7 55.6C4 54.8 4.2 6 4.6 4.7C5 3.6 18.8 3.4 20 3.6Z" fill="currentColor"/></symbol>
+  </defs>
+</svg>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#topo" class="brand" aria-label="Lucas Analytics, início">
+      <svg width="190" height="40" viewBox="0 0 290 60"><use href="#mk" class="sym" x="0" y="8" width="44" height="44"/><text class="wordmark" x="60" y="38" font-family="Titillium Web,sans-serif" font-weight="600" font-size="27" letter-spacing=".6">Lucas Analytics</text></svg>
+    </a>
+    <nav class="links" id="links" aria-label="Seções">
+      <a href="#como-atuamos">Como atuamos</a>
+      <a href="#decisoes">Decisões</a>
+      <a href="#cases">Cases</a>
+      <a href="#sobre">Sobre</a>
+      <a href="/" class="switch" title="Voltar à escolha de jornada">Trocar jornada</a>
+      <a href="#contato" class="cta-link">Falar com a Lucas Analytics</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="links">Menu</button>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero dark" id="topo">
+  <div class="wrap">
+    <svg class="hero-mark" viewBox="0 0 100 100" aria-hidden="true">
+      <g id="hbL"><path class="b" d="M43 19C39 18.2 22.5 18.6 21 21.4C19.7 23.8 20.6 46.2 20.1 50C19.7 53.8 19 76.1 21 79C23 81.6 39.3 81 43.2 80.1L43 70.2C43 70.2 30.4 70.7 29.4 69C28.6 67.6 29 33 29.4 31.4C29.8 29.9 42.1 29.7 43.1 30.1Z"/></g>
+      <g id="hbR"><path class="b" d="M57 19C61 18.2 77.5 18.7 79 21.5C80.3 23.9 79.4 46.2 79.9 50C80.3 53.8 81 76 79 78.9C77 81.5 60.7 81 56.8 80.1L57 70.2C57 70.2 69.6 70.6 70.6 69C71.4 67.7 71 33.1 70.6 31.4C70.2 30 57.9 29.8 56.9 30.2Z"/></g>
+      <g id="hbDot"><circle cx="50.4" cy="49.5" r="6.9" fill="#7A2318"/><circle cx="49.6" cy="50.6" r="5.1" fill="#7A2318" opacity=".5"/></g>
+    </svg>
+
+    <p class="eyebrow h-in" id="heroEyebrow">Lucas Analytics · Inteligência empresarial</p>
+    <h1 id="heroTitle">
+      <span class="line"><span>Decisões melhores</span></span>
+      <span class="line"><span>começam com uma</span></span>
+      <span class="line"><span>visão melhor</span></span>
+      <span class="line"><span>do negócio.</span></span>
+    </h1>
+    <p class="lead h-in">A Lucas Analytics transforma dados, analytics, estratégia e IA em inteligência para decisões empresariais de alto impacto.</p>
+    <div class="btns h-in">
+      <a href="#contato" class="btn btn-light">Falar com a Lucas Analytics
+        <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M1 7h11M8 3l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a>
+      <a href="#como-atuamos" class="btn btn-ghost">Como atuamos</a>
+    </div>
+    <div class="hero-meta h-in">
+      <div>Para<b>Donos, sócios e diretoria</b></div>
+      <div>Entrega<b>Evidência, cenário, recomendação</b></div>
+      <div>Assinatura<b>Antes da decisão.</b></div>
+    </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true"><span></span>Role</div>
+</section>
+
+<!-- 01 PROBLEMA -->
+<section id="problema">
+  <div class="wrap split">
+    <aside class="rv">
+      <p class="eyebrow">01 — O problema</p>
+      <h2>Seu problema provavelmente não é falta de dados.</h2>
+    </aside>
+    <div>
+      <p class="lead rv">Empresas acumulam sistemas, planilhas, indicadores, relatórios e informações. Mesmo assim, decisões importantes continuam sendo tomadas com percepção, experiência isolada, dados incompletos ou pura urgência.</p>
+      <div class="gap-card rv" id="gap">
+        <p class="eyebrow" style="font-size:10px">A distância entre o dado e a decisão</p>
+        <div class="gap-row">
+          <span class="w">Informação</span><span class="neq">≠</span>
+          <span class="w">Inteligência</span><span class="neq">≠</span>
+          <span class="w">Decisão</span>
+        </div>
+        <div class="baseline" data-dot><i style="left:82%"></i></div>
+        <p class="spec" style="margin:0">A Lucas Analytics existe para fechar essa distância.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 O QUE FAZEMOS -->
+<section id="como-atuamos">
+  <div class="wrap">
+    <div class="rv" style="margin-bottom:64px">
+      <p class="eyebrow">02 — O que fazemos</p>
+      <h2>Inteligência para decisões empresariais</h2>
+    </div>
+    <div class="grid g2 stagger">
+      <article class="card rv"><div class="idx"><span>01</span><span>Diagnóstico &amp; Analytics</span></div><div><h3>Entendemos o que realmente está acontecendo no negócio.</h3><p>Mapeamos a realidade operacional e financeira, separando o ruído dos sistemas para enxergar os fatos.</p></div></article>
+      <article class="card rv"><div class="idx"><span>02</span><span>Inteligência</span></div><div><h3>Transformamos dados em hipóteses, padrões e cenários.</h3><p>Cruzamos variáveis para encontrar as alavancas de lucro, eficiência e risco que um dashboard padrão ignora.</p></div></article>
+      <article class="card rv"><div class="idx"><span>03</span><span>Decision Intelligence</span></div><div><h3>Estruturamos decisões importantes usando modelos e IA.</h3><p>Não entregamos um PDF para você descobrir o que fazer. Entregamos o modelo de impacto, a recomendação e a rota de ação.</p></div></article>
+      <article class="card dk rv"><div class="idx"><span>04</span><span>Acompanhamento estratégico</span></div><div><h3>Uma camada contínua de inteligência executiva.</h3><p>Atuamos como parceiros estratégicos para apoiar o C-level em decisões recorrentes e complexas.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- 03/04 DIFERENÇA + FRAMEWORK -->
+<section class="white">
+  <div class="wrap grid g2" style="gap:80px;align-items:start">
+    <div class="rv">
+      <p class="eyebrow">03 — Nossa diferença</p>
+      <h2 style="margin-bottom:40px">Diferença de categoria</h2>
+      <table>
+        <tr><th>Consultoria tradicional</th><td>Entrega análise.</td></tr>
+        <tr><th>Empresa de BI</th><td>Entrega dashboard.</td></tr>
+        <tr><th>Empresa de automação</th><td>Automatiza processos.</td></tr>
+        <tr class="us"><th>Lucas Analytics</th><td>Ajuda a entender o problema, interpretar os dados e tomar a decisão.</td></tr>
+      </table>
+    </div>
+    <div>
+      <div class="rv">
+        <p class="eyebrow">04 — Método</p>
+        <h2 style="margin-bottom:40px">Do problema à decisão</h2>
+      </div>
+      <div class="frame rv">
+        <svg class="br l" aria-hidden="true"><use href="#br-l"/></svg>
+        <svg class="br r" aria-hidden="true" style="transform:rotate(180deg)"><use href="#br-l"/></svg>
+        <ol class="steps" id="steps">
+          <div class="fill" aria-hidden="true"></div>
+          <li><b>Problema</b><span>Origem</span></li>
+          <li><b>Hipótese</b><span>Investigação</span></li>
+          <li><b>Dados</b><span>Matéria</span></li>
+          <li><b>Análise</b><span>Trabalho</span></li>
+          <li><b>Insight</b><span>Clareza</span></li>
+          <li class="final"><b>Decisão</b><span>Alvo</span></li>
+          <li><b>Ação</b><span>Resultado</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section>
+  <div class="wrap grid manifesto" id="manifesto">
+    <div class="rv">
+      <h2 style="font-size:clamp(34px,5vw,56px);line-height:1.05;max-width:16ch;margin-bottom:32px">Não queremos ser apenas mais um fornecedor.</h2>
+      <p style="font-size:18px;color:var(--musgo-prof)">Em decisões importantes, o empresário não precisa de mais uma ferramenta ou de um painel colorido. Precisa de alguém capaz de olhar para o problema com independência, profundidade e contexto.</p>
+      <p style="font-size:18px;color:var(--musgo-prof);margin-bottom:36px">A Lucas Analytics atua como uma segunda camada de inteligência corporativa para decisões que podem afetar crescimento, investimento, operação e estratégia. Antes de uma decisão crítica, tenha uma segunda opinião.</p>
+      <a href="#contato" class="btn btn-dark">Converse sobre sua próxima decisão
+        <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M1 7h11M8 3l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a>
+    </div>
+    <aside class="marginalia rv">
+      <p class="eyebrow" style="font-size:10px">Nota executiva</p>
+      <blockquote>“O dado não estava errado. A pergunta é que estava.”</blockquote>
+      <div class="baseline" data-dot><i style="left:0"></i></div>
+    </aside>
+  </div>
+</section>
+
+<!-- 05 DECISÕES -->
+<section id="decisoes" class="white">
+  <div class="wrap">
+    <div class="rv" style="margin-bottom:64px">
+      <p class="eyebrow">05 — O seu cenário</p>
+      <h2>Que decisão você precisa tomar?</h2>
+    </div>
+    <div class="grid g3">
+      <div class="q rv"><span>Crescimento</span><h3>Devemos expandir?</h3></div>
+      <div class="q rv"><span>Investimento</span><h3>Onde devemos colocar capital?</h3></div>
+      <div class="q rv"><span>Operação</span><h3>Onde estamos perdendo eficiência?</h3></div>
+      <div class="q rv"><span>Clientes</span><h3>Quais clientes realmente geram valor?</h3></div>
+      <div class="q rv"><span>Performance</span><h3>O que está realmente movendo nosso resultado?</h3></div>
+      <div class="q dk rv"><span>Estratégia</span><h3>Qual deve ser nossa próxima prioridade?</h3></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 ARSENAL -->
+<section>
+  <div class="wrap grid g2" style="gap:72px;align-items:start">
+    <div class="rv">
+      <p class="eyebrow">06 — Arsenal</p>
+      <h2 style="margin-bottom:24px">Métodos próprios. Tecnologia quando faz sentido.</h2>
+      <p style="color:var(--musgo-prof)">A ferramenta é consequência do problema, não o contrário. Combinamos estatística, IA, automação de dados e modelagem avançada com experiência empresarial.</p>
+      <ul class="dash">
+        <li>Analytics &amp; ciência de dados</li>
+        <li>Frameworks proprietários de análise</li>
+        <li>Inteligência artificial &amp; automação</li>
+        <li>Experiência executiva em negócios</li>
+      </ul>
+    </div>
+    <div class="card rv" style="min-height:0">
+      <p class="eyebrow" style="font-size:10px">Exemplo de metodologia</p>
+      <h3 style="font-family:var(--serif);font-weight:400;font-size:30px;margin-bottom:4px">Método RFV</h3>
+      <p class="spec" style="letter-spacing:.14em;text-transform:uppercase">Recência · Frequência · Valor</p>
+      <div class="rfv" aria-hidden="true">
+        <div><b class="count" data-to="5">0</b><small>Recência</small></div>
+        <div><b class="count" data-to="4">0</b><small>Frequência</small></div>
+        <div><b class="count" data-to="5">0</b><small>Valor</small></div>
+      </div>
+      <p style="color:var(--musgo-prof);font-size:15px;margin:0">O RFV é um dos modelos que usamos para segmentar bases de clientes. Ele olha para o comportamento temporal e financeiro de cada carteira e revela onde está a margem verdadeira da empresa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 07 CASES -->
+<section id="cases" class="white">
+  <div class="wrap">
+    <div class="rv" style="margin-bottom:64px;display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap">
+      <div>
+        <p class="eyebrow">07 — O trabalho no mundo real</p>
+        <h2>Casos de análise</h2>
+      </div>
+      <p class="spec" style="text-transform:uppercase;letter-spacing:.12em;margin:0">Arquivo institucional · Cliente confidencial</p>
+    </div>
+
+    <article class="case rv">
+      <div class="case-hd">
+        <div>
+          <p class="spec" style="text-transform:uppercase;letter-spacing:.12em">Estudo de caso 01</p>
+          <h3>Reestruturação da estratégia de expansão</h3>
+        </div>
+        <div class="ev" id="ev">
+          <div class="lb">Concentração de lucro</div>
+          <div class="nb num"><span class="count" data-to="80">0</span>%</div>
+          <div class="units" aria-hidden="true">
+            <i class="top3" style="--h:100%"></i><i class="top3" style="--h:86%"></i><i class="top3" style="--h:74%"></i>
+            <i style="--h:30%"></i><i style="--h:26%"></i><i style="--h:22%"></i><i style="--h:18%"></i><i style="--h:15%"></i><i style="--h:12%"></i><i style="--h:9%"></i><i style="--h:6%"></i>
+          </div>
+          <div class="in">do lucro líquido real vinha de apenas 3 das 11 unidades da rede, contradizendo o relatório comercial bruto.</div>
+          <div class="src">Fonte: ERP, folha e custos operacionais por unidade</div>
+        </div>
+      </div>
+      <div class="case-bd">
+        <div class="case-side">
+          <strong>O problema</strong>
+          <p>A diretoria planejava abrir mais 4 lojas com base no aumento global de receita, mas a margem líquida estava caindo havia 3 trimestres.</p>
+          <strong>A investigação</strong>
+          <p>Cruzamento de ERP, folha de pagamento e custos operacionais alocados por unidade, expurgando rateios artificiais.</p>
+        </div>
+        <div>
+          <h4>O insight</h4>
+          <p class="quote">“O volume de vendas das novas unidades mascarava uma ineficiência operacional. As lojas que mais faturavam eram as que mais consumiam o caixa da empresa.”</p>
+          <div class="baseline" data-dot><i style="left:40%"></i></div>
+          <div class="grid g2" style="gap:36px">
+            <div>
+              <h4>A decisão</h4>
+              <p style="font-size:15px;color:var(--musgo-prof)">A expansão foi paralisada. O capital reservado para as 4 novas unidades foi redirecionado para otimização logística e renegociação de contratos nas lojas deficitárias.</p>
+            </div>
+            <div>
+              <h4>O impacto</h4>
+              <div class="impact"><span class="num">+<span class="count" data-to="14">0</span>%</span><span class="spec">margem líquida em 6 meses</span></div>
+              <p style="font-size:15px;color:var(--musgo-prof);margin-top:10px">Sem aumentar a receita bruta e sem demissões em massa.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 08 SOBRE -->
+<section id="sobre">
+  <div class="wrap about">
+    <div class="rv">
+      <div class="portrait">
+        <img src="/lucas.jpg" alt="Lucas Fernandes, fundador da Lucas Analytics" loading="lazy" id="portrait">
+        <span class="tag">Fundador</span>
+      </div>
+      <p style="font-weight:500;font-size:18px;margin:20px 0 2px">Lucas Fernandes</p>
+      <p class="spec" style="text-transform:uppercase;letter-spacing:.12em">Fundador &amp; estrategista</p>
+    </div>
+    <div class="rv" style="padding-top:24px">
+      <p class="eyebrow">08 — Por trás da empresa</p>
+      <h2 style="margin-bottom:32px">“Empresários não precisam de mais dashboards. Precisam de clareza.”</h2>
+      <p style="font-size:17px;color:var(--musgo-prof)">A Lucas Analytics nasceu da experiência técnica de Lucas Fernandes com dados e analytics, e evoluiu a partir de uma observação do mercado: tecnologia pela tecnologia não move o ponteiro do negócio.</p>
+      <p style="font-size:17px;color:var(--musgo-prof)">Na mesa de decisão, o C-level não quer decifrar gráficos complexos. Quer saber qual o risco, qual o cenário e qual o caminho.</p>
+      <p style="font-size:17px;color:var(--musgo-prof)">Hoje atuamos como advisors. Damos estrutura institucional ao pensamento analítico e trazemos independência, rigor estatístico e visão empresarial para a sala onde o futuro da sua empresa é decidido.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ECOSSISTEMA: ponto b como endosso, em tinta, sem lima e sem linha-caminho -->
+<section style="padding:72px 0">
+  <div class="wrap">
+    <a class="endorse rv" href="/ponto-b">
+      <div class="pb-wm">ponto b<small>por Lucas Analytics</small></div>
+      <p>Trabalha com dados e quer evoluir na carreira? O ponto b leva o mesmo raciocínio da Lucas Analytics para quem constrói análises todos os dias.</p>
+      <span class="go">Conhecer
+        <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M1 7h11M8 3l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></span>
+    </a>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato" class="dark">
+  <div class="wrap contact">
+    <div class="rv">
+      <svg width="44" height="44" viewBox="0 0 100 100" style="color:var(--papel);margin-bottom:36px" aria-hidden="true"><use href="#mk"/></svg>
+      <h2 style="font-size:clamp(34px,5vw,56px);line-height:1.06;margin-bottom:24px">Vamos analisar sua próxima decisão.</h2>
+      <p class="lead">Inicie uma conversa qualificada. Sem automações agressivas, apenas um diálogo direto sobre os desafios do seu negócio.</p>
+      <div class="baseline" data-dot style="max-width:340px"><i style="left:30%"></i></div>
+      <p class="spec" style="color:#9C917C;text-transform:uppercase;letter-spacing:.12em">Resposta pessoal · Brasil</p>
+    </div>
+    <form class="form rv" id="contactForm">
+      <p class="eyebrow" style="font-size:10px;margin-bottom:28px">Formulário de contato executivo</p>
+      <div class="row">
+        <div class="field"><label for="fName">Nome</label><input id="fName" placeholder="Seu nome completo" required autocomplete="name"></div>
+        <div class="field"><label for="fRole">Cargo</label><input id="fRole" placeholder="CEO, sócio, diretor" required></div>
+      </div>
+      <div class="row">
+        <div class="field"><label for="fCompany">Empresa</label><input id="fCompany" required autocomplete="organization"></div>
+        <div class="field"><label for="fContact">WhatsApp ou e-mail</label><input id="fContact" required></div>
+      </div>
+      <div class="field"><label for="fProblem">Qual decisão ou problema você gostaria de analisar?</label><textarea id="fProblem" rows="3" placeholder="Descreva brevemente o contexto"></textarea></div>
+      <button type="submit" class="btn btn-dark">Falar com a Lucas Analytics
+        <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M1 7h11M8 3l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></button>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <svg width="290" height="86" viewBox="0 0 330 86" style="max-width:100%" role="img" aria-label="Lucas Analytics, inteligência independente para decisões empresariais"><use href="#mk" x="0" y="10" width="40" height="40" color="#423C36"/><text x="54" y="38" font-family="Titillium Web,sans-serif" font-weight="600" font-size="25" letter-spacing=".6" fill="#423C36">Lucas Analytics</text><line x1="54" y1="52" x2="310" y2="52" stroke="#D8D0BC"/><text x="54" y="70" font-family="Public Sans,sans-serif" font-size="8.6" letter-spacing="1" fill="#5B5546">INTELIGÊNCIA INDEPENDENTE PARA DECISÕES EMPRESARIAIS</text></svg>
+    </div>
+    <div class="meta">
+      <a href="/ponto-b">ponto b · carreira em dados</a><br>
+      <a href="/">Trocar jornada</a><br>
+      lucasanalytics.com.br · Brasil © 2026
+    </div>
+  </div>
+</footer>
+
+<script src="/vendor/gsap.min.js"></script>
+<script src="/vendor/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ---------- nav ----------
+  const nav = document.getElementById('nav'), menuBtn = document.getElementById('menuBtn');
+  let lastY = 0;
+  addEventListener('scroll', () => {
+    const y = scrollY;
+    nav.classList.toggle('solid', y > innerHeight * .75);
+    nav.classList.toggle('hide', y > lastY && y > 400 && !nav.classList.contains('open'));
+    lastY = y;
+  }, {passive:true});
+  menuBtn.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    nav.classList.add('solid');
+    menuBtn.setAttribute('aria-expanded', open);
+    menuBtn.textContent = open ? 'Fechar' : 'Menu';
+  });
+  document.querySelectorAll('#links a[href^="#"]').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded', false); menuBtn.textContent = 'Menu';
+  }));
+
+  // ---------- WhatsApp ----------
+  document.getElementById('contactForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const v = id => document.getElementById(id).value.trim();
+    const text = `Olá Lucas, meu nome é ${v('fName')} (${v('fRole')} na empresa ${v('fCompany')}). Contato: ${v('fContact')}. Gostaria de analisar a seguinte decisão: "${v('fProblem')}"`;
+    window.open(`https://wa.me/5531999876954?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+  });
+
+  if (!window.gsap || reduce) {
+    document.getElementById('curtain').remove();
+    document.querySelectorAll('.rv,.h-in').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
+    document.querySelectorAll('.steps li').forEach(li => li.classList.add('on'));
+    document.querySelectorAll('.count').forEach(c => c.textContent = c.dataset.to);
+    document.querySelectorAll('.gap-row .w').forEach(w => w.classList.add('on'));
+    return;
+  }
+  gsap.registerPlugin(ScrollTrigger);
+  const ease = 'expo.out';
+
+  // ---------- entrada: o papel do portal se recolhe, o recorte se forma ----------
+  gsap.set('.h-in', {opacity:0, y:24});
+  gsap.set('#heroTitle .line > span', {yPercent:110});
+  gsap.set('#hbL', {x:-30, opacity:0});
+  gsap.set('#hbR', {x:30, opacity:0});
+  gsap.set('#hbDot', {scale:0, transformOrigin:'50px 50px'});
+  gsap.timeline({defaults:{ease}})
+    .to('#curtain', {yPercent:-100, duration:1.1, ease:'expo.inOut'})
+    .set('#curtain', {display:'none'})
+    .to('#heroEyebrow', {opacity:1, y:0, duration:.8}, '-=.4')
+    .to('#heroTitle .line > span', {yPercent:0, duration:1.2, stagger:.08}, '-=.6')
+    .to(['#hbL','#hbR'], {x:0, opacity:1, duration:1.4}, '-=1.1')
+    .to('#hbDot', {scale:1, duration:.7, ease:'back.out(2.2)'}, '-=.6')
+    .to('.hero .h-in:not(#heroEyebrow)', {opacity:1, y:0, duration:.9, stagger:.1}, '-=.9');
+
+  // o recorte se fecha conforme o hero sai de cena
+  gsap.to('.hero-mark', {yPercent:-20, scale:.92, ease:'none', scrollTrigger:{trigger:'.hero', start:'top top', end:'bottom top', scrub:true}});
+  gsap.to('#heroTitle', {y:-60, opacity:.25, ease:'none', scrollTrigger:{trigger:'.hero', start:'40% top', end:'bottom top', scrub:true}});
+
+  // ---------- reveals ----------
+  ScrollTrigger.batch('.rv', {
+    start:'top 88%',
+    onEnter: els => gsap.to(els, {opacity:1, y:0, duration:1, stagger:.08, ease, overwrite:true})
+  });
+
+  // ---------- linhas de base: desenham com o scroll, o ponto acende no fim ----------
+  document.querySelectorAll('.baseline').forEach(b => {
+    gsap.fromTo(b, {'--draw':0}, {'--draw':1, ease:'none', scrollTrigger:{trigger:b, start:'top 92%', end:'top 60%', scrub:.6,
+      onUpdate: s => b.style.setProperty('--dot', s.progress > .85 ? 1 : 0)}});
+  });
+
+  // ---------- informação ≠ inteligência ≠ decisão ----------
+  const words = gsap.utils.toArray('.gap-row .w');
+  ScrollTrigger.create({trigger:'#gap', start:'top 75%', onEnter:() => {
+    words.forEach((w, i) => gsap.delayedCall(i * .45, () => {
+      words.forEach(o => o.classList.remove('on')); w.classList.add('on');
+    }));
+  }});
+
+  // ---------- método: a linha percorre as etapas ----------
+  const steps = document.getElementById('steps'), lis = steps.querySelectorAll('li');
+  ScrollTrigger.create({trigger:steps, start:'top 75%', end:'bottom 45%', scrub:.4, onUpdate: s => {
+    steps.style.setProperty('--p', s.progress);
+    const n = Math.round(s.progress * (lis.length - 1));
+    lis.forEach((li, i) => li.classList.toggle('on', i <= n));
+  }});
+
+  // ---------- números medidos ----------
+  document.querySelectorAll('.count').forEach(c => {
+    const o = {v:0};
+    ScrollTrigger.create({trigger:c, start:'top 88%', once:true, onEnter:() =>
+      gsap.to(o, {v:+c.dataset.to, duration:1.6, ease:'power2.out', onUpdate:() => c.textContent = Math.round(o.v)})});
+  });
+  ScrollTrigger.create({trigger:'#ev', start:'top 85%', once:true, onEnter:() =>
+    document.querySelectorAll('.units i').forEach((u, i) => setTimeout(() => u.style.setProperty('--grow', 1), i * 70))});
+
+  // ---------- retrato com parallax ----------
+  gsap.fromTo('#portrait', {yPercent:-8}, {yPercent:0, ease:'none', scrollTrigger:{trigger:'.portrait', start:'top bottom', end:'bottom top', scrub:true}});
+})();
+</script>
+</body>
+</html>
