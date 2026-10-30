@@ -1,0 +1,11 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/pontob", "destination": "/ponto-b", "permanent": true },
+    { "source": "/la", "destination": "/lucas-analytics", "permanent": true }
+  ],
+  "headers": [
+    { "source": "/(.*)\\.(svg|jpg|png)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }] }
+  ]
+}

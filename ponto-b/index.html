@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ponto b · Carreira em dados com Lucas Fernandes</title>
+<meta name="description" content="Carreira em dados sem atalho falso. Projeto real, IA executando, você decidindo. ponto b, por Lucas Analytics.">
+<meta property="og:title" content="ponto b · Do ponto A ao ponto B.">
+<meta property="og:description" content="Aprenda construindo. A IA executa, você decide.">
+<meta name="theme-color" content="#0F2B1F">
+<link rel="icon" href="/ponto-b/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700&family=Manrope:wght@400;500;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --floresta:#0F2B1F; --painel:#153527; --painel-2:#1B3F2F; --folha:#2B5A43; --linha:#25483A;
+  --lima:#C8FF3D; --areia:#F3F1E8; --musgo:#9FB5A8;
+  --display:"Unbounded","Arial Black",sans-serif; --sans:"Manrope",Arial,sans-serif; --mono:"JetBrains Mono","Courier New",monospace;
+  --ease:cubic-bezier(0.22,1,0.36,1);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--floresta);color:var(--areia);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img{display:block;max-width:100%}
+.wrap{max-width:1160px;margin:0 auto;padding:0 32px}
+@media(max-width:640px){.wrap{padding:0 16px}}
+section{padding:130px 0;position:relative;border-bottom:1px solid var(--linha)}
+@media(max-width:640px){section{padding:84px 0}}
+h1,h2,h3,p{margin:0}
+.label{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--musgo)}
+.pill{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;border:1px solid var(--folha);border-radius:999px;padding:8px 15px;color:var(--areia)}
+.pill i{width:8px;height:8px;border-radius:50%;background:var(--lima);display:block}
+.title{font-family:var(--display);font-weight:700;font-size:clamp(28px,4vw,46px);line-height:1.08;letter-spacing:-.025em}
+.headline{font-family:var(--sans);font-weight:800;font-size:clamp(34px,5.4vw,72px);line-height:1.02;letter-spacing:-.025em;text-wrap:balance}
+.headline em,.title em,.hl{font-style:normal;color:var(--lima)}
+.muted{color:var(--musgo)}
+.lead{font-weight:500;font-size:clamp(18px,1.8vw,21px);line-height:1.55;color:var(--musgo);max-width:46ch}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;transition:transform .5s var(--ease),background .4s,border-color .4s;border-bottom:1px solid transparent}
+.nav.solid{background:rgba(15,43,31,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom-color:var(--linha)}
+.nav.hide{transform:translateY(-100%)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
+.nav .logo img{height:26px;width:auto}
+.links{display:flex;align-items:center;gap:30px;font-weight:500;font-size:15px}
+.links a{text-decoration:none;color:var(--musgo);transition:color .3s}
+.links a:hover{color:var(--areia)}
+.links .switch{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.btn{display:inline-flex;align-items:center;gap:12px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border-radius:999px;padding:16px 26px;border:1px solid transparent;cursor:pointer;transition:transform .4s var(--ease),background .3s,border-color .3s}
+.btn svg{transition:transform .4s var(--ease)}
+.btn:hover svg{transform:translateX(4px)}
+.btn-lima{background:var(--lima);color:var(--floresta)}
+.btn-lima:hover{transform:translateY(-2px)}
+.btn-line{border-color:var(--folha);color:var(--areia)}
+.btn-line:hover{border-color:var(--musgo)}
+.links .btn{padding:11px 18px;font-size:11px;color:var(--floresta)}
+.links .btn:hover{color:var(--floresta)}
+.menu-btn{display:none;background:none;border:1px solid var(--folha);border-radius:999px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--areia);padding:9px 16px;cursor:pointer}
+@media(max-width:900px){
+  .links{position:fixed;inset:76px 0 auto 0;flex-direction:column;align-items:flex-start;gap:0;background:var(--floresta);border-bottom:1px solid var(--linha);padding:8px 16px 24px;opacity:0;transform:translateY(-10px);pointer-events:none;transition:.4s var(--ease)}
+  .links a{padding:14px 0;width:100%;border-bottom:1px solid var(--linha);color:var(--areia)}
+  .links .btn{margin-top:18px;width:auto;border-bottom:0;padding:14px 22px}
+  .nav.open .links{opacity:1;transform:none;pointer-events:auto}
+  .menu-btn{display:block}
+}
+
+/* ---------- hero ---------- */
+.hero{min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:140px 0 120px;overflow:hidden;border-bottom:0}
+.hero-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:56px;align-items:center}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:56px}}
+.hero .pill{margin-bottom:34px}
+.hero .headline{margin-bottom:28px;max-width:13ch}
+.hero .headline .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em;margin-bottom:-.08em}
+.hero .headline .w > span{display:inline-block}
+.hero .lead{margin-bottom:42px}
+.hero .btns{display:flex;flex-wrap:wrap;gap:12px}
+.signature{display:flex;flex-direction:column;gap:18px;width:100%;max-width:440px;justify-self:end}
+@media(max-width:900px){.signature{justify-self:start;max-width:340px}}
+.signature .wm{width:100%;height:auto}
+.road{display:block;width:100%;height:auto;overflow:visible}
+.signature .ab{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--musgo);margin-top:-6px}
+.signature .desc{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--areia)}
+
+/* ---------- barra de progresso: a linha-caminho ---------- */
+.progress{position:fixed;left:32px;right:32px;bottom:22px;z-index:40;pointer-events:none;height:22px;display:flex;align-items:center}
+.progress svg{width:100%;height:22px;overflow:visible}
+.progress .lbl{position:absolute;bottom:20px;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--musgo)}
+.progress .lbl.a{left:0}.progress .lbl.b{right:0}
+@media(max-width:640px){.progress{left:16px;right:16px;bottom:12px}.progress .lbl{display:none}}
+
+/* ---------- ponto A: frase que acende ---------- */
+.reading{font-family:var(--sans);font-weight:800;font-size:clamp(32px,5.4vw,74px);line-height:1.06;letter-spacing:-.025em;max-width:18ch}
+.reading .wd{color:var(--folha);transition:color .25s}
+.reading .wd.on{color:var(--areia)}
+.reading .wd.key.on{color:var(--lima)}
+.pa-grid{display:grid;grid-template-columns:auto 1fr;gap:48px}
+.pa-grid .label{padding-top:18px;white-space:nowrap}
+@media(max-width:900px){.pa-grid{grid-template-columns:1fr;gap:24px}}
+
+/* ---------- IA executa / você decide ---------- */
+.versus{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:56px}
+@media(max-width:900px){.versus{grid-template-columns:1fr}}
+.panel{background:var(--painel);border-radius:24px;padding:40px}
+@media(max-width:640px){.panel{padding:28px 22px}}
+.panel h3{font-family:var(--sans);font-weight:800;font-size:24px;margin:14px 0 24px}
+.panel ul{list-style:none;margin:0;padding:0}
+.panel li{display:flex;gap:14px;align-items:baseline;padding:14px 0;border-top:1px solid var(--linha);font-weight:500;color:var(--musgo)}
+.panel li b{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--musgo);min-width:28px}
+.panel.you{background:var(--painel-2);outline:1px solid var(--folha)}
+.panel.you li{color:var(--areia)}
+
+/* ---------- jornada: 4 semanas (scroll horizontal) ---------- */
+.journey{padding:0;border-bottom:1px solid var(--linha)}
+.journey .pin{height:100vh;height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.journey .head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:48px}
+.track{display:flex;gap:16px;padding:0 32px;width:max-content;will-change:transform}
+.week{width:min(78vw,400px);flex:0 0 auto;background:var(--painel);border-radius:24px;padding:34px;display:flex;flex-direction:column;justify-content:space-between;min-height:400px;transition:background .4s,outline-color .4s;outline:1px solid transparent}
+.week.on{background:var(--painel-2);outline-color:var(--folha)}
+.week .k{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--musgo);display:flex;justify-content:space-between}
+.week .n{font-family:var(--display);font-weight:700;font-size:84px;line-height:1;letter-spacing:-.04em;color:var(--folha);transition:color .4s}
+.week.on .n{color:var(--areia)}
+.week h3{font-weight:800;font-size:23px;line-height:1.2;margin:0 0 10px}
+.week p{color:var(--musgo);font-size:15.5px}
+.week .road{margin-top:24px}
+.journey .road-wrap{padding:44px 32px 0;max-width:1160px;margin:0 auto;width:100%}
+@media(max-width:900px){
+  .journey .pin{height:auto;padding:84px 0}
+  .track{flex-direction:column;width:auto;padding:0 16px}
+  .week{width:100%;min-height:0}
+  .week .n{font-size:60px;margin:18px 0}
+  .journey .road-wrap{display:none}
+}
+
+/* ---------- portfólio ---------- */
+.port{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+@media(max-width:900px){.port{grid-template-columns:1fr;gap:48px}}
+.stack{position:relative;height:420px}
+.pcard{position:absolute;inset:0 auto auto 0;width:min(calc(100% - 44px),420px);background:var(--painel);border-radius:24px;padding:34px;border:1px solid var(--linha);transform-origin:bottom left}
+.pcard .k{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--musgo);display:flex;justify-content:space-between;margin-bottom:24px}
+.pcard h4{font-weight:800;font-size:22px;line-height:1.25;margin:0 0 12px}
+.pcard p{color:var(--musgo);font-size:15px}
+.pcard .road{margin-top:28px}
+.big{font-family:var(--display);font-weight:700;font-size:clamp(46px,7vw,96px);line-height:.95;letter-spacing:-.04em}
+.stat-row{display:flex;gap:40px;margin-top:36px;flex-wrap:wrap}
+.stat-row div{border-top:1px solid var(--folha);padding-top:14px;min-width:120px}
+.stat-row b{display:block;font-family:var(--sans);font-weight:800;font-size:40px;line-height:1}
+
+/* ---------- para quem ---------- */
+.fit{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:56px}
+@media(max-width:900px){.fit{grid-template-columns:1fr}}
+.fit ul{list-style:none;margin:0;padding:0}
+.fit li{padding:15px 0 15px 30px;border-top:1px solid var(--linha);position:relative;font-weight:500}
+.fit .yes li::before{content:"";position:absolute;left:2px;top:23px;width:9px;height:9px;border-radius:50%;background:var(--areia)}
+.fit .no li{color:var(--musgo)}
+.fit .no li::before{content:"×";position:absolute;left:2px;top:12px;font-family:var(--mono);color:var(--musgo)}
+
+/* ---------- quem sou ---------- */
+.me{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:center}
+@media(max-width:900px){.me{grid-template-columns:1fr;gap:40px}}
+.photo{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:4/5;background:var(--painel);max-width:460px}
+.photo img{width:100%;height:112%;object-fit:cover;will-change:transform}
+.photo::after{content:"";position:absolute;inset:0;background:var(--floresta);opacity:.12;pointer-events:none}
+.photo .pill{position:absolute;left:18px;bottom:18px;background:var(--floresta);z-index:2}
+
+/* ---------- cta ---------- */
+.cta-sec{border-bottom:0;padding-bottom:160px}
+.cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+@media(max-width:900px){.cta-grid{grid-template-columns:1fr;gap:48px}}
+.form{background:var(--painel);border-radius:24px;padding:40px}
+@media(max-width:640px){.form{padding:28px 20px}}
+.field{margin-bottom:26px}
+.field label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--musgo);margin-bottom:8px;transition:color .3s}
+.field:focus-within label{color:var(--areia)}
+.field input,.field textarea{width:100%;background:var(--floresta);border:1px solid var(--folha);border-radius:14px;padding:14px 16px;font:inherit;font-size:16px;font-weight:500;color:var(--areia);outline:none;transition:border-color .3s;resize:none}
+.field input:focus,.field textarea:focus{border-color:var(--musgo)}
+.field input::placeholder,.field textarea::placeholder{color:#6F8679}
+.ab-fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:640px){.ab-fields{grid-template-columns:1fr}}
+
+/* ---------- rodapé com co-assinatura ---------- */
+footer{padding:56px 0 88px;border-top:1px solid var(--linha)}
+.cosign{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.cosign img{height:30px;width:auto}
+.cosign .sep{width:1px;height:38px;background:var(--folha)}
+.cosign .la{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--areia);text-decoration:none}
+.foot-meta{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-top:36px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--musgo)}
+.foot-meta a{text-decoration:none}
+.foot-meta a:hover{color:var(--areia)}
+
+/* ---------- cursor: anel do ponto A que vira ponto B ---------- */
+.cursor{position:fixed;left:0;top:0;z-index:90;width:22px;height:22px;margin:-11px 0 0 -11px;border:2px solid var(--areia);border-radius:50%;pointer-events:none;transition:background .25s,border-color .25s,transform .35s var(--ease);opacity:0}
+.cursor.hot{background:var(--lima);border-color:var(--lima);transform:scale(.6)}
+@media(hover:none),(pointer:coarse){.cursor{display:none}}
+
+/* ---------- entrada ---------- */
+.curtain{position:fixed;inset:0;z-index:100;background:var(--floresta);pointer-events:none;display:flex;align-items:center;justify-content:center}
+.js .rv{opacity:0;transform:translateY(40px)}
+@media(prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none}.curtain,.cursor{display:none}}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+<div class="curtain" id="curtain" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#topo" class="logo" aria-label="ponto b, início"><img src="/ponto-b/assets/wordmark-lima.svg" alt="ponto b" width="93" height="26"></a>
+    <nav class="links" id="links" aria-label="Seções">
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#portfolio">Portfólio</a>
+      <a href="#quem-sou">Quem sou</a>
+      <a href="/" class="switch" title="Voltar à escolha de jornada">Trocar jornada</a>
+      <a href="#entrar" class="btn btn-lima">Entrar</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="links">Menu</button>
+  </div>
+</header>
+
+<div class="progress" aria-hidden="true">
+  <span class="lbl a">Ponto A</span><span class="lbl b">Ponto B</span>
+  <svg viewBox="0 0 1000 22" preserveAspectRatio="none">
+    <line x1="0" y1="11" x2="1000" y2="11" stroke="#2B5A43" stroke-width="2" vector-effect="non-scaling-stroke"/>
+    <line id="progLima" x1="0" y1="11" x2="0" y2="11" stroke="#C8FF3D" stroke-width="2" vector-effect="non-scaling-stroke"/>
+  </svg>
+</div>
+
+<main>
+<!-- HERO -->
+<section class="hero" id="topo">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="pill h-in"><i></i>Dia 1 · Ponto A</span>
+      <h1 class="headline" id="heroTitle" aria-label="Aprenda construindo. A IA executa, você decide.">
+        <span class="w"><span>Aprenda</span></span> <span class="w"><span>construindo.</span></span>
+        <span class="w"><span>A</span></span> <span class="w"><span>IA</span></span> <span class="w"><span>executa,</span></span>
+        <span class="w"><span>você</span></span> <span class="w"><span><em>decide.</em></span></span>
+      </h1>
+      <p class="lead h-in">Carreira em dados sem atalho falso. Projeto real, IA executando, você decidindo se o que foi feito está certo e se leva ao objetivo.</p>
+      <div class="btns h-in">
+        <a href="#entrar" class="btn btn-lima">Quero meu ponto B
+          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M1 7h11M8 3l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+        <a href="#como-funciona" class="btn btn-line">Como funciona</a>
+      </div>
+    </div>
+    <div class="signature" role="img" aria-label="ponto b, carreira em dados com Lucas Fernandes">
+      <img class="wm h-in" src="/ponto-b/assets/wordmark-lima.svg" alt="" width="597" height="167">
+      <svg class="road" id="heroRoad" viewBox="0 0 440 30" aria-hidden="true">
+        <circle cx="12" cy="15" r="9" fill="none" stroke="#F3F1E8" stroke-width="4"/>
+        <line id="hrA" x1="21" y1="15" x2="160" y2="15" stroke="#F3F1E8" stroke-width="4"/>
+        <line id="hrB" x1="160" y1="15" x2="416" y2="15" stroke="#C8FF3D" stroke-width="4"/>
+        <circle id="hrDot" cx="426" cy="15" r="12" fill="#C8FF3D"/>
+      </svg>
+      <div class="ab h-in"><span>A</span><span>B</span></div>
+      <div class="desc h-in"><span>Carreira em dados</span><span>com Lucas Fernandes</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PONTO A -->
+<section id="ponto-a">
+  <div class="wrap pa-grid">
+    <span class="label">Onde você está</span>
+    <div>
+      <p class="reading" id="reading">Você não está atrasado. Está sem direção.</p>
+      <p class="lead rv" style="margin-top:44px">Todo profissional de dados está em algum ponto A. Sabe as ferramentas, entrega o relatório, monta o dashboard. E mesmo assim sente que não sai do lugar. O ponto b existe para encurtar o caminho até onde você quer chegar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- IA x VOCÊ -->
+<section>
+  <div class="wrap">
+    <span class="label rv">Julgamento</span>
+    <h2 class="headline rv" style="font-size:clamp(30px,4.4vw,56px);margin-top:18px;max-width:18ch">A IA escreveu a query. Quem sabe se ela está <em>certa?</em></h2>
+    <div class="versus">
+      <div class="panel rv">
+        <span class="pill"><i style="background:var(--areia)"></i>A IA executa</span>
+        <h3>O que dá para delegar</h3>
+        <ul>
+          <li><b>01</b>Escrever as consultas e o código</li>
+          <li><b>02</b>Limpar e organizar a base</li>
+          <li><b>03</b>Montar a primeira versão do painel</li>
+          <li><b>04</b>Rodar o modelo de novo, e de novo</li>
+        </ul>
+      </div>
+      <div class="panel you rv">
+        <span class="pill"><i></i>Você decide</span>
+        <h3>O que ninguém faz por você</h3>
+        <ul>
+          <li><b>01</b>Qual é o problema real?</li>
+          <li><b>02</b>O que a IA pode executar?</li>
+          <li><b>03</b>O resultado faz sentido?</li>
+          <li><b>04</b>Isso leva ao objetivo?</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JORNADA -->
+<section class="journey" id="como-funciona">
+  <div class="pin" id="pin">
+    <div class="wrap head">
+      <div>
+        <span class="label">Como funciona</span>
+        <h2 class="title" style="margin-top:16px">4 semanas. 4 projetos.</h2>
+      </div>
+      <p class="lead" style="max-width:38ch">Cada participante traz um problema real. A gente constrói junto, uma semana por projeto.</p>
+    </div>
+    <div class="track" id="track">
+      <article class="week"><div class="k"><span>Semana 1</span><span>Ponto A</span></div><div class="n">01</div><div><h3>Qual é o problema real?</h3><p>Antes de abrir o SQL, entender a pergunta do negócio. A maior parte das análises erra aqui.</p></div></article>
+      <article class="week"><div class="k"><span>Semana 2</span><span>Execução</span></div><div class="n">02</div><div><h3>O que a IA pode executar?</h3><p>Delegar a parte braçal com critério e saber exatamente o que conferir depois.</p></div></article>
+      <article class="week"><div class="k"><span>Semana 3</span><span>Julgamento</span></div><div class="n">03</div><div><h3>O resultado faz sentido?</h3><p>Desconfiar do número bonito. Validar premissa, métrica e fonte antes de apresentar.</p></div></article>
+      <article class="week"><div class="k"><span>Semana 4</span><span>Ponto B</span></div><div class="n">04</div><div><h3>Isso leva ao objetivo?</h3><p>Transformar análise em recomendação. Entregar não é ser ouvido.</p></div></article>
+    </div>
+    <div class="road-wrap">
+      <svg class="road" viewBox="0 0 1000 24" preserveAspectRatio="none" aria-hidden="true" style="height:24px">
+        <line x1="14" y1="12" x2="986" y2="12" stroke="#2B5A43" stroke-width="3" vector-effect="non-scaling-stroke"/>
+        <line id="jLima" x1="14" y1="12" x2="14" y2="12" stroke="#C8FF3D" stroke-width="3" vector-effect="non-scaling-stroke"/>
+      </svg>
+      <div class="label" style="display:flex;justify-content:space-between;margin-top:10px"><span>Semana 1</span><span>Semana 4</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFÓLIO -->
+<section id="portfolio">
+  <div class="wrap port">
+    <div>
+      <span class="label rv">O que você leva</span>
+      <p class="big rv" style="margin-top:20px">4 projetos.<br>4 <span class="hl">decisões.</span></p>
+      <p class="lead rv" style="margin-top:28px">No fim, você não tem um certificado de ferramenta. Tem um portfólio de decisões: problema real, o que a IA executou, o que você decidiu e por quê.</p>
+      <div class="stat-row rv">
+        <div><b class="count" data-to="4">0</b><span class="label">Projetos reais</span></div>
+        <div><b class="count" data-to="4">0</b><span class="label">Semanas</span></div>
+        <div><b class="count" data-to="1">0</b><span class="label">Portfólio</span></div>
+      </div>
+    </div>
+    <div class="stack" id="stack">
+      <article class="pcard" style="top:0;left:0"><div class="k"><span>Projeto 1 de 4</span><span>Varejo</span></div><h4>Previsão de demanda da padaria</h4><p>A IA ajustou o modelo. Você decidiu que o feriado tinha que sair da base.</p></article>
+      <article class="pcard" style="top:24px;left:20px"><div class="k"><span>Projeto 3 de 4</span><span>Finanças</span></div><h4>Inadimplência por canal de venda</h4><p>A IA cruzou as tabelas. Você percebeu que o canal estava mal classificado.</p></article>
+      <article class="pcard" style="top:48px;left:40px;background:var(--painel-2);border-color:var(--folha)"><div class="k"><span>Projeto 2 de 4</span><span>Saúde</span></div><h4>Dashboard de churn da clínica</h4><p>A IA montou as consultas. Você decidiu que a métrica estava errada.</p>
+        <svg class="road" viewBox="0 0 300 20" aria-hidden="true"><circle cx="9" cy="10" r="6" fill="none" stroke="#F3F1E8" stroke-width="3"/><line x1="15" y1="10" x2="110" y2="10" stroke="#F3F1E8" stroke-width="3"/><line x1="110" y1="10" x2="282" y2="10" stroke="#C8FF3D" stroke-width="3"/><circle cx="290" cy="10" r="8" fill="#C8FF3D"/></svg>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUEM -->
+<section>
+  <div class="wrap">
+    <span class="label rv">Para quem é</span>
+    <h2 class="headline rv" style="font-size:clamp(30px,4.4vw,56px);margin-top:18px;max-width:20ch">Ninguém chega no Ponto B tirando <em>relatório.</em></h2>
+    <div class="fit">
+      <div class="panel rv yes">
+        <span class="pill"><i></i>É para você se</span>
+        <ul style="margin-top:24px">
+          <li>Trabalha com dados e sente que virou tirador de relatório</li>
+          <li>Já usa IA, mas não sabe quando confiar no resultado</li>
+          <li>Quer ser ouvido na reunião, não só entregar o arquivo</li>
+          <li>Prefere aprender em projeto real do que em exercício pronto</li>
+        </ul>
+      </div>
+      <div class="panel rv no" style="background:transparent;outline:1px solid var(--linha)">
+        <span class="pill">Não é para você se</span>
+        <ul style="margin-top:24px">
+          <li>Procura atalho mágico ou promessa de vaga</li>
+          <li>Quer só decorar mais uma ferramenta</li>
+          <li>Não tem tempo para construir uma semana por projeto</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUEM SOU -->
+<section id="quem-sou">
+  <div class="wrap me">
+    <div class="photo rv">
+      <img src="/lucas.jpg" alt="Lucas Fernandes" loading="lazy" id="photo">
+      <span class="pill"><i></i>Quem sou</span>
+    </div>
+    <div>
+      <span class="label rv">Lucas Fernandes</span>
+      <h2 class="headline rv" style="margin-top:16px;font-size:clamp(30px,4vw,50px)">Por que criei o <em>ponto b.</em></h2>
+      <p class="lead rv" style="margin-top:28px">Na Lucas Analytics eu ajudo donos de empresa a decidir melhor com dados. Do outro lado da mesa, vejo sempre a mesma coisa: analistas muito bons tecnicamente que não são ouvidos.</p>
+      <p class="lead rv" style="margin-top:18px">O ponto b leva o mesmo raciocínio para a sua carreira. Menos ferramenta decorada, mais julgamento. Porque quem decide é quem evolui.</p>
+      <p class="label rv" style="margin-top:34px">Fundador · Lucas Analytics</p>
+    </div>
+  </div>
+</section>
+
+<!-- ENTRAR -->
+<section class="cta-sec" id="entrar">
+  <div class="wrap cta-grid">
+    <div>
+      <span class="pill rv"><i></i>Próxima turma</span>
+      <h2 class="headline rv" style="margin-top:28px;max-width:16ch;font-size:clamp(32px,4.2vw,54px)">Ninguém evolui só aprendendo ferramenta. Evolui <em>decidindo.</em></h2>
+      <p class="lead rv" style="margin-top:28px">Conta onde você está e onde quer chegar. Eu respondo pessoalmente pelo WhatsApp.</p>
+    </div>
+    <form class="form rv" id="pbForm">
+      <div class="field"><label for="pName">Nome</label><input id="pName" required autocomplete="name" placeholder="Como você se chama"></div>
+      <div class="ab-fields">
+        <div class="field"><label for="pA">Seu ponto A</label><input id="pA" required placeholder="Ex: analista de BI júnior"></div>
+        <div class="field"><label for="pB">Seu ponto B</label><input id="pB" required placeholder="Ex: liderar a área de dados"></div>
+      </div>
+      <div class="field"><label for="pWhy">O que mais te trava hoje?</label><textarea id="pWhy" rows="3" placeholder="Conta em duas linhas"></textarea></div>
+      <button type="submit" class="btn btn-lima">Quero meu ponto B
+        <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M1 7h11M8 3l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="cosign">
+      <img src="/ponto-b/assets/wordmark-lima.svg" alt="ponto b" width="107" height="30">
+      <span class="sep" aria-hidden="true"></span>
+      <a class="la" href="/lucas-analytics">
+        <svg width="28" height="28" viewBox="0 0 100 100" aria-hidden="true"><path d="M43 19C39 18.2 22.5 18.6 21 21.4C19.7 23.8 20.6 46.2 20.1 50C19.7 53.8 19 76.1 21 79C23 81.6 39.3 81 43.2 80.1L43 70.2C43 70.2 30.4 70.7 29.4 69C28.6 67.6 29 33 29.4 31.4C29.8 29.9 42.1 29.7 43.1 30.1Z" fill="#F3F1E8"/><path d="M57 19C61 18.2 77.5 18.7 79 21.5C80.3 23.9 79.4 46.2 79.9 50C80.3 53.8 81 76 79 78.9C77 81.5 60.7 81 56.8 80.1L57 70.2C57 70.2 69.6 70.6 70.6 69C71.4 67.7 71 33.1 70.6 31.4C70.2 30 57.9 29.8 56.9 30.2Z" fill="#F3F1E8"/><circle cx="50" cy="50" r="6.5" fill="#F3F1E8"/></svg>
+        Lucas Analytics
+      </a>
+    </div>
+    <div class="foot-meta">
+      <span>@pontob.analytics · por Lucas Analytics</span>
+      <span><a href="/">Trocar jornada</a> · lucasanalytics.com.br/ponto-b</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/vendor/gsap.min.js"></script>
+<script src="/vendor/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // frase do ponto A: quebra em palavras; a última vira o grifo lima
+  const reading = document.getElementById('reading');
+  const parts = reading.textContent.trim().split(' ');
+  reading.setAttribute('aria-label', reading.textContent.trim());
+  reading.innerHTML = parts.map((w, i) => `<span class="wd${i === parts.length - 1 ? ' key' : ''}" aria-hidden="true">${w}</span>`).join(' ');
+
+  // nav
+  const nav = document.getElementById('nav'), menuBtn = document.getElementById('menuBtn');
+  let lastY = 0;
+  addEventListener('scroll', () => {
+    const y = scrollY;
+    nav.classList.toggle('solid', y > 60);
+    nav.classList.toggle('hide', y > lastY && y > 500 && !nav.classList.contains('open'));
+    lastY = y;
+  }, {passive:true});
+  menuBtn.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    nav.classList.add('solid');
+    menuBtn.setAttribute('aria-expanded', open);
+    menuBtn.textContent = open ? 'Fechar' : 'Menu';
+  });
+  document.querySelectorAll('#links a[href^="#"]').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded', false); menuBtn.textContent = 'Menu';
+  }));
+
+  // WhatsApp
+  document.getElementById('pbForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const v = id => document.getElementById(id).value.trim();
+    const text = `Oi Lucas, sou ${v('pName')}. Meu ponto A hoje: ${v('pA')}. Meu ponto B: ${v('pB')}. O que mais me trava: "${v('pWhy')}". Quero saber mais sobre o ponto b.`;
+    window.open(`https://wa.me/5531999876954?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+  });
+
+  if (!window.gsap || reduce) {
+    document.getElementById('curtain').remove();
+    document.querySelectorAll('.rv,.h-in').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
+    document.querySelectorAll('.wd').forEach(w => w.classList.add('on'));
+    document.querySelectorAll('.count').forEach(c => c.textContent = c.dataset.to);
+    return;
+  }
+  gsap.registerPlugin(ScrollTrigger);
+  const ease = 'power3.out';
+
+  // ---------- entrada: o caminho desenha e o ponto B acende ----------
+  gsap.set('.h-in', {opacity:0, y:30});
+  gsap.set('#heroTitle .w > span', {yPercent:110});
+  gsap.set('#hrA', {attr:{x2:21}});
+  gsap.set('#hrB', {attr:{x2:160}});
+  gsap.set('#hrDot', {scale:0, transformOrigin:'426px 15px'});
+  gsap.timeline({defaults:{ease}})
+    .to('#curtain', {opacity:0, duration:.5})
+    .set('#curtain', {display:'none'})
+    .to('.hero .pill', {opacity:1, y:0, duration:.5}, '-=.2')
+    .to('#heroTitle .w > span', {yPercent:0, duration:.6, stagger:.06}, '-=.2')
+    .to('.signature .wm', {opacity:1, y:0, duration:.6}, '-=.5')
+    .to('#hrA', {attr:{x2:160}, duration:.35, ease:'power2.out'}, '-=.2')
+    .to('#hrB', {attr:{x2:416}, duration:.6, ease:'power2.out'})
+    .to('#hrDot', {scale:1, duration:.4, ease:'back.out(3)'})
+    .to('.hero .h-in:not(.pill):not(.wm)', {opacity:1, y:0, duration:.6, stagger:.07}, '-=.7');
+
+  // a linha-caminho do hero: o lima avança com o cursor
+  const hero = document.querySelector('.hero');
+  hero.addEventListener('mousemove', e => {
+    const t = e.clientX / innerWidth;
+    gsap.to('#hrA', {attr:{x2: 160 - t * 120}, duration:.6, ease});
+    gsap.to('#hrB', {attr:{x1: 160 - t * 120}, duration:.6, ease});
+  });
+
+  // ---------- barra de progresso: o trecho lima cresce com a leitura ----------
+  gsap.to('#progLima', {attr:{x2:1000}, ease:'none', scrollTrigger:{trigger:document.body, start:'top top', end:'bottom bottom', scrub:.3}});
+
+  // ---------- reveals ----------
+  ScrollTrigger.batch('.rv', {start:'top 88%', onEnter: els => gsap.to(els, {opacity:1, y:0, duration:.6, stagger:.07, ease, overwrite:true})});
+
+  // ---------- frase que acende palavra por palavra ----------
+  const wds = reading.querySelectorAll('.wd');
+  ScrollTrigger.create({trigger:reading, start:'top 80%', end:'bottom 45%', scrub:true, onUpdate: s => {
+    const n = Math.floor(s.progress * (wds.length + .99));
+    wds.forEach((w, i) => w.classList.toggle('on', i < n));
+  }});
+
+  // ---------- jornada: scroll horizontal no desktop ----------
+  const mm = gsap.matchMedia();
+  mm.add('(min-width: 901px)', () => {
+    const track = document.getElementById('track'), weeks = track.querySelectorAll('.week');
+    const dist = () => Math.max(0, track.scrollWidth - innerWidth + 64);
+    gsap.to(track, {x:() => -dist(), ease:'none', scrollTrigger:{
+      trigger:'#pin', start:'top top', end:() => '+=' + (dist() + innerHeight * .4), pin:true, scrub:.6, invalidateOnRefresh:true,
+      onUpdate: s => {
+        gsap.set('#jLima', {attr:{x2: 14 + s.progress * 972}});
+        const n = Math.min(weeks.length - 1, Math.floor(s.progress * weeks.length));
+        weeks.forEach((w, i) => w.classList.toggle('on', i <= n));
+      }
+    }});
+  });
+  mm.add('(max-width: 900px)', () => {
+    document.querySelectorAll('.week').forEach(w => {
+      gsap.from(w, {y:40, opacity:0, duration:.5, ease, scrollTrigger:{trigger:w, start:'top 88%', onEnter:() => w.classList.add('on')}});
+    });
+  });
+
+  // ---------- portfólio: os cartões se abrem em leque ----------
+  gsap.from('#stack .pcard', {y:60, rotate:-4, opacity:0, duration:.6, stagger:.12, ease, scrollTrigger:{trigger:'#stack', start:'top 80%'}});
+  gsap.to('#stack .pcard:nth-child(1)', {rotate:-5, x:-10, ease:'none', scrollTrigger:{trigger:'#stack', start:'top 70%', end:'bottom 30%', scrub:true}});
+  gsap.to('#stack .pcard:nth-child(2)', {rotate:-2, ease:'none', scrollTrigger:{trigger:'#stack', start:'top 70%', end:'bottom 30%', scrub:true}});
+
+  // ---------- contadores ----------
+  document.querySelectorAll('.count').forEach(c => {
+    const o = {v:0};
+    ScrollTrigger.create({trigger:c, start:'top 90%', once:true, onEnter:() =>
+      gsap.to(o, {v:+c.dataset.to, duration:1.2, ease:'power2.out', onUpdate:() => c.textContent = Math.round(o.v)})});
+  });
+
+  // ---------- foto com zoom lento (1.0 a 1.12) ----------
+  gsap.fromTo('#photo', {scale:1, yPercent:-6}, {scale:1.12, yPercent:0, ease:'none', scrollTrigger:{trigger:'.photo', start:'top bottom', end:'bottom top', scrub:true}});
+
+  // ---------- cursor: anel (ponto A) que vira ponto B sobre o que é clicável ----------
+  const cur = document.getElementById('cursor');
+  if (matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    const xTo = gsap.quickTo(cur, 'x', {duration:.35, ease}), yTo = gsap.quickTo(cur, 'y', {duration:.35, ease});
+    addEventListener('mousemove', e => { cur.style.opacity = 1; xTo(e.clientX); yTo(e.clientY); });
+    document.addEventListener('mouseover', e => cur.classList.toggle('hot', !!e.target.closest('a,button,input,textarea')));
+    document.addEventListener('mouseleave', () => cur.style.opacity = 0);
+  }
+
+  addEventListener('load', () => ScrollTrigger.refresh());
+})();
+</script>
+</body>
+</html>
