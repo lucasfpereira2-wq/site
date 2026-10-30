@@ -200,6 +200,14 @@ footer{padding:56px 0 88px;border-top:1px solid var(--linha)}
 .curtain{position:fixed;inset:0;z-index:100;background:var(--floresta);pointer-events:none;display:flex;align-items:center;justify-content:center}
 .js .rv{opacity:0;transform:translateY(40px)}
 @media(prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none}.curtain,.cursor{display:none}}
+
+/* instagram discreto */
+.nav-ig{display:inline-flex;align-items:center;gap:10px;opacity:.75}
+.nav-ig:hover{opacity:1}
+.nav-ig .ig-txt{display:none}
+.foot-ig{display:inline-flex;align-items:center;gap:8px;vertical-align:middle}
+.foot-ig svg{position:relative;top:-1px}
+@media(max-width:900px){.nav-ig{opacity:1}.nav-ig .ig-txt{display:inline}}
 </style>
 </head>
 <body>
@@ -215,6 +223,7 @@ footer{padding:56px 0 88px;border-top:1px solid var(--linha)}
       <a href="#portfolio">Portfólio</a>
       <a href="#quem-sou">Quem sou</a>
       <a href="/" class="switch" title="Voltar à escolha de jornada">Trocar jornada</a>
+      <a href="https://instagram.com/pontob.analytics" class="nav-ig" target="_blank" rel="noopener" aria-label="Instagram do ponto b"><svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor"/></svg><span class="ig-txt">@pontob.analytics</span></a>
       <a href="#entrar" class="btn btn-lima">Entrar</a>
     </nav>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="links">Menu</button>
@@ -429,7 +438,7 @@ footer{padding:56px 0 88px;border-top:1px solid var(--linha)}
       </a>
     </div>
     <div class="foot-meta">
-      <span>@pontob.analytics · por Lucas Analytics</span>
+      <span><a class="foot-ig" href="https://instagram.com/pontob.analytics" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor"/></svg>@pontob.analytics</a> · por Lucas Analytics</span>
       <span><a href="/">Trocar jornada</a> · lucasanalytics.com.br/ponto-b</span>
     </div>
   </div>
